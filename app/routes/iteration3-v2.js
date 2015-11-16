@@ -27,7 +27,7 @@ switch(req.query["radio-group"]) {
   case "Married":
     res.render("iteration3-v2/year-of-marriage");
   case "Civil":
-    res.render("iteration3-v2/year-of-marriage");
+    res.render("iteration3-v2/year-of-civil");
   case "Other":
     res.render("iteration3-v2/error");
   case "Divorced":
@@ -40,6 +40,16 @@ switch(req.query["radio-group"]) {
 
 router.get('/marriage-year', function (req, res) {
 switch(req.query["marriage_year"]) {
+  case "1973":
+    res.redirect("tel-number");
+  default:
+    //None of the above, go to error
+    res.redirect("error");
+    }
+  });
+  
+  router.get('/civil-year', function (req, res) {
+switch(req.query["civil_year"]) {
   case "1973":
     res.redirect("tel-number");
   default:
