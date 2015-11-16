@@ -19,15 +19,19 @@ router.get('/question2', function (req, res) {
     if(req.query["radio-inline-group"]== "Yes"){
         res.redirect("error")
     }else if(req.query["radio-inline-group"]== "No"){
-    res.render('iteration3-v1/question1');}
+    res.render('iteration3-v2/question1');}
 
 switch(req.query["radio-group"]) {
   case "Never been married":
     res.render("iteration3-v2/tel-number");
   case "Married":
     res.render("iteration3-v2/year-of-marriage");
+  case "Civil":
+    res.render("iteration3-v2/year-of-marriage");
   case "Other":
     res.render("iteration3-v2/error");
+  case "Divorced":
+    res.render("iteration3-v2/tel-number");
   default:
     //None of the above, go to error
     res.redirect("error");
