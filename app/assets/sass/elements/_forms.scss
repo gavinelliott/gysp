@@ -163,7 +163,9 @@ legend {
 
   padding: 4px;
   background-color: $white;
-  border: 1px solid $border-colour;
+  border: 2px solid $grey-1;
+// should this be $grey-1; as per current prototype tool kit or $border-colour
+
 
   // TODO: Remove 50% width set for tablet and up
   // !! BREAKING CHANGE !!

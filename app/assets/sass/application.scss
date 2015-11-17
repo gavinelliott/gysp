@@ -63,3 +63,19 @@
 }
 
 .noauth { padding-top: 10px!important; }
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.form-group-pass {
+  float: left;
+  width: 35px;
+  margin-right: 5px;
+}
+
+.form-control-full {
+  width:100%;
+}
+
+.disabled { background: $grey-3; }

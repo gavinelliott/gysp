@@ -49,6 +49,7 @@ app.use(function (req, res, next) {
 // routes (found in app/routes.js)
 
   var router = require(__dirname + '/app/routes.js'),
+      secure = require(__dirname + '/app/routes/generic.js'),
       iteration1v4  = require(__dirname + '/app/routes/iteration1-v4.js'),
       iteration2v2 = require(__dirname + '/app/routes/iteration2-v2.js'),
       iteration3v1 = require(__dirname + '/app/routes/iteration3-v1.js'),
@@ -56,6 +57,7 @@ app.use(function (req, res, next) {
       iteration1 = require(__dirname + '/app/routes/iteration1.js');
 
 app.use("/", router);
+app.use("/", secure);
 app.use("/iteration1-v4", iteration1v4);
 app.use("/iteration2-v2", iteration2v2);
 app.use("/iteration2-v4", iteration2v2);
