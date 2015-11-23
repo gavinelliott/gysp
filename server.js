@@ -2,11 +2,14 @@ var path = require('path'),
     express = require('express'),
     favicon = require('serve-favicon'),
     app = express(),
+    session = require('express-session'),
     bodyParser = require('body-parser'),
     basicAuth = require('basic-auth-connect'),
     port = (process.env.PORT || 3000),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
+    sessionKey = process.env.sessionKey || "lion",
+    sessionTimeOut = process.env.sessionTimeOut || 3000000,
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env = process.env.NODE_ENV || 'development';
@@ -20,6 +23,8 @@ if (env === 'production') {
   }
   app.use(basicAuth(username, password));
 }
+
+app.use(session({ secret: sessionKey, cookie: { maxAge: sessionTimeOut }, resave: true, saveUninitialized: true}));
 
 // Application settings
 app.engine('html', require(__dirname + '/lib/template-engine.js').__express);
@@ -55,9 +60,11 @@ app.use(function (req, res, next) {
       iteration3v1 = require(__dirname + '/app/routes/iteration3-v1.js'),
       iteration3v2 = require(__dirname + '/app/routes/iteration3-v2.js'),
       iteration1 = require(__dirname + '/app/routes/iteration1.js');
+      demo = require(__dirname + '/app/routes/demo.js');
 
 app.use("/", router);
 app.use("/", secure);
+app.use("/demo", demo);
 app.use("/iteration1-v4", iteration1v4);
 app.use("/iteration2-v2", iteration2v2);
 app.use("/iteration2-v4", iteration2v2);

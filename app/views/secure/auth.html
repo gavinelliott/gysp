@@ -37,54 +37,55 @@
 
 	    	<h1 class="heading-xlarge no-margin-top">Provide your details</h1>
 
+				<div class="form-group">
+					<label class="form-label-bold" for="ni_number">
+						Your reference number
+						<p class="form-hint">Can be found on your invitation to Get your State Pension letter</p>
+					</label>
+					<input type="text" class="form-control" id="reference" name="reference" /><br/>
+					<div class="noauth"><a href="noauth">I don't have a reference number</a></div>
+				</div>
+
 
         <div class="form-group">
 					<legend class="form-label-bold" for="ni_number" id="ni_number">
     				National Insurance Number
-            <span class="form-hint">It'll be on your last payslip. For example, JH 21 90 0A.</span>
+            <span class="form-hint">It'll be on your last payslip. For example, JH 21 90 20 A.</span>
 
 						<span class="form-hint">Please tell us the {{text.field0}}, {{text.field1}} and {{text.field2}} digit.</span>
 
 
     			</legend>
-            <div class="form-group form-group-pass">
-      			     <input class="form-control form-control-full disabled" name="value1" id="value1" type="text" disabled>
+            <div class="form-group form-group-compound  form-group-pass">
+      			     <input class="form-control  form-control-full disabled" name="value1" id="value1" type="text" disabled>
             </div>
-            <div class="form-group form-group-pass">
+            <div class="form-group form-group-compound form-group-pass">
       			     <input class="form-control form-control-full disabled" name="value2" id="value2" type="text" disabled>
             </div>
-            <div class="form-group form-group-pass">
+            <div class="form-group form-group-compound form-group-pass">
       			     <input class="form-control form-control-full {{^fields.value1}} disabled {{/fields.value1}}" name="value3" id="value3" maxlength=1 type="text" {{^fields.value1}} disabled {{/fields.value1}}>
             </div>
-            <div class="form-group form-group-pass">
+            <div class="form-group form-group-compound form-group-pass">
       			     <input class="form-control form-control-full {{^fields.value2}} disabled {{/fields.value2}}" name="value4" id="value4"	 maxlength=1 type="text" {{^fields.value2}} disabled {{/fields.value2}}>
             </div>
-            <div class="form-group form-group-pass">
+            <div class="form-group form-group-compound form-group-pass">
       			     <input class="form-control form-control-full {{^fields.value3}} disabled {{/fields.value3}} " name="value5" id="value5"  maxlength=1 type="text" {{^fields.value3}} disabled {{/fields.value3}}>
             </div>
-            <div class="form-group form-group-pass">
+            <div class="form-group form-group-compound form-group-pass">
       			     <input class="form-control form-control-full {{^fields.value4}} disabled {{/fields.value4}}" name="value6" id="value6"  maxlength=1 type="text" {{^fields.value4}} disabled {{/fields.value4}}>
             </div>
-            <div class="form-group form-group-pass">
+            <div class="form-group form-group-compound form-group-pass">
       			     <input class="form-control form-control-full {{^fields.value5}} disabled {{/fields.value5}}" name="value7" id="value7"  maxlength=1 type="text" {{^fields.value5}} disabled {{/fields.value5}}>
             </div>
-            <div class="form-group form-group-pass">
-      			     <input class="form-control form-control-full disabled" name="value8" id="value8" type="text" disabled>
+						<div class="form-group form-group-compound form-group-pass">
+      			     <input class="form-control form-control-full {{^fields.value6}} disabled {{/fields.value6}}" name="value8" id="value8"  maxlength=1 type="text" {{^fields.value6}} disabled {{/fields.value6}}>
+            </div>
+            <div class="form-group form-group-compound form-group-pass">
+      			     <input class="form-control form-control-full disabled" name="value9" id="value9" type="text" disabled>
             </div>
 
 
         </div>
-
-
-
-	        <div class="form-group">
-		       	<label class="form-label-bold" for="ni_number">
-		       		Your reference number
-		        	<p class="form-hint">Can be found on your invitation to Get your State Pension letter</p>
-		        </label>
-		        <input type="text" class="form-control" id="reference" name="reference" /><br/>
-		        <div class="noauth"><a href="noauth">I don't have a reference number</a></div>
-	        </div>
 
 	        <div class="form-group">
 	        <label class="form-label-bold label-no-hint" for="surname">
