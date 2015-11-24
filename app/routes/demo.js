@@ -11,8 +11,9 @@ Array.prototype.getRandom= function(num, cut){
 
 router.get('/secure', function (req, res) {
 
-      var values = [1, 2, 3, 4, 5, 6];
-      var fields = values.getRandom(3,true).sort();
+    //  var values = [1, 2, 3, 4, 5, 6];
+      var values = [5, 6]
+      var fields = values.getRandom(2,true).sort();
       var ob = new Object;
       var text = new Object;
 
