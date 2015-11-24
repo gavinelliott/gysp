@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.post('/start_smart', function (req, res) {
   if(req.body["ni_number"].replace( /\s/g, "") == "1234567843218765"){  res.redirect("declaration") }else{
-    res.redirect("start_smart_error");
+    res.redirect("start_smart_errorr");
     }
 });
 
