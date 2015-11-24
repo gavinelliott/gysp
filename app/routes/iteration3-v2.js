@@ -48,6 +48,7 @@ router.get('/marriage-year', function (req, res) {
 switch(req.query["marriage_year"]) {
   case "1973":
     res.redirect("tel-number");
+    break;
   default:
     //None of the above, go to error
     res.redirect("error");
@@ -58,6 +59,7 @@ switch(req.query["marriage_year"]) {
 switch(req.query["civil_year"]) {
   case "1973":
     res.redirect("tel-number");
+        break;
   default:
     //None of the above, go to error
     res.redirect("error");
