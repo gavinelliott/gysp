@@ -102,11 +102,12 @@ router.post('/secure', function(req, res) {
     req.session.view++;
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
-    }
+    }else{
     res.render('secure/auth', {
       fields: ob,
       text: text
     });
+  }
   }
 });
 
@@ -119,8 +120,9 @@ router.all('/work-or-lived-aboard', function(req, res) {
     res.redirect("work-or-lived-aboard-more");
   } else if (req.body.workedOutsideUk === "No") {
     res.redirect("relationship-status");
-  }
+  }else if(req.body.workedOutsideUk !== "Yes" && req.body.workedOutsideUk !== "No"){
   res.render('demo/work-or-lived-aboard');
+}
 });
 
 router.all('/relationship-status', function(req, res) {
@@ -131,15 +133,17 @@ router.all('/relationship-status', function(req, res) {
     req.body.relationship === "Divorced" ||
     req.body.relationship === "Civil") {
     res.redirect("relationship-status-date/" + req.body.relationship);
-  }
+  }else{
   res.render('demo/relationship-status');
+}
 });
 
 router.all('/work-or-lived-aboard-more', function(req, res) {
   if (req.body.submit === "Continue") {
     res.redirect("relationship-status");
-  }
+  }else{
   res.render('demo/work-or-lived-aboard-more');
+}
 });
 
 
@@ -149,7 +153,12 @@ router.all('/relationship-status-date/:type', function(req, res) {
 
   if (req.body.submit === "Continue") {
     res.redirect("/demo/relationship-status-more/"+req.params.type);
-  }
+  }else{
+
+    if(req.params.type === "Divorced"){
+        res.redirect("/demo/relationship-status-more/"+req.params.type);
+    }else{
+
   var isMarried = false,
     isEnded = false;
 
@@ -176,20 +185,21 @@ router.all('/relationship-status-date/:type', function(req, res) {
       eventText = "What date did they die?";
       break;
   }
-
   res.render('demo/relationship-status-date', {
     eventText: eventText,
     type: req.params.type,
     isEnded: isEnded,
     isMarried: isMarried
   });
+
+}}
 });
 
 router.all('/relationship-status-more/:type', function(req, res) {
 
   if (req.body.submit === "Continue") {
     res.redirect("/demo/info");
-  }
+  }else{
   var isMarried = false,
     isEnded = false;
 
@@ -205,6 +215,7 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
  res.render('demo/relationship-status-more',{type: req.params.type,isEnded: isEnded, isMarried: isMarried });
 
+}
 
 
 });
@@ -212,12 +223,17 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
 router.get('/calculation', function(req, res) {
   /* catch to redirect if value is set*/
-  if (req.session.figure === false) {
     res.redirect("/demo/info");
-  }
-  res.render('demo/calculated');
+  /*  always redirect */
+  //res.render('demo/calculated');
 });
 
+router.get('/info', function(req, res) {
+  /* catch to redirect if value is set*/
+    res.redirect("/demo/contact");
+  /*  always redirect */
+  //res.render('demo/calculated');
+});
 
 router.get('/unhappy-ending', function(req, res) {
   req.session.view = null;
