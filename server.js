@@ -59,12 +59,14 @@ app.use(function (req, res, next) {
       iteration2v2 = require(__dirname + '/app/routes/iteration2-v2.js'),
       iteration3v1 = require(__dirname + '/app/routes/iteration3-v1.js'),
       iteration3v2 = require(__dirname + '/app/routes/iteration3-v2.js'),
-      iteration1 = require(__dirname + '/app/routes/iteration1.js');
-      demo = require(__dirname + '/app/routes/demo.js');
+      iteration1 = require(__dirname + '/app/routes/iteration1.js'),
+      demo = require(__dirname + '/app/routes/demo.js'),
+      beta = require(__dirname + '/app/routes/beta.js');
 
 app.use("/", router);
 app.use("/", secure);
 app.use("/demo", demo);
+app.use("/beta", beta);
 app.use("/iteration1-v4", iteration1v4);
 app.use("/iteration2-v2", iteration2v2);
 app.use("/iteration2-v4", iteration2v2);
