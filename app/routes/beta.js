@@ -155,7 +155,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
     res.redirect("/beta/relationship-status-more/"+req.params.type);
   }else{
 
-    if(req.params.type === "Divorced"){
+    if(req.params.type === "Widowed"){
         res.redirect("/beta/relationship-status-more/"+req.params.type);
     }else{
 
@@ -173,14 +173,17 @@ router.all('/relationship-status-date/:type', function(req, res) {
 
   switch (req.params.type) {
     case "Married":
-      eventText = "What date did you enter into your marriage?";
+      eventText = "What date did you get married?";
       break;
     case "Civil":
-      eventText = "What date did you enter into your Civil Partnership?";
+      eventText = "What date was your civil partnership registered?";
       break;
     case "Divorced":
       eventText = "What date did you get divorced?";
       break;
+      case "Dissolved":
+        eventText = "What date was your civil partnership dissolved?";
+        break;
     case "Widowed":
       eventText = "What date did they die?";
       break;

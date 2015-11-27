@@ -156,7 +156,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
     res.redirect("/demo/relationship-status-more/"+req.params.type);
   }else{
 
-    if(req.params.type === "Divorced"){
+    if(req.params.type === "Widowed"){
         res.redirect("/demo/relationship-status-more/"+req.params.type);
     }else{
 
