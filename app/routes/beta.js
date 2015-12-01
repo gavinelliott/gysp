@@ -256,6 +256,7 @@ router.get('/bank-contact', function(req, res) {
 
 router.get('/info', function(req, res) {
   /* catch to redirect if value is set*/
+  req.session.figure = false;
     res.redirect("/beta/contact");
   /*  always redirect */
   //res.render('demo/calculated');
@@ -267,9 +268,10 @@ router.get('/unhappy-ending', function(req, res) {
 });
 
 router.get('/end', function(req, res) {
-  req.session.figure = null;
+console.log(req.session.figure);
   if (req.session.figure === false) {
     res.render('demo/end-no-figure');
+      req.session.figure = null;
   } else {
     res.render('beta/ending-breakdown');
   }
