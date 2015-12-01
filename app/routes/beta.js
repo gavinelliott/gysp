@@ -224,16 +224,32 @@ router.all('/relationship-status-more/:type', function(req, res) {
 });
 
 
-router.get('/calculation', function(req, res) {
+router.get('/contact', function(req, res) {
   /* catch to redirect if value is set*/
     //.redirect("/beta/info");
   /*  always redirect */
+  console.log(req.session.figure);
+  if(req.session.figure === undefined){
+    figure = true;
+  }else {
+    figure = false;
+  }
+  res.render('beta/contact',{figure:figure});
+});
+
+router.get('/calculation', function(req, res) {
+  /* catch to redirect if value is set*/
+  if(req.session.figure === false){
+    res.redirect("/beta/info");
+  }else{
+  /*  always redirect */
   res.render('demo/calculated');
+}
 });
 
 router.get('/info', function(req, res) {
   /* catch to redirect if value is set*/
-    res.redirect("/beta/calculated");
+    res.redirect("/beta/contact");
   /*  always redirect */
   //res.render('demo/calculated');
 });
@@ -244,11 +260,11 @@ router.get('/unhappy-ending', function(req, res) {
 });
 
 router.get('/end', function(req, res) {
-
+  req.session.figure = null;
   if (req.session.figure === false) {
     res.render('demo/end-no-figure');
   } else {
-    res.render('demo/end');
+    res.render('beta/ending-breakdown');
   }
 });
 
