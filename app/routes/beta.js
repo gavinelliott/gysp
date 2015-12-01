@@ -243,8 +243,15 @@ router.get('/calculation', function(req, res) {
     res.redirect("/beta/info");
   }else{
   /*  always redirect */
-  res.render('demo/calculated');
+  res.render('beta/calculated');
 }
+});
+
+router.get('/bank-contact', function(req, res) {
+  /* catch to redirect if value is set*/
+    res.render("beta/bank-details-to-contact");
+  /*  always redirect */
+  //res.render('demo/calculated');
 });
 
 router.get('/info', function(req, res) {
