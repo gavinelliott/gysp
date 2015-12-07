@@ -87,7 +87,7 @@ router.post('/secure', function(req, res) {
 
   res.locals.error = true;
 
-  if (req.body.reference.replace(/\s/g, "") === "1234567843218765" &&
+  if ((req.body.reference.replace(/\s/g, "") === "1234567843218765" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qwx5ychpnrjv") &&
     (
       (req.body.value3 === undefined || req.body.value3 == "1") &&
       (req.body.value4 === undefined || req.body.value4 == "2") &&
