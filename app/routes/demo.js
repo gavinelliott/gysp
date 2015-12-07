@@ -226,7 +226,7 @@ router.all('/relationship-status-more/:type', function(req, res) {
       pageHeader = "About your partner";
       break;
     case "Divorced":
-      pageHeader = "About your ex-partnerAbout your deceased partner";
+      pageHeader = "About your ex-partner";
       break;
     case "Dissolved":
       pageHeader = "About your ex-partner";
