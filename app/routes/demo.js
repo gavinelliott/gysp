@@ -97,7 +97,7 @@ router.post('/secure', function(req, res) {
       (req.body.value8 === undefined || req.body.value8 == "6")
     )) {
     req.session.view = null;
-    res.redirect("declaration");
+    res.redirect("work-or-lived-aboard");
   } else {
     req.session.view++;
     if (req.session.view > 2) {
@@ -216,8 +216,27 @@ router.all('/relationship-status-more/:type', function(req, res) {
   }
 
 
+  var pageHeader = "";
 
- res.render('demo/relationship-status-more',{type: req.params.type,isEnded: isEnded, isMarried: isMarried });
+  switch (req.params.type) {
+    case "Married":
+      pageHeader = "About your partner";
+      break;
+    case "Civil":
+      pageHeader = "About your partner";
+      break;
+    case "Divorced":
+      pageHeader = "About your ex-partnerAbout your deceased partner";
+      break;
+    case "Dissolved":
+      pageHeader = "About your ex-partner";
+      break;
+    case "Widowed":
+      pageHeader = "About your deceased partner";
+      break;
+  }
+
+ res.render('demo/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
 
 }
 

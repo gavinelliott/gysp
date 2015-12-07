@@ -72,6 +72,7 @@
     margin-top: 0;
 }
 
+
 .form-group-pass {
   float: left;
   width: 35px;
@@ -81,9 +82,12 @@
 .form-control-full {
   width:100%;
 }
+.form-group-pass.last {
+  margin-left:2px;
+}
 
-.disabled { background: $grey-3; }
+.disabled { background: $grey-1; }
+
+input.disabled { width:30px; height:30px; margin-top:5px; }
 
 .compound-second { padding-bottom:15px; }
-
-
