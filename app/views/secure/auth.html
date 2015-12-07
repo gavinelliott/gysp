@@ -14,48 +14,38 @@
       		<span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
     	</p>
   	</div>
-		<form method="post" action="secure">
-    <div class="grid-row">
-        <div class="column-two-thirds">
-
-		{{#error}}
+	<form method="post" action="secure">
+    	<div class="grid-row">
+        	<div class="column-two-thirds">
+				{{#error}}
 					<div class="error-summary error-message no-margin-top">
-						 <h2 class="heading-small error-summary-heading">Check the form</h2>
-							<p>Fix the following:</p>
-							<ul class="error-summary-list">
-
-											<li>
-													<a href="#ni_number">
-															One or more of your details are not correct
-													</a>
-											</li>
-
-							</ol>
+						<h2 class="heading-small error-summary-heading">Check the form</h2>
+						<p>Fix the following:</p>
+						<ol class="error-summary-list">
+							<li>
+								<a href="#ni_number">One or more of your details are not correct</a>
+							</li>
+						</ol>
 					</div>
-		{{/error}}
+				{{/error}}
 
 
 	    	<h1 class="heading-xlarge no-margin-top">Provide your details</h1>
+			<div class="form-group">
+				<label class="form-label-bold" for="ni_number">
+					Your reference number
+					<p class="form-hint">Can be found on your invitation to Get your State Pension letter</p>
+				</label>
+				<input type="text" class="form-control" id="reference" name="reference" /><br/>
+				<!--<div class="noauth"><a href="noauth">I don't have a reference number</a></div>-->
+			</div>
 
-				<div class="form-group">
-					<label class="form-label-bold" for="ni_number">
-						Your reference number
-						<p class="form-hint">Can be found on your invitation to Get your State Pension letter</p>
-					</label>
-					<input type="text" class="form-control" id="reference" name="reference" /><br/>
-					<div class="noauth"><a href="noauth">I don't have a reference number</a></div>
-				</div>
-
-
-        <div class="form-group">
-					<legend class="form-label-bold" for="ni_number" id="ni_number">
-    				National Insurance Number
-            <span class="form-hint">It'll be on your last payslip. For example, JH 21 90 20 A.</span>
-
-						<span class="form-hint">Please tell us the {{text.field0}} and {{text.field1}} digit.</span>
-
-
-    			</legend>
+			<div class="form-group">
+				<legend class="form-label-bold" for="ni_number" id="ni_number">
+    				National Insurance number ({{text.field0}} and {{text.field1}} digit)
+					<span class="form-hint">It'll be on your last payslip. For example, JH 21 90 20 A.</span>
+				</legend>
+            
             <div class="form-group form-group-compound  form-group-pass">
       			     <input class="form-control  form-control-full disabled" name="value1" id="value1" type="text" disabled>
             </div>
