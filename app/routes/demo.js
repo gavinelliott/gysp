@@ -232,7 +232,7 @@ router.all('/relationship-status-more/:type', function(req, res) {
       pageHeader = "About your ex-partner";
       break;
     case "Widowed":
-      pageHeader = "About your deceased partner";
+      pageHeader = "About your late partner";
       break;
   }
 
