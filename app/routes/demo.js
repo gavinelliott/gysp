@@ -280,6 +280,11 @@ router.get('/reset', function(req, res) {
 
 });
 
+router.get('/download', function(req,res){
+
+res.download('./public/images/download.pdf', 'download.pdf');
+
+});
 
 
 module.exports = router;
