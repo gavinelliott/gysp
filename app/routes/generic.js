@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+router.get('/download_fake_letter', function(req,res){
+    res.download('./public//images/fake_letter.pdf', 'download.pdf');
+});
+
 Array.prototype.getRandom= function(num, cut){
     var A= cut? this:this.slice(0);
     A.sort(function(){
