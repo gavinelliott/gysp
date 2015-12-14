@@ -97,7 +97,7 @@ router.post('/secure', function(req, res) {
       (req.body.value8 === undefined || req.body.value8 == "6")
     )) {
     req.session.view = null;
-    res.redirect("work-or-lived-abroad");
+    res.redirect("work-or-lived-aboard");
   } else {
     req.session.view++;
     if (req.session.view > 2) {
