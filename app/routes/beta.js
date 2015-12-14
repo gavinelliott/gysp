@@ -97,7 +97,7 @@ router.post('/secure', function(req, res) {
       (req.body.value8 === undefined || req.body.value8 == "6")
     )) {
     req.session.view = null;
-    res.redirect("declaration");
+    res.redirect("work-or-lived-abroad");
   } else {
     req.session.view++;
     if (req.session.view > 2) {
@@ -234,7 +234,7 @@ router.get('/contact', function(req, res) {
   }else {
     figure = false;
   }
-  res.render('beta/contact',{figure:figure});
+  res.render('demo/contact',{figure:figure});
 });
 
 router.get('/calculation', function(req, res) {
