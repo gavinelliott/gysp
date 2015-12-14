@@ -264,12 +264,12 @@ router.get('/unhappy-ending', function(req, res) {
 });
 
 router.get('/end', function(req, res) {
-
-  if (req.session.figure === false) {
-    res.render('demo/end-no-figure');
-  } else {
-    res.render('demo/end');
-  }
+      res.render('demo/end');
+  // if (req.session.figure === false) {
+  //   res.render('demo/end-no-figure');
+  // } else {
+  //   res.render('demo/end');
+  // }
 });
 
 router.get('/reset', function(req, res) {
