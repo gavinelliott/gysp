@@ -234,7 +234,7 @@ router.get('/contact', function(req, res) {
   }else {
     figure = false;
   }
-  res.render('beta/contact',{figure:figure});
+  res.render('beta/contact');
 });
 
 router.get('/calculation', function(req, res) {
