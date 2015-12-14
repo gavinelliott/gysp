@@ -116,8 +116,9 @@ router.post('/secure', function(req, res) {
 
 router.all('/work-or-lived-aboard', function(req, res) {
   if (req.body.workedOutsideUk === "Yes") {
-    req.session.figure = false;
-    res.redirect("work-or-lived-aboard-more");
+      res.redirect("relationship-status");
+    // req.session.figure = false;
+    // res.redirect("work-or-lived-aboard-more");
   } else if (req.body.workedOutsideUk === "No") {
     res.redirect("relationship-status");
   }else if(req.body.workedOutsideUk !== "Yes" && req.body.workedOutsideUk !== "No"){
@@ -126,16 +127,17 @@ router.all('/work-or-lived-aboard', function(req, res) {
 });
 
 router.all('/relationship-status', function(req, res) {
-  if (req.body.relationship === "Never been married") {
-    res.redirect("calculation");
-  } else if (req.body.relationship === "Married" ||
+    if (req.body.relationship === "Never been married") {
+        res.redirect("calculation");
+    } else if (req.body.relationship === "Married" ||
     req.body.relationship === "Widowed" ||
     req.body.relationship === "Divorced" ||
     req.body.relationship === "Civil") {
-    res.redirect("relationship-status-date/" + req.body.relationship);
-  }else{
-  res.render('demo/relationship-status');
-}
+        res.redirect("calculation");
+        // res.redirect("relationship-status-date/" + req.body.relationship);
+    }else{
+    res.render('demo/relationship-status');
+    }
 });
 
 router.all('/work-or-lived-aboard-more', function(req, res) {
