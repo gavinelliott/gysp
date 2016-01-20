@@ -93,3 +93,18 @@ input.disabled { width:30px; height:30px; margin-top:5px; }
 .compound-second { padding-bottom:15px; }
 
 .no-border { border: none;}
+
+span.span_nino {
+  border: 1px solid;
+  padding: 1px 3px 0;
+}
+
+span.span_nino2 {
+  color: #fff;
+  background-color: #0B0C0C;
+  padding: 1px 3px 0;
+}
+
+.input_nino_part {
+  max-width: 50px;
+}

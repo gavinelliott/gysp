@@ -61,6 +61,7 @@ app.use(function (req, res, next) {
       iteration3v2 = require(__dirname + '/app/routes/iteration3-v2.js'),
       iteration1 = require(__dirname + '/app/routes/iteration1.js'),
       demo = require(__dirname + '/app/routes/demo.js'),
+      january = require(__dirname + '/app/routes/january.js'),
       beta = require(__dirname + '/app/routes/beta.js');
 
 app.use("/", router);
@@ -73,6 +74,7 @@ app.use("/iteration2-v4", iteration2v2);
 app.use("/iteration3-v1", iteration3v1);
 app.use("/iteration3-v2", iteration3v2);
 app.use("/iteration1", iteration1);
+app.use("/january", january);
 
 // auto render any view that exists
 
