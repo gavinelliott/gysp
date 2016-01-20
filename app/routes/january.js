@@ -1,36 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-function settings_jan( req ) {
-  var settings = req.cookies.settings,
-      options = {};
-
-  if (settings !== undefined) {
-    if ( settings.nino_version ) {
-      options.nino_version = settings.nino_version;
-    }
-    if ( settings.nino_highlight ) {
-      options.nino_highlight = settings.nino_highlight;
-    }
-  } else {
-    options.nino_version = '1';
-    options.nino_highlight = '1';
-  }
-
-  if (options.nino_version == 2){
-    options.auth = 'january/settings/auth_2';
-  } else {
-    options.auth = 'january/settings/auth_1';
-  }
-
-  if (options.nino_highlight == 1) {
-    options.nino_highlight = '<p class="form-hint">For example, QQ 12 34 <span class="span_nino2">56</span>  C</p>';
-  } else if (options.nino_highlight == 2){
-    options.nino_highlight = '<p class="form-hint">For example, QQ 12 34 <span class="span_nino">5</span> <span class="span_nino">6</span>  C</p>';
-  }
-
-  return options;
-}
+var settings_jan = require("../views/january/settings/functions.js");
 
 Array.prototype.getRandom = function(num, cut) {
   var A = cut ? this : this.slice(0);
@@ -41,7 +11,7 @@ Array.prototype.getRandom = function(num, cut) {
 };
 
 router.get('/secure', function(req, res) {
-  var options = settings_jan(req);
+  var options = settings_jan.build(req);
 
   res.render(options.auth, {options: options} );
 });
@@ -59,7 +29,7 @@ router.post('/secure', function(req, res) {
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
     } else {
-      var options = settings_jan(req);
+      var options = settings_jan.build(req);
       res.render( options.auth, {options: options} );
     }
   }
