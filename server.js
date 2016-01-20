@@ -4,6 +4,7 @@ var path = require('path'),
     app = express(),
     session = require('express-session'),
     bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
     basicAuth = require('basic-auth-connect'),
     port = (process.env.PORT || 3000),
 
@@ -44,12 +45,13 @@ app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets'
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+
 // send assetPath to all views
 app.use(function (req, res, next) {
   res.locals.assetPath="/public/";
   next();
 });
-
 
 // routes (found in app/routes.js)
 

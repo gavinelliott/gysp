@@ -123,5 +123,4 @@ $(document).ready(function() {
   var toggleContent = new ShowHideContent();
   toggleContent.showHideRadioToggledContent();
   toggleContent.showHideCheckboxToggledContent();
-
 });

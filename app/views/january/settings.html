@@ -1,0 +1,61 @@
+{{<layout}}
+
+{{$pageTitle}} SPA - Prototype {{/pageTitle}} {{$content}} <main id="content" role="main" class="group">
+	<div class="phase-banner">
+		<p>
+			<strong class="phase-tag">ALPHA</strong>
+			<span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
+		</p>
+	</div>
+
+	<h1 class="heading-large">Settings</h1>
+	<!-- feel free to change this page to suit your needs -->
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<form action="/january/settings" method="POST">
+				<h1 class="heading-medium">
+			    NINO input version
+			  </h1>
+
+				<fieldset class="inline">
+					<div class="form-group">
+			      <label class="block-label" for="nino_version_1">
+			        <input id="nino_version_1" type="radio" name="nino_version" value="1">
+			        Version 1
+			      </label>
+
+			      <label class="block-label" for="nino_version_2">
+			        <input id="nino_version_2" type="radio" name="nino_version" value="2">
+			        Version 2
+			      </label>
+					</div>
+		    </fieldset>
+
+				<h1 class="heading-medium">
+			    NINO example highlight
+			  </h1>
+
+				<fieldset class="inline">
+					<div class="form-group">
+			      <label class="block-label" for="nino_highlight_1">
+			        <input id="nino_highlight_1" type="radio" name="nino_highlight" value="1">
+							Black Background
+			      </label>
+
+			      <label class="block-label" for="nino_highlight_2">
+			        <input id="nino_highlight_2" type="radio" name="nino_highlight" value="2">
+							Grey Border
+			      </label>
+					</div>
+		    </fieldset>
+
+				<div class="form-group">
+					<input type="submit" class="button" value="Update settings">
+				</div>
+			</form>
+		</div>
+	</div>
+</main>
+{{/content}}
+
+{{/layout}}

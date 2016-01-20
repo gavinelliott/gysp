@@ -40,31 +40,36 @@
 								<p class="form-hint">Can be found on your Get your State Pension letter</p>
 							</label>
 
-							<input type="text" class="form-control" id="reference" name="reference" /><br/>
+							<div class="form-group">
+								<input type="text" class="form-control" id="reference" name="reference" /><br/>
+							</div>
 						</div>
 
 						<div class="form-group">
-							<fieldset>
-								<legend class="form-label-bold">7th and 8th characters of your National Insurance number</legend>
-								<p class="form-hint">For example, QQ 12 34 <span class="span_nino2">56</span>  C</p>
+						  <fieldset>
+						    <legend class="form-label-bold">7th and 8th characters of your National Insurance number</legend>
+						    {{{options.nino_highlight}}}
 
-								<div class="form-group">
-									<label class="form-label" for="value1">7th character</label>
-									<input class="form-control input_nino_part" maxlength="1" id="value1" name="value1" type="text">
-								</div>
+						    <div class="form-group">
+						      <label class="form-label" for="value1">7th character</label>
+						      <input class="form-control input_nino_part" maxlength="1" id="value1" name="value1" type="text">
+						    </div>
 
-								<div class="form-group">
-									<label class="form-label" for="value2">8th character</label>
-									<input class="form-control input_nino_part" maxlength="1" id="value2" name="value2" type="text">
-								</div>
-							</fieldset>
+						    <div class="form-group">
+						      <label class="form-label" for="value2">8th character</label>
+						      <input class="form-control input_nino_part" maxlength="1" id="value2" name="value2" type="text">
+						    </div>
+						  </fieldset>
 						</div>
 
 						<div class="form-group">
 							<label class="form-label-bold label-no-hint" for="surname">
 								Surname
 							</label>
-							<input class="form-control" name="surname" id="surname" type="text">
+
+							<div class="form-group">
+								<input class="form-control" name="surname" id="surname" type="text">
+							</div>
 						</div>
 
 						<div class="form-group">
