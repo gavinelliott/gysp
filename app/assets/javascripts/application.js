@@ -64,7 +64,7 @@ function ShowHideContent() {
       }
 
     });
-  }
+  };
   self.showHideCheckboxToggledContent = function () {
 
     $(".block-label input[type='checkbox']").each(function() {
@@ -102,7 +102,7 @@ function ShowHideContent() {
       }
 
     });
-  }
+  };
 }
 
 $(document).ready(function() {
@@ -123,4 +123,64 @@ $(document).ready(function() {
   var toggleContent = new ShowHideContent();
   toggleContent.showHideRadioToggledContent();
   toggleContent.showHideCheckboxToggledContent();
+
+  if(window.location.href.indexOf("bank-details") > -1) {
+    var count = 0;
+
+    $('#sort-code1, #sort-code2').on('keyup', function(e) {
+      formatter(e, $(this));
+    });
+
+    $('#sort-code1, #sort-code2').on('paste', function(e) {
+      var looping = true;
+      var el_id = $(this);
+      if(looping === true) {
+        setTimeout(function () {
+          paster(e, el_id);
+          looping = false;
+        }, 100);
+      }
+    });
+
+    $('.block-label').on('click', function() {
+      $('input').each(function() {
+        $(this).val('');
+      });
+    });
+  }
+
+  function formatter(e, element) {
+    var string = '';
+    string += element.val();
+    count = string.length;
+
+    if(e.keyCode == 8 || e.keyCode == 46) {
+      if (count !== 0) {
+        if (count == 5 || count == 10) {
+          string = string.slice(0, -3);
+          count --;
+        }
+      }
+    } else {
+      if(count == 2 || count == 7) {
+        string = string += ' - ';
+      }
+    }
+
+    count = string.length;
+
+    element.val(string);
+  }
+
+  function paster(e, element) {
+    var string = element.val();
+        string = string.replace(/ |-|\./g,'');
+    var p1 = string.slice(0,2),
+        p2 = string.slice(2,4),
+        p3 = string.slice(4,6),
+        formatted = p1 + ' - ' + p2 + ' - ' + p3;
+    count = formatted.length;
+
+    element.val(formatted);
+  }
 });

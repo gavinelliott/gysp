@@ -35,6 +35,18 @@ router.post('/secure', function(req, res) {
   }
 });
 
+// Bank details
+router.get('/bank-details', function(req, res) {
+  options = req.cookies.settings;
+
+  if (options === undefined) {
+    res.render('january/settings/bank_details_1');
+  } else if (options.bank_version == 1) {
+    res.render('january/settings/bank_details_1');
+  } else if (options.bank_version == 2) {
+    res.render('january/settings/bank_details_2');
+  }
+});
 
 /* work or lived aboard */
 
@@ -70,8 +82,6 @@ router.all('/work-or-lived-aboard-more', function(req, res) {
   res.render('january/work-or-lived-aboard-more');
 }
 });
-
-
 
 
 router.all('/relationship-status-date/:type', function(req, res) {
@@ -221,7 +231,7 @@ router.post('/settings', function(req, res) {
   var settings = {
     "nino_version": req.body.nino_version,
     "nino_highlight": req.body.nino_highlight,
-
+    "bank_version": req.body.bank_version,
   };
   res.cookie("settings", settings);
 
