@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var settings_jan = require("../views/january/settings/functions.js");
+var jan_functions = require("../views/january/settings/functions.js");
 
 Array.prototype.getRandom = function(num, cut) {
   var A = cut ? this : this.slice(0);
@@ -11,9 +11,9 @@ Array.prototype.getRandom = function(num, cut) {
 };
 
 router.get('/secure', function(req, res) {
-  var options = settings_jan.build(req);
+  var options = jan_functions.get_options(req);
 
-  res.render(options.auth, {options: options} );
+  res.render(options.nino_version, {options: options});
 });
 
 router.post('/secure', function(req, res) {
@@ -29,23 +29,18 @@ router.post('/secure', function(req, res) {
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
     } else {
-      var options = settings_jan.build(req);
-      res.render( options.auth, {options: options} );
+      var options = jan_functions.get_options(req);
+
+      res.render(options.nino_version, {options: options});
     }
   }
 });
 
 // Bank details
 router.get('/bank-details', function(req, res) {
-  options = req.cookies.settings;
+  var options = jan_functions.get_options(req);
 
-  if (options === undefined) {
-    res.render('january/settings/bank_details_1');
-  } else if (options.bank_version == 1) {
-    res.render('january/settings/bank_details_1');
-  } else if (options.bank_version == 2) {
-    res.render('january/settings/bank_details_2');
-  }
+  res.render(options.bank_version, {options: options});
 });
 
 /* work or lived aboard */
