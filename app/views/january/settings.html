@@ -8,6 +8,17 @@
 		</p>
 	</div>
 
+	{{#error}}
+		<div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+			<h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+				Oops
+			</h1>
+
+			<p>
+				{{error}}
+			</p>
+		</div>
+	{{/error}}
 	<h1 class="heading-large">Settings</h1>
 	<!-- feel free to change this page to suit your needs -->
 	<div class="grid-row">

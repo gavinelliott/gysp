@@ -223,14 +223,19 @@ router.get('/settings', function(req, res) {
 });
 
 router.post('/settings', function(req, res) {
-  var settings = {
-    "nino_version": req.body.nino_version,
-    "nino_highlight": req.body.nino_highlight,
-    "bank_version": req.body.bank_version,
-  };
-  res.cookie("settings", settings);
+  if (Object.keys(req.body).length) {
+    var settings = {
+      "nino_version": req.body.nino_version,
+      "nino_highlight": req.body.nino_highlight,
+      "bank_version": req.body.bank_version,
+    };
+    res.cookie("settings", settings);
 
-  res.redirect('/january/start');
+    res.redirect('/january/start');
+  } else {
+    var error = "You didn't select any settings";
+    res.render('january/settings', {error: error});
+  }
 });
 
 
