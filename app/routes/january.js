@@ -59,15 +59,16 @@ router.all('/work-or-lived-aboard', function(req, res) {
 router.all('/relationship-status', function(req, res) {
   if (req.body.relationship === "Never been married") {
     res.redirect("calculation");
-  } else if (req.body.relationship === "Married" ||
-    req.body.relationship === "Widowed" ||
-    req.body.relationship === "Divorced" ||
-    req.body.relationship === "Civil" ||
-    req.body.relationship === "Dissolved") {
+  } else if ( req.body.relationship === "Married" ||
+              req.body.relationship === "Widowed" ||
+              req.body.relationship === "Divorced" ||
+              req.body.relationship === "Civil" ||
+              req.body.relationship === "Dissolved") {
+
     res.redirect("relationship-status-date/" + req.body.relationship);
-  }else{
-  res.render('january/relationship-status');
-}
+  } else {
+    res.render('january/relationship-status');
+  }
 });
 
 router.all('/work-or-lived-aboard-more', function(req, res) {
@@ -90,7 +91,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
     }else{
 
   var isMarried = false,
-    isEnded = false;
+      isEnded = false;
 
   if (req.params.type == "Married" || req.params.type == "Civil") {
     isMarried = true;
@@ -134,7 +135,7 @@ router.all('/relationship-status-more/:type', function(req, res) {
     res.redirect("/january/info");
   }else{
   var isMarried = false,
-    isEnded = false;
+      isEnded = false;
 
   if (req.params.type == "Married" || req.params.type == "Civil") {
     isMarried = true;
@@ -149,10 +150,10 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
   switch (req.params.type) {
     case "Married":
-      pageHeader = "About your partner";
+      pageHeader = "About your spouse";
       break;
     case "Civil":
-      pageHeader = "About your partner";
+      pageHeader = "About your civil partner";
       break;
     case "Divorced":
       pageHeader = "About your ex-partner";

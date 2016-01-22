@@ -1,34 +1,27 @@
 {{<layout}}
 
-{{$pageTitle}}
-	State Pension Activation
-{{/pageTitle}}
+	{{$pageTitle}}
+		State Pension Activation
+	{{/pageTitle}}
 
-{{$content}}
-
-<!-- #page-container -->
-<main id="content" role="main" class="group">
-	<div class="phase-banner">
-    	<p>
-      		<strong class="phase-tag">ALPHA</strong>
-      		<span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
-    	</p>
-  	</div>
-    <form method="post" action="">
-
-      <div class="grid-row">
-          <div class="column-two-thirds">
-    <h1 class="heading-xlarge">{{ pageHeader }}</h1>
-
-      			{{>includes/pages/relationship-status-more}}
-
-
-
-        </form>
+	{{$content}}
+		<!-- #page-container -->
+		<main id="content" role="main" class="group">
+			<div class="phase-banner">
+				<strong class="phase-tag">ALPHA</strong>
+				<span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
 			</div>
-	</div>
-	  </main><!-- / #page-container -->
 
-{{/content}}
+			<form method="post" action="">
+				<div class="grid-row">
+					<div class="column-two-thirds">
+						<h1 class="heading-xlarge">{{ pageHeader }}</h1>
 
+						{{>includes/pages/relationship-status-more}}
+
+					</div>
+				</div>
+			</form>
+		</main><!-- / #page-container -->
+	{{/content}}
 {{/layout}}
