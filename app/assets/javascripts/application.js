@@ -127,11 +127,11 @@ $(document).ready(function() {
   if(window.location.href.indexOf("bank-details") > -1) {
     var count = 0;
 
-    $('#sort-code1, #sort-code2').on('keyup', function(e) {
+    $('#ba-sort-code, #bs-sort-code').on('keyup', function(e) {
       formatter(e, $(this));
     });
 
-    $('#sort-code1, #sort-code2').on('paste', function(e) {
+    $('#ba-sort-code, #bs-sort-code').on('paste', function(e) {
       var looping = true;
       var el_id = $(this);
       if(looping === true) {
@@ -142,11 +142,16 @@ $(document).ready(function() {
       }
     });
 
-    $('.block-label').on('click', function() {
-      $('input').each(function() {
-        $(this).val('');
-      });
-    });
+    var selected = 0;
+    if ( $('.error-summary').length > 0 && selected === 0 ) {
+      if( $('.error-summary:first').attr('data-banktype') == 'bank' ) {
+        $('#building_1').trigger('click');
+        selected = 1;
+      } else if( $('.error-summary:first').attr('data-banktype') == 'building' ) {
+        $('#building_2').trigger('click');
+        selected = 1;
+      }
+    }
   }
 
   function formatter(e, element) {

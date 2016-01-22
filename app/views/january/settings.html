@@ -22,7 +22,7 @@
 			</p>
 		</div>
 	{{/error}}
-	
+
 	<div class="grid-row">
 		<div class="column-two-thirds">
 			<form action="/january/settings" method="POST">
@@ -82,6 +82,38 @@
 			        <input id="bank_version_2" type="radio" name="bank_version" value="2">
 							<span class="heading-small">1 field</span><br />
 							The input for the sort code is one shorter field, and is formatted using javascript.
+			      </label>
+					</div>
+		    </fieldset>
+
+				<h1 class="heading-medium">
+			    Error bank details
+			  </h1>
+
+				<fieldset class="inline">
+					<div class="form-group">
+			      <label class="block-label" for="err_mismatch_name">
+			        <input id="err_mismatch_name" type="radio" name="fail_feature" value="err_mismatch_name">
+							<span class="heading-small">Mismatch on name</span><br />
+							This will modify the name input once so they do not match.
+			      </label>
+
+						<label class="block-label" for="err_account_no">
+			        <input id="err_account_no" type="radio" name="fail_feature" value="err_account_no">
+							<span class="heading-small">Incorrect format on account number</span><br />
+							This will delete the last digit from the account number once, rendering it invalid.
+			      </label>
+
+						<label class="block-label" for="err_sort">
+			        <input id="err_sort" type="radio" name="fail_feature" value="err_sort">
+							<span class="heading-small">Incorrect format on sort code</span><br />
+							This will delete the last digit from the sort code, rendering it invalid.
+			      </label>
+
+						<label class="block-label" for="err_service">
+			        <input id="err_service" type="radio" name="fail_feature" value="err_service">
+							<span class="heading-small">Service breaker</span><br />
+							This not let the user through for 3 turns, sending them to an alternative exit page.
 			      </label>
 					</div>
 		    </fieldset>

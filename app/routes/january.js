@@ -43,6 +43,30 @@ router.get('/bank-details', function(req, res) {
   res.render(options.bank_version, {options: options});
 });
 
+router.post('/bank-details', function(req, res) {
+  var options = jan_functions.get_options(req),
+      data = req.body,
+      fails = parseInt(req.cookies.fail_attempts);
+
+  if ( isNaN(fails) ) {
+    fails = 0;
+  }
+
+  if ( options.fail_feature !== 0 && fails !== 0 ) {
+    errors = jan_functions.get_bank_errors(req, options, data);
+
+    if ( fails > 0 ) {
+      fails --;
+      res.cookie('fail_attempts', fails);
+    }
+
+    console.log(fails);
+    res.render(options.bank_version, {data: data, errors: errors});
+  } else {
+    res.redirect('end');
+  }
+});
+
 /* work or lived aboard */
 
 router.all('/work-or-lived-aboard', function(req, res) {
@@ -173,7 +197,6 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
 });
 
-
 router.get('/calculation', function(req, res) {
   /* catch to redirect if value is set*/
     res.redirect("/january/info");
@@ -229,7 +252,15 @@ router.post('/settings', function(req, res) {
       "nino_version": req.body.nino_version,
       "nino_highlight": req.body.nino_highlight,
       "bank_version": req.body.bank_version,
+      "fail_feature": req.body.fail_feature,
     };
+
+    if ( settings.fail_feature == 'err_service' ) {
+      res.cookie('fail_attempts', 2);
+    } else {
+      res.cookie('fail_attempts', 1);
+    }
+
     res.cookie("settings", settings);
 
     res.redirect('/january/start');
