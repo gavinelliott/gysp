@@ -180,13 +180,13 @@ router.all('/relationship-status-more/:type', function(req, res) {
       pageHeader = "About your civil partner";
       break;
     case "Divorced":
-      pageHeader = "About your ex-partner";
+      pageHeader = "About your ex-spouse";
       break;
     case "Dissolved":
       pageHeader = "About your ex-partner";
       break;
     case "Widowed":
-      pageHeader = "About your late partner";
+      pageHeader = "About your late spouse";
       break;
   }
 
