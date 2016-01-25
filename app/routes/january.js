@@ -45,23 +45,21 @@ router.get('/bank-details', function(req, res) {
 
 router.post('/bank-details', function(req, res) {
   var options = jan_functions.get_options(req),
-      data = req.body,
-      fails = parseInt(req.cookies.fail_attempts);
+      data = req.body;
 
-  if ( isNaN(fails) ) {
-    fails = 0;
-  }
-
-  if ( options.fail_feature !== 0 && fails !== 0 ) {
+  if ( options.fail_feature !== 0 && options.fail_attempts !== 0 ) {
     errors = jan_functions.get_bank_errors(req, options, data);
 
-    if ( fails > 0 ) {
-      fails --;
-      res.cookie('fail_attempts', fails);
-    }
+    if ( options.fail_attempts > 0 ) {
+      options.fail_attempts --;
+      res.cookie('settings', options);
 
-    console.log(fails);
-    res.render(options.bank_version, {data: data, errors: errors});
+      if ( options.fail_feature === 'err_service' && options.fail_attempts === 0 ) {
+        res.redirect('cant-continue');
+      } else {
+        res.render(options.bank_version, {data: data, errors: errors});
+      }
+    }
   } else {
     res.redirect('end');
   }
@@ -256,9 +254,11 @@ router.post('/settings', function(req, res) {
     };
 
     if ( settings.fail_feature == 'err_service' ) {
-      res.cookie('fail_attempts', 2);
+      settings.fail_attempts = 4;
+    } else if ( settings.fail_feature == 'err_none' ) {
+      settings.fail_attempts = 0;
     } else {
-      res.cookie('fail_attempts', 1);
+      settings.fail_attempts = 1;
     }
 
     res.cookie("settings", settings);

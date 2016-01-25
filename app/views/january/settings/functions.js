@@ -33,16 +33,30 @@ module.exports = {
     }
 
     if ( options.fail_feature == 'err_mismatch_name' ) {
+      errors.title = "There's a problem";
       errors.text = 'The name on your bank account does not match your details';
       data[prefix + '-account-holder'] = data[prefix + '-account-holder'].slice(0, -1);
     } else if ( options.fail_feature == 'err_account_no') {
+      errors.title = "There's a problem";
       errors.text = 'Please check your account number is correct';
       data[prefix + '-account-number'] = data[prefix + '-account-number'].slice(0, -1);
     } else if ( options.fail_feature == 'err_sort') {
+      errors.title = "There's a problem";
       errors.text = 'Please check your sort code is correct';
       data[sortcode] = data[sortcode].slice(0, -1);
     } else if ( options.fail_feature == 'err_service') {
-      errors.text = 'Please check your bank details are correct';
+      errors.title = "There's a problem";
+      errors.text = "Please check that you've entered your bank account details correctly:";
+
+      errors.list = [];
+      errors.list.push( {'li': "name of account holder"} );
+      errors.list.push( {'li': "sort code"} );
+      errors.list.push( {'li': "account number"} );
+      if ( errors.bank_type == 'building' ) {
+        errors.list.push( {'li': "building society roll or reference number"} );
+      }
+    } else  if ( options.fail_feature == 'err_none' ) {
+      options.fail_feature = 'err_none';
     }
 
     return errors;

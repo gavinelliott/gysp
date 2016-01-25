@@ -19,8 +19,14 @@
 				<div class="column-two-thirds">
 					{{#errors}}
 						<div class="error-summary error-message no-margin-top" data-banktype="{{errors.bank_type}}">
-							<h2 class="heading-small error-summary-heading">Check the form</h2>
+							<h2 class="heading-medium error-summary-heading">{{errors.title}}</h2>
+
 							<p>{{errors.text}}</p>
+							{{#errors.list}}
+								<ul class="list list-bullet">
+									<li>{{li}}</li>
+								</ul>
+							{{/errors.list}}
 						</div>
 					{{/errors}}
 
