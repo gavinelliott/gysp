@@ -220,41 +220,6 @@ router.get('/end', function(req, res) {
   res.render('january/end', {completeDate: completeDate});
 });
 
-function get_todays_date() {
-  var date    = new Date(),
-      monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ],
-      day     = date.getDate(),
-      month   = date.getMonth(),
-      year    = date.getFullYear(),
-      suffix  = get_nth_suffix(day);
-      date = day + suffix + ' ' + monthNames[month] + ' ' + year;
-
-  return date;
-
-  function get_nth_suffix(day) {
-    switch (day) {
-      case 1:
-      case 21:
-      case 31:
-        return 'st';
-      case 2:
-      case 22:
-        return 'nd';
-      case 3:
-      case 23:
-        return 'rd';
-      default:
-        return 'th';
-    }
-  }
-}
-
-
 router.get('/reset', function(req, res) {
 
   req.session.destroy();
@@ -302,5 +267,39 @@ router.post('/settings', function(req, res) {
   }
 });
 
-
 module.exports = router;
+
+// Get todays date and format it in nth format
+function get_todays_date() {
+  var date    = new Date(),
+      monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ],
+      day     = date.getDate(),
+      month   = date.getMonth(),
+      year    = date.getFullYear(),
+      suffix  = get_nth_suffix(day);
+      date = day + suffix + ' ' + monthNames[month] + ' ' + year;
+
+  return date;
+
+  function get_nth_suffix(day) {
+    switch (day) {
+      case 1:
+      case 21:
+      case 31:
+        return 'st';
+      case 2:
+      case 22:
+        return 'nd';
+      case 3:
+      case 23:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  }
+}
