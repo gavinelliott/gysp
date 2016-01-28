@@ -124,12 +124,51 @@ $(document).ready(function() {
   toggleContent.showHideRadioToggledContent();
   toggleContent.showHideCheckboxToggledContent();
 
+  $('#dob-day').on('keyup', function(e) {
+    if ( !/37|38|39|40/.test(e.keyCode) ) {
+      if ( $(this).val().length === 2 ) {
+        $('#dob-month').focus();
+        var tmpmn = $('#dob-month').val();
+        $('#dob-month').val('');
+        $('#dob-month').val(tmpmn);
+      }
+    }
+  });
+
+  $('#dob-month').on('keyup', function(e) {
+    if ( /8|46/.test(e.keyCode) ) {
+      if ( $(this).val().length === 0 ) {
+        $('#dob-day').focus();
+        var tmpdy = $('#dob-day').val();
+        $('#dob-day').val('');
+        $('#dob-day').val(tmpdy);
+      }
+    } else if ( $(this).val().length === 2 ) {
+      $('#dob-year').focus();
+      var tmpyr = $('#dob-year').val();
+      $('#dob-year').val('');
+      $('#dob-year').val(tmpyr);
+    }
+  });
+
+  $('#dob-year').on('keyup', function(e) {
+    if ( /8|46/.test(e.keyCode) ) {
+      if ( $(this).val().length === 0 ) {
+        $('#dob-month').focus();
+        var tmpmn = $('#dob-day').val();
+        $('#dob-month').val('');
+        $('#dob-month').val(tmpmn);
+      }
+    }
+  });
+
   if(window.location.href.indexOf("bank-details") > -1) {
     var sc_inputs = [];
     var focus_disable = 1;
+    var sort_code_reg = /(bs|ba)(-sort)([1-3])/;
 
     $('input').each(function() {
-      if ( /(bs|ba)(-sort)([1-3])/.test($(this).attr('id')) ) {
+      if ( sort_code_reg.test($(this).attr('id')) ) {
         sc_inputs.push( $(this).attr('id') );
       }
     });
@@ -142,7 +181,7 @@ $(document).ready(function() {
       if ( focus_disable > 0 ) {
         if ( $.inArray(id, sc_inputs) > -1 ) {
           $('input').each(function() {
-            if ( /(bs|ba)(-sort)([1-3])/.test($(this).attr('id')) ) {
+            if ( sort_code_reg.test($(this).attr('id')) ) {
               count += $(this).val().length;
             }
           });
@@ -170,7 +209,7 @@ $(document).ready(function() {
 
       if ( $.inArray(id, sc_inputs) > -1 ) {
         $('input').each(function() {
-          if ( /(bs|ba)(-sort)([1-3])/.test($(this).attr('id')) ) {
+          if ( sort_code_reg.test($(this).attr('id')) ) {
             count += $(this).val().length;
           }
         });
