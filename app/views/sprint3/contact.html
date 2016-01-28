@@ -19,41 +19,30 @@
 					<h1 class="heading-xlarge">We may need to get in touch</h1>
 
 					<form>
-						<fieldset class="form-group">
-							<legend class="form-label form-group-compound" for="telephone">Let us know which of the following methods we can use to discuss your pension with you:</legend>
+						<fieldset>
+							<div class="form-group">
+								<legend class="form-label form-group-compound" for="telephone">
+									<p class="text">We may contact you to get further information. This is to make sure you get all of the pension you're entitled to.</p>
+								</legend>
+							</div>
 
-							<div class="form-group form-group-compound">
-								<label class="block-label" for="telephone-yes" data-target="telephone-details">
-									<input id="telephone-yes" type="checkbox" name="telephone" value="Yes"> Telephone
+							<div class="form-group">
+								<label class="form-label-bold" for="phone_number">
+									Telephone
 								</label>
 
-								<div class="form-group panel-indent js-hidden" id="telephone-details">
-									<label class="form-label-bold label-no-hint" for="sort-code">
-										Enter your number
-									</label>
-									<input type="text" class="form-control" id="telephone">
+								<div class="form-group">
+									<input type="text" class="form-control" id="phone_number" name="reference" /><br/>
 								</div>
 							</div>
 
-							<div class="form-group form-group-compound">
-								<label class="block-label" for="email-yes" data-target="email-details">
-									<input id="email-yes" type="checkbox" name="email" value="Yes"> Email
-								</label>
-								<div class="form-group panel-indent js-hidden" id="email-details">
-									<label class="form-label-bold label-no-hint" for="email">
-										Enter your email address
-									</label>
-									<input type="text" class="form-control" id="email">
-								</div>
-							</div>
-
-							<div class="form-group form-group-compound">
-								<label class="block-label" for="address-yes" data-target="address-details">
-									<input id="address-yes" type="checkbox" name="address" value="Yes"> Post
+							<div class="form-group">
+								<label class="form-label-bold" for="email_address">
+									Email (optional)
 								</label>
 
-								<div class="form-group panel-indent js-hidden" id="address-details">
-									<p>We've already got your postal address.</p>
+								<div class="form-group">
+									<input type="text" class="form-control" id="reference" name="email_address" /><br/>
 								</div>
 							</div>
 						</fieldset>

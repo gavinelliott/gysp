@@ -24,26 +24,28 @@
 						</div>
 					{{/errors}}
 
-					<h1 class="heading-xlarge">Your payment details</h1>
+					<h1 class="heading-xlarge">Your account details</h1>
 					<p class="text">You can only have your pension paid into your own bank or building society account.</p>
-
-					<p class="text">Give details of the bank or building society account for your pension to be paid into.</p>
 
 					<br />
 
 					<form action="/sprint3/bank-details" method="POST">
-						<fieldset class="form-group">
-							<legend class="form-label-bold" for="address">How would you like to get paid?</legend>
+						<fieldset>
+							<div class="form-group">
+								<legend class="form-label-bold" for="address">How would you like to get paid?</legend>
+							</div>
 
-							<label class="block-label" for="building_1" data-target="bank-details">
-								<input id="building_1" type="radio" name="building" value="bank">
-								Bank account
-							</label>
+							<div class="form-group">
+								<label class="block-label" for="building_1" data-target="bank-details">
+									<input id="building_1" type="radio" name="building" value="bank">
+									Bank account
+								</label>
 
-							<label class="block-label" for="building_2" data-target="building-soc-details">
-								<input id="building_2" type="radio" name="building" value="building">
-								Building society account
-							</label>
+								<label class="block-label" for="building_2" data-target="building-soc-details">
+									<input id="building_2" type="radio" name="building" value="building">
+									Building society account
+								</label>
+							</div>
 						</fieldset>
 
 						<div class="js-hidden" id="bank-details">
