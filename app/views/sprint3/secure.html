@@ -49,7 +49,7 @@
 						  <fieldset>
 						    <legend class="form-label-bold">7th and 8th characters of your National Insurance number</legend>
 								<p class="form-hint">For example, QQ 12 34 <span class="span_nino">5</span> <span class="span_nino">6</span>  C</p>
-								
+
 						    <div class="form-date form-group">
 						      <div class="form-group form-group-day">
 						        <label for="value1">7th</label>
@@ -107,4 +107,8 @@
 			</form>
 		</main>
 	{{/content}}
+
+	{{$pageScripts}}
+			{{>includes/scripts/dobFocus}}
+	{{/pageScripts}}
 {{/layout}}

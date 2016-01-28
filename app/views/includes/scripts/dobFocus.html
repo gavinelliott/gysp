@@ -1,0 +1,39 @@
+<script>
+  $('#dob-day').on('keyup', function(e) {
+    if ( !/37|38|39|40/.test(e.keyCode) ) {
+      if ( $(this).val().length === 2 ) {
+        $('#dob-month').focus();
+        var tmpmn = $('#dob-month').val();
+        $('#dob-month').val('');
+        $('#dob-month').val(tmpmn);
+      }
+    }
+  });
+
+  $('#dob-month').on('keyup', function(e) {
+    if ( /8|46/.test(e.keyCode) ) {
+      if ( $(this).val().length === 0 ) {
+        $('#dob-day').focus();
+        var tmpdy = $('#dob-day').val();
+        $('#dob-day').val('');
+        $('#dob-day').val(tmpdy);
+      }
+    } else if ( $(this).val().length === 2 ) {
+      $('#dob-year').focus();
+      var tmpyr = $('#dob-year').val();
+      $('#dob-year').val('');
+      $('#dob-year').val(tmpyr);
+    }
+  });
+
+  $('#dob-year').on('keyup', function(e) {
+    if ( /8|46/.test(e.keyCode) ) {
+      if ( $(this).val().length === 0 ) {
+        $('#dob-month').focus();
+        var tmpmn = $('#dob-day').val();
+        $('#dob-month').val('');
+        $('#dob-month').val(tmpmn);
+      }
+    }
+  });
+</script>
