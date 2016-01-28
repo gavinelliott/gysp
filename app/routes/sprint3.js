@@ -62,7 +62,7 @@ router.post('/bank-details', function(req, res) {
     if ( fail_attempts >= 3 ) {
       res.redirect('cant-continue');
     } else {
-      var errors = {'title':'meep', 'text':'meh'};
+      var errors = {'title':"There's a problem", 'text':"Please check that you've entered your bank account details correctly:"};
       res.render('sprint3/bank-details', {errors: errors});
     }
   }
