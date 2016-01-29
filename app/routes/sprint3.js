@@ -273,7 +273,7 @@ function get_blank_fields(req) {
 function get_todays_date() {
   var date    = new Date(),
       monthNames = [
-        "sprint3", "February", "March",
+        "January", "February", "March",
         "April", "May", "June", "July",
         "August", "September", "October",
         "November", "December"
