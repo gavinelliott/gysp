@@ -38,7 +38,9 @@ function ShowHideContent() {
           // Set aria-expanded and aria-hidden for clicked radio
           $radio.attr('aria-expanded', 'true');
           $dataTarget.attr('aria-hidden', 'false');
-
+          $dataTarget.find('input').each(function() {
+            $(this).attr('data-required', 'true');
+          });
         });
 
       } else {
@@ -58,6 +60,9 @@ function ShowHideContent() {
             // Set aria-expanded and aria-hidden for hidden content
             $(this).attr('aria-expanded', 'false');
             $groupDataTarget.attr('aria-hidden', 'true');
+            $groupDataTarget.find('input').each(function() {
+              $(this).attr('data-required', 'false');
+            });
           });
 
         });
@@ -124,3 +129,52 @@ $(document).ready(function() {
   toggleContent.showHideRadioToggledContent();
   toggleContent.showHideCheckboxToggledContent();
 });
+
+$('form').on('submit', function(e) {
+  check_validation(e);
+});
+
+function check_validation(e) {
+  var error_count = 0,
+      error_fields = [];
+
+  $('input').each(function() {
+    if ( $(this).attr('data-required') === "true" ) {
+      if ( $(this).val().length === 0 ) {
+        error_count++;
+        error_fields.push($(this).attr('name'));
+      }
+    }
+
+    if ( $(this).attr('id') === 'reference' ) {
+      if ( $(this).val() != "1234567843218765" &&  $(this).val().toLowerCase() != "qwx5ychpnrjv" ) {
+        error_count++;
+        error_fields.push($(this).attr('name'));
+      }
+    }
+  });
+
+  if ( error_count > 0 && window.location.href.indexOf("bank-details") < 0 ) {
+    e.preventDefault();
+    $('body').scrollTop(0);
+
+    if ( $('#error').length === 0 ) {
+      $('.column-two-thirds:first').prepend(
+        '<div id="error" class="error-summary error-message no-margin-top">' +
+          '<h2 class="heading-small error-summary-heading">One or more of your details are not correct</h2>' +
+          '<p>Check the form</p>' +
+        '</div>'
+      );
+    }
+
+    $('fieldset').each(function() {
+        if ( $(this).hasClass('error') ) {
+          $(this).removeClass('error');
+        }
+    });
+
+    for ( var i = 0; i < error_fields.length; i++ ) {
+      $('input[name="' + error_fields[i] + '"]').closest('fieldset').addClass('error');
+    }
+  }
+}

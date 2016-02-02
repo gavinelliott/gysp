@@ -18,13 +18,18 @@
 						<h1 class="heading-xlarge">{{ pageHeader }}</h1>
 
 						<div class="form-group">
-							<label class="form-label-bold" for="full-name">First name</label>
-							<input type="text" class="form-control" id="full-name">
+							<fieldset>
+
+								<label class="form-label-bold" for="first-name">First name</label>
+								<input type="text" class="form-control" name="first-name" id="first-name" data-required="true">
+							</fieldset>
 						</div>
 
 						<div class="form-group">
-							<label class="form-label-bold" for="full-name">Surname</label>
-							<input type="text" class="form-control" id="full-name">
+							<fieldset>
+								<label class="form-label-bold" for="surname">Surname</label>
+								<input type="text" class="form-control" id="surname" name="surname" data-required="true">
+							</fieldset>
 						</div>
 
 						<div class="form-group">
@@ -52,20 +57,22 @@
 								<div class="form-date">
 									<p class="form-hint">For example, 31 3 1980</p>
 
-									<div class="form-group form-group-day">
-										<label for="dob-day">Day</label>
-										<input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
-									</div>
+									<fieldset>
+										<div class="form-group form-group-day">
+											<label for="dob-day">Day</label>
+											<input class="form-control" name="dob-day" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31" data-required="true">
+										</div>
 
-									<div class="form-group form-group-month">
-										<label for="dob-month">Month</label>
-										<input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
-									</div>
+										<div class="form-group form-group-month">
+											<label for="dob-month">Month</label>
+											<input class="form-control" name="dob-month" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12" data-required="true">
+										</div>
 
-									<div class="form-group form-group-year">
-										<label for="dob-year">Year</label>
-										<input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
-									</div>
+										<div class="form-group form-group-year">
+											<label for="dob-year">Year</label>
+											<input class="form-control" name="dob-year" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014" data-required="true">
+										</div>
+									</fieldset>
 								</div>
 							</fieldset>
 						</div>

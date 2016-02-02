@@ -1,14 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-Array.prototype.getRandom = function(num, cut) {
-  var A = cut ? this : this.slice(0);
-  A.sort(function() {
-    return 0.5 - Math.random();
-  });
-  return A.splice(0, num);
-};
-
 router.get('/secure', function(req, res) {
   res.render('sprint3/secure');
 });
@@ -21,7 +13,6 @@ router.post('/secure', function(req, res) {
   }
 
   if ((req.body.reference.replace(/\s/g, "") === "1234567843218765" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qwx5ychpnrjv")) {
-
     req.session.view = null;
     res.redirect("work-or-lived-aboard");
   } else {
@@ -62,14 +53,17 @@ router.post('/bank-details', function(req, res) {
     if ( fail_attempts >= 3 ) {
       res.redirect('cant-continue');
     } else {
-      var errors = {'title':"There's a problem", 'text':"Please check that you've entered your bank account details correctly:"};
+      var errors = {
+        'title':"There's a problem",
+        'text':"Please check that you've entered your bank account details correctly:",
+        'bank_type': req.body.building
+      };
       res.render('sprint3/bank-details', {errors: errors});
     }
   }
 });
 
 /* work or lived aboard */
-
 router.all('/work-or-lived-aboard', function(req, res) {
   if (req.body.workedOutsideUk === "Yes") {
     req.session.figure = false;
@@ -77,8 +71,8 @@ router.all('/work-or-lived-aboard', function(req, res) {
   } else if (req.body.workedOutsideUk === "No") {
     res.redirect("relationship-status");
   }else if(req.body.workedOutsideUk !== "Yes" && req.body.workedOutsideUk !== "No"){
-  res.render('sprint3/work-or-lived-aboard');
-}
+    res.render('sprint3/work-or-lived-aboard');
+  }
 });
 
 router.all('/relationship-status', function(req, res) {
@@ -100,13 +94,12 @@ router.all('/work-or-lived-aboard-more', function(req, res) {
   if (req.body.submit === "Continue") {
     res.redirect("relationship-status");
   }else{
-  res.render('sprint3/work-or-lived-aboard-more');
-}
+    res.render('sprint3/work-or-lived-aboard-more');
+  }
 });
 
 
 router.all('/relationship-status-date/:type', function(req, res) {
-
   if (req.body.submit === "Continue") {
     res.redirect("/sprint3/relationship-status-more/"+req.params.type);
   }else{
@@ -115,87 +108,83 @@ router.all('/relationship-status-date/:type', function(req, res) {
         res.redirect("/sprint3/relationship-status-more/"+req.params.type);
     }else{
 
-  var isMarried = false,
-      isEnded = false;
+      var isMarried = false,
+          isEnded = false;
 
-  if (req.params.type == "Married" || req.params.type == "Civil") {
-    isMarried = true;
+      if (req.params.type == "Married" || req.params.type == "Civil") {
+        isMarried = true;
+      }
+
+      if (req.params.type == "Divorced" || req.params.type == "Widowed") {
+        isEnded = true;
+      }
+
+      var eventText = "";
+
+      switch (req.params.type) {
+        case "Married":
+          eventText = "What date did you get married?";
+          break;
+        case "Civil":
+          eventText = "What date was your civil partnership registered?";
+          break;
+        case "Divorced":
+          eventText = "What date did you get divorced?";
+          break;
+        case "Dissolved":
+          eventText = "What date was your civil partnership dissolved?";
+          break;
+        case "Widowed":
+          eventText = "What date did they die?";
+          break;
+      }
+      res.render('sprint3/relationship-status-date', {
+        eventText: eventText,
+        type: req.params.type,
+        isEnded: isEnded,
+        isMarried: isMarried
+      });
+    }
   }
-
-  if (req.params.type == "Divorced" || req.params.type == "Widowed") {
-    isEnded = true;
-  }
-  var eventText = "";
-
-  switch (req.params.type) {
-    case "Married":
-      eventText = "What date did you get married?";
-      break;
-    case "Civil":
-      eventText = "What date was your civil partnership registered?";
-      break;
-    case "Divorced":
-      eventText = "What date did you get divorced?";
-      break;
-      case "Dissolved":
-        eventText = "What date was your civil partnership dissolved?";
-        break;
-    case "Widowed":
-      eventText = "What date did they die?";
-      break;
-  }
-  res.render('sprint3/relationship-status-date', {
-    eventText: eventText,
-    type: req.params.type,
-    isEnded: isEnded,
-    isMarried: isMarried
-  });
-
-}}
 });
 
 router.all('/relationship-status-more/:type', function(req, res) {
-
   if (req.body.submit === "Continue") {
     res.redirect("/sprint3/info");
   }else{
-  var isMarried = false,
-      isEnded = false;
+    var isMarried = false,
+        isEnded = false;
 
-  if (req.params.type == "Married" || req.params.type == "Civil") {
-    isMarried = true;
+    if (req.params.type == "Married" || req.params.type == "Civil") {
+      isMarried = true;
+    }
+
+    if (req.params.type == "Divorced" || req.params.type == "Widowed") {
+      isEnded = true;
+    }
+
+    var pageHeader = "";
+
+    switch (req.params.type) {
+      case "Married":
+        pageHeader = "About your spouse";
+        break;
+      case "Civil":
+        pageHeader = "About your civil partner";
+        break;
+      case "Divorced":
+        pageHeader = "About your ex-spouse";
+        break;
+      case "Dissolved":
+        pageHeader = "About your ex-partner";
+        break;
+      case "Widowed":
+        pageHeader = "About your late spouse";
+        break;
+    }
+
+    res.render('sprint3/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
   }
-
-  if (req.params.type == "Divorced" || req.params.type == "Widowed") {
-    isEnded = true;
-  }
-
-
-  var pageHeader = "";
-
-  switch (req.params.type) {
-    case "Married":
-      pageHeader = "About your spouse";
-      break;
-    case "Civil":
-      pageHeader = "About your civil partner";
-      break;
-    case "Divorced":
-      pageHeader = "About your ex-spouse";
-      break;
-    case "Dissolved":
-      pageHeader = "About your ex-partner";
-      break;
-    case "Widowed":
-      pageHeader = "About your late spouse";
-      break;
-  }
-
- res.render('sprint3/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
-
-}
-
-
 });
 
 router.get('/calculation', function(req, res) {
@@ -212,6 +201,10 @@ router.get('/info', function(req, res) {
   //res.render('sprint3/calculated');
 });
 
+router.post('/contact', function(req, res) {
+  res.redirect('bank-details');
+});
+
 router.get('/unhappy-ending', function(req, res) {
   req.session.view = null;
   res.render('sprint3/unhappy-ending');
@@ -224,17 +217,12 @@ router.get('/end', function(req, res) {
 });
 
 router.get('/reset', function(req, res) {
-
   req.session.destroy();
-
   res.redirect("start");
-
 });
 
 router.get('/download', function(req,res){
-
-res.download('./public/images/download.pdf', 'download.pdf');
-
+  res.download('./public/images/download.pdf', 'download.pdf');
 });
 
 module.exports = router;

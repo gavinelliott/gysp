@@ -21,17 +21,21 @@
 
 						<div id="country-1">
 							<div class="form-group">
-								<label class="form-label-bold label-no-hint" for="nationality">
-									Your nationality
-								</label>
-								<input class="form-control" id="nationality" type="text">
+								<fieldset>
+									<label class="form-label-bold label-no-hint" for="nationality1">
+										Your nationality
+									</label>
+									<input class="form-control" id="nationality1" name="nationality1" type="text" data-required="true">
+								</fieldset>
 							</div>
 
 							<div class="form-group">
-								<label class="form-label-bold label-no-hint" for="country">
-									Country you lived or worked in
-								</label>
-								<input class="form-control" id="country" type="text">
+								<fieldset>
+									<label class="form-label-bold label-no-hint" for="country1">
+										Country you lived or worked in
+									</label>
+									<input class="form-control" id="country1" name="country1" type="text" data-required="true">
+								</fieldset>
 							</div>
 
 							<div class="form-group">
@@ -40,20 +44,19 @@
 										<legend class="form-label-bold">	When  you started living or working there</legend>
 										<p class="form-hint">For example, 31 3 1980</p>
 
-
 										<div class="form-group form-group-day">
-	  									<label for="dob-day">Day</label>
-	  									<input class="form-control no-error" id="dob-day" name="dobDay" value="" type="text" maxlength="2">
+	  									<label for="dob-day1">Day</label>
+	  									<input class="form-control no-error" id="dob-day1" name="dobDay1" value="" type="text" maxlength="2" data-required="true">
 										</div>
 
 										<div class="form-group form-group-month">
-	  									<label for="dob-month">Month</label>
-	  									<input class="form-control no-error " id="dob-month" name="dobMonth" value="" type="text" maxlength="2">
+	  									<label for="dob-month1">Month</label>
+	  									<input class="form-control no-error " id="dob-month1" name="dobMonth1" value="" type="text" maxlength="2" data-required="true">
 										</div>
 
 										<div class="form-group form-group-year">
-	  									<label for="dob-year">Year</label>
-	  									<input class="form-control no-error " id="dob-year" name="dobYear" value="" type="text" maxlength="4">
+	  									<label for="dob-year1">Year</label>
+	  									<input class="form-control no-error " id="dob-year1" name="dobYear1" value="" type="text" maxlength="4" data-required="true">
 										</div>
 									</div>
 								</fieldset>
@@ -67,17 +70,17 @@
 
 										<div class="form-group form-group-day">
 											<label for="dob-day2">Day</label>
-											<input class="form-control no-error " id="dob-day2" name="dobDay2" value="" type="text" maxlength="2">
+											<input class="form-control no-error " id="dob-day2" name="dobDay2" value="" type="text" maxlength="2" data-required="true">
 										</div>
 
 										<div class="form-group form-group-month">
 											<label for="dob-month2">Month</label>
-											<input class="form-control no-error " id="dob-month2" name="dobMonth2" value="" type="text" maxlength="2">
+											<input class="form-control no-error " id="dob-month2" name="dobMonth2" value="" type="text" maxlength="2" data-required="true">
 										</div>
 
 										<div class="form-group form-group-year">
 											<label for="dob-year2">Year</label>
-											<input class="form-control no-error " id="dob-year2" name="dobYear2" value="" type="text" maxlength="4">
+											<input class="form-control no-error " id="dob-year2" name="dobYear2" value="" type="text" maxlength="4" data-required="true">
 										</div>
 									</div>
 								</fieldset>
@@ -85,6 +88,7 @@
 
 							<div class="form-group form-group" id="otherName-form">
 								<fieldset class="inline">
+
 									<legend class="form-label-bold" for="otherName-form">
 										Did you pay into that country's social security scheme?
 									</legend>
@@ -103,18 +107,15 @@
 								</fieldset>
 
 								<div id="social-details" class="form-group js-hidden panel-indent">
-									<label class="form-label-bold label-no-hint" for="nationality">
-										Your social security reference number
-									</label>
-									<input class="form-control" id="nationality" type="text">
+									<div class="form-group">
+										<fieldset>
+											<label class="form-label-bold label-no-hint" for="nationality2">
+												Your social security reference number
+											</label>
+											<input class="form-control" id="nationality2" name="nationality2" type="text">
+										</fieldset>
+									</div>
 								</div>
-
-								<!-- <div id="social-details" class="form-group js-hidden panel-indent">
-									<label class="form-label-bold label-no-hint" for="country">
-										Country  you lived or worked in?
-									</label>
-									<input class="form-control" id="country" type="text">
-								</div> -->
 							</div>
 						</div>
 
@@ -210,18 +211,13 @@
 								</fieldset>
 
 								<div id="social2-details-more" class="form-group js-hidden panel-indent">
-									<label class="form-label-bold label-no-hint" for="nationality">
-										Your social security reference number
-									</label>
-									<input class="form-control" id="nationality" type="text">
+									<fieldset>
+										<label class="form-label-bold label-no-hint" for="nationality3">
+											Your social security reference number
+										</label>
+										<input class="form-control" id="nationality3" name="nationality3" type="text">
+									</fieldset>
 								</div>
-
-								<!-- <div id="social2-details-more" class="form-group js-hidden panel-indent">
-									<label class="form-label-bold label-no-hint" for="country">
-										Country  you lived or worked in?
-									</label>
-									<input class="form-control" id="country" type="text">
-								</div> -->
 							</div>
 						</div>
 
