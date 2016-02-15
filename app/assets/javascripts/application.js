@@ -152,6 +152,27 @@ function check_validation(e) {
         error_fields.push($(this).attr('name'));
       }
     }
+
+    if ( /dob-day|(dob-day)([0-9])/.test( $(this).attr('id') ) ) {
+      if ( $(this).val() > 31 ) {
+        error_count++;
+        error_fields.push($(this).attr('name'));
+      }
+    }
+
+    if ( /dob-month|(dob-month)([0-9])/.test( $(this).attr('id') ) ) {
+      if ( $(this).val() > 12 ) {
+        error_count++;
+        error_fields.push($(this).attr('name'));
+      }
+    }
+
+    if ( /dob-year|(dob-year)([0-9])/.test( $(this).attr('id') ) ) {
+      if ( $(this).val() > 2016 ) {
+        error_count++;
+        error_fields.push($(this).attr('name'));
+      }
+    }
   });
 
   if ( error_count > 0 && window.location.href.indexOf("bank-details") < 0 ) {
