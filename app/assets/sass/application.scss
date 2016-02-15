@@ -25,6 +25,13 @@
   @include phase-tag(alpha); // Change this to (beta) for a beta tag
 }
 
+.phase-banner-beta  {
+  @include phase-banner(beta); // Change this to (beta) for a beta banner
+}
+.phase-tag-beta {
+  @include phase-tag(beta); // Change this to (beta) for a beta tag
+}
+
 // If you need to create a page as part of your journey, but without GOV.UK branding
 // See localhost:3000/examples/unbranded/
 .unbranded {
