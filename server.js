@@ -80,7 +80,7 @@ app.use("/iteration3-v2", iteration3v2);
 app.use("/iteration1", iteration1);
 app.use("/january", january);
 app.use("/sprint3", sprint3);
-app.use("/sprint4", sprint3);
+app.use("/sprint4", sprint4);
 
 // auto render any view that exists
 
