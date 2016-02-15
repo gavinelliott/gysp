@@ -173,6 +173,13 @@ function check_validation(e) {
         error_fields.push($(this).attr('name'));
       }
     }
+
+    if ( $(this).attr('id') === 'phone_number1' ) {
+      if ( $(this).val().length < 5 ) {
+        error_count++;
+        error_fields.push($(this).attr('name'));
+      }
+    }
   });
 
   if ( error_count > 0 && window.location.href.indexOf("bank-details") < 0 ) {
