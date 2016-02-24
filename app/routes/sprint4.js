@@ -50,16 +50,17 @@ router.post('/bank-details', function(req, res) {
   } else {
     fail_attempts++;
     res.cookie('sp3_fail_attempts', fail_attempts);
-    if ( fail_attempts >= 3 ) {
-      res.redirect('cant-continue');
-    } else {
-      var errors = {
-        'title':"There's a problem",
-        'text':"Please check that you've entered your bank account details correctly:",
-        'bank_type': req.body.building
-      };
-      res.render('sprint4/bank-details', {errors: errors});
-    }
+  }
+
+  if ( fail_attempts >= 3 ) {
+    res.redirect('cant-continue');
+  } else {
+    var errors = {
+      'title':"There's a problem",
+      'text':"Please check that you've entered your bank account details correctly:",
+      'bank_type': req.body.building
+    };
+    res.render('sprint4/bank-details', {errors: errors});
   }
 });
 
