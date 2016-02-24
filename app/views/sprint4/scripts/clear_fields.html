@@ -1,7 +1,9 @@
 <script>
   $(document).ready(function() {
     $('input').each(function() {
-      $(this).val('');
+      if ( !$(this).is('input[type="radio"]') ) {
+        $(this).val('');
+      }
     });
   });
 </script>
