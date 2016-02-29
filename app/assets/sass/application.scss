@@ -120,3 +120,36 @@ span.span_nino2 {
 #bs-sort-code {
   max-width: 140px;
 }
+
+
+// Twitter style type-ahead
+#country-type-ahead {
+  position: relative;
+}
+
+#country-list {
+  position: absolute;
+  width: 100%;
+  max-width: 478px;
+  z-index: 1;
+  top: 63px;
+  left: 0;
+  background: #fff;
+}
+
+.country-link {
+  display: block;
+  padding: 5px;
+
+  &:hover {
+    background: #0097cf;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.form-label {
+  span {
+    padding-left: 30px;
+  }
+}

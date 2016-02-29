@@ -1,0 +1,22 @@
+{{<layout}}
+
+  {{$pageTitle}}
+  	State Pension Activation
+  {{/pageTitle}}
+
+  {{$content}}
+    <main id="content" role="main">
+      {{>includes/parts/phase-banner}}
+
+      <h1 class="heading-xlarge">Have you worked anywhere else outside the UK?</h1>
+
+      <form action="have-you-worked-anywhere-else" method="post">
+        <input type="submit" class="button" value="Continue">
+      </form>
+    </main>
+  {{/content}}
+
+  {{$pageScripts}}
+      {{>ovsea-test/scripts/countries}}
+  {{/pageScripts}}
+{{/layout}}
