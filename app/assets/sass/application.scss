@@ -123,14 +123,14 @@ span.span_nino2 {
 
 
 // Twitter style type-ahead
-#country-type-ahead {
-  position: relative;
-}
+// #country-type-ahead {
+//   position: relative;
+// }
 
 #country-list {
   position: absolute;
   width: 100%;
-  max-width: 478px;
+  max-width: 33%;
   z-index: 1;
   top: 63px;
   left: 0;

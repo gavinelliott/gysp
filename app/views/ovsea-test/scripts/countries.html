@@ -243,8 +243,7 @@ var countries = [
 
   $('#country-type-ahead').delegate('input[type="text"]', 'keyup', function() {
     $('#country-list').html('');
-    $('#country-list').css('top', $(this).offset().top - 208 );
-    $('#country-list').css('display', 'block');
+    $('#country-list').css({'top': $(this).offset().top + $(this).outerHeight(), 'left': $(this).offset().left, 'display': 'block'});
 
     if ( /(country-name-)([0-9])/.test($(this).attr('id'))  ) {
       var counter = 0;
