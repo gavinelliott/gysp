@@ -5,30 +5,33 @@
   {{/pageTitle}}
 
   {{$content}}
-    <main id="content" role="main">
-      {{>includes/parts/phase-banner}}
+  <main id="content" role="main">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        {{>includes/parts/phase-banner}}
 
-      <h1 class="heading-xlarge">Have you ever lived outside of the UK?</h1>
+          <h1 class="heading-xlarge">Have you ever lived outside of the UK?</h1>
 
-      <form action="have-you-lived-abroad" method="post">
-        <fieldset class="inline">
-          <div class="form-group">
-            <legend class="visuallyhidden">Have you ever lived outside of the UK?</legend>
+          <form action="have-you-lived-abroad" method="post">
+            <fieldset class="inline">
+              <div class="form-group">
+                <legend class="visuallyhidden">Have you ever lived outside of the UK?</legend>
 
-            <label class="block-label" for="lived-outside-yes">
-              <input id="lived-outside-yes" type="radio" name="lived-outside-select" value="Yes">
-              Yes
-            </label>
-            <label class="block-label" for="lived-outside-no">
-              <input id="lived-outside-no" type="radio" name="lived-outside-select" value="No">
-              No
-            </label>
-          </div>
+                <label class="block-label" for="lived-outside-yes">
+                  <input id="lived-outside-yes" type="radio" name="lived-outside-select" value="Yes">
+                  Yes
+                </label>
+                <label class="block-label" for="lived-outside-no">
+                  <input id="lived-outside-no" type="radio" name="lived-outside-select" value="No">
+                  No
+                </label>
+              </div>
+            </fieldset>
 
-        </fieldset>
-
-        <input type="submit" class="button" value="Continue">
-      </form>
+            <input type="submit" class="button" value="Continue">
+          </form>
+        </div>
+      </div>
     </main>
   {{/content}}
 {{/layout}}
