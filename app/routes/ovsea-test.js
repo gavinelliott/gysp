@@ -23,7 +23,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
   if ( req.body['worked-outside-select'] === 'Yes' ) {
     res.redirect('what-countries-have-you-worked-in');
   } else {
-    res.redirect('/');
+    res.redirect('reset');
   }
 });
 
@@ -77,7 +77,7 @@ router.post('/have-you-worked-anywhere-else', function(req, res) {
   if ( req.body['worked-outside-select'] === 'Yes' ) {
     res.redirect('what-countries-have-you-worked-in');
   } else {
-    res.redirect('/');
+    res.redirect('reset');
   }
 });
 
@@ -122,14 +122,17 @@ router.post('/tell-us-about-worked', function(req, res) {
   if ( countries.length > 0 ) {
     res.redirect('tell-us-about-worked');
   } else {
-    for (var cookie in req.cookies) {
-      if ( cookie !== 'seen_cookie_message' ) {
-        res.clearCookie(cookie);
-      }
-    }
-    res.redirect('/');
+    res.redirect('reset');
   }
 });
 
+router.get('/reset', function(req, res) {
+  for (var cookie in req.cookies) {
+    if ( cookie !== 'seen_cookie_message' ) {
+      res.clearCookie(cookie);
+    }
+  }
+  res.redirect('/');
+});
 
 module.exports = router;
