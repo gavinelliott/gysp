@@ -135,6 +135,10 @@ span.span_nino2 {
   top: 63px;
   left: 0;
   background: #fff;
+
+  @media(max-width: 640px) {
+    max-width: 93%;
+  }
 }
 
 .country-link {
