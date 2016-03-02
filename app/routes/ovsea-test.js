@@ -41,18 +41,32 @@ router.post('/what-countries-have-you-lived-in', function(req, res) {
   }
   res.cookie('c-lived-count', countries.length);
   res.cookie('c-lived-list', countries);
+  res.cookie('c-lived-all', countries);
+  res.cookie('c-lived-step', 1);
 
   res.redirect('tell-us-about-lived');
 });
 
 // Tell us about the country?
 router.get('/tell-us-about-lived', function(req, res) {
-  var countries = req.cookies['c-lived-list'],
-      country = countries.shift(),
-      countryType = get_countries.type(country);
+  var countries = req.cookies['c-lived-list'];
+  var all_countries = req.cookies['c-lived-all'];
+  var resident = get_countries.resident();
+  var insurance = get_countries.insurance();
+
+  for ( var c in all_countries ) {
+    if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
+      delete all_countries[c];
+    }
+  }
+
+  var step = {'on': req.cookies['c-lived-step'], 'of': Object.keys(all_countries).length};
+
+  var country = countries.shift();
+  var countryType = get_countries.type(country);
 
   if ( countryType.resident || countryType.insurance ) {
-    res.render('ovsea-test/tell-us-about-lived', {country: country, countryType: countryType});
+    res.render('ovsea-test/tell-us-about-lived', {country: country, countryType: countryType, step: step});
   } else {
     res.cookie('c-lived-count', countries.length);
     res.cookie('c-lived-list', countries);
@@ -68,12 +82,17 @@ router.get('/tell-us-about-lived', function(req, res) {
 router.post('/tell-us-about-lived', function(req, res) {
   var countries = req.cookies['c-lived-list'];
   var country = '';
+  var step = req.cookies['c-lived-step'];
+  step++;
+
   if ( countries !== undefined ) {
     country = countries.shift();
   }
+
   res.cookie('c-lived-count', countries.length);
   res.cookie('c-lived-list', countries);
-
+  res.cookie('c-lived-step', step);
+  
   if ( countries.length > 0 ) {
     res.redirect('tell-us-about-lived');
   } else {

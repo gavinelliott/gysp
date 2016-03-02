@@ -1,8 +1,8 @@
 var countries = {
   type: function(country) {
     var countryType = { 'resident': false, 'insurance': false };
-    var resident = functions.get_resident();
-    var insurance = functions.get_insurance();
+    var resident = countries.resident();
+    var insurance = countries.insurance();
 
     if ( resident.indexOf(country) > -1 ) {
       countryType.resident = true;
@@ -11,11 +11,9 @@ var countries = {
     }
 
     return countryType;
-  }
-};
+  },
 
-var functions = {
-  get_resident: function() {
+  resident: function() {
     var resident = [
       'Australia',
       'Canada',
@@ -24,7 +22,7 @@ var functions = {
     return resident;
   },
 
-  get_insurance: function() {
+  insurance: function() {
     var insurance = [
       'Barbados',
       'Bermuda',
@@ -76,5 +74,4 @@ var functions = {
     return insurance;
   }
 };
-
 module.exports = countries;
