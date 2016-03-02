@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var get_countries = require('../views/ovsea-test/scripts/countries.js');
 
 // Have you lived abroad?
 router.get('/have-you-lived-abroad', function(req, res) {
@@ -48,7 +49,14 @@ router.post('/what-countries-have-you-lived-in', function(req, res) {
 router.get('/tell-us-about-lived', function(req, res) {
   var countries = req.cookies['c-lived-list'];
   var country = countries.shift();
+  var resident = get_countries.resident();
+  var insurance = get_countries.insurance();
 
+  if ( resident.indexOf(country) > -1 ) {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
   res.render('ovsea-test/tell-us-about-lived', {country: country});
 });
 
