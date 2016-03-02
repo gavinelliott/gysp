@@ -47,17 +47,22 @@ router.post('/what-countries-have-you-lived-in', function(req, res) {
 
 // Tell us about the country?
 router.get('/tell-us-about-lived', function(req, res) {
-  var countries = req.cookies['c-lived-list'];
-  var country = countries.shift();
-  var resident = get_countries.resident();
-  var insurance = get_countries.insurance();
+  var countries = req.cookies['c-lived-list'],
+      country = countries.shift(),
+      countryType = get_countries.type(country);
 
-  if ( resident.indexOf(country) > -1 ) {
-    console.log(true);
+  if ( countryType.resident || countryType.insurance ) {
+    res.render('ovsea-test/tell-us-about-lived', {country: country, countryType: countryType});
   } else {
-    console.log(false);
+    res.cookie('c-lived-count', countries.length);
+    res.cookie('c-lived-list', countries);
+
+    if ( countries.length > 0 ) {
+      res.redirect('tell-us-about-lived');
+    } else {
+      res.redirect('have-you-worked-abroad');
+    }
   }
-  res.render('ovsea-test/tell-us-about-lived', {country: country});
 });
 
 router.post('/tell-us-about-lived', function(req, res) {

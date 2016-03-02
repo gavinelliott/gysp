@@ -61,77 +61,77 @@
               </div>
             </fieldset>
 
-            <h2 class="heading-small">Have you paid the equivalent of National Insurance in this country?</h1>
+            {{^countryType.resident}}
+              <h2 class="heading-small">Have you paid the equivalent of National Insurance in this country?</h1>
 
-            <fieldset class="inline">
-              <div class="form-group">
-                <label class="block-label" for="lived-outside-yes" data-target="worked-hidden">
-                  <input id="lived-outside-yes" type="radio" name="lived-outside-select" value="Yes">
-                  Yes
-                </label>
+              <fieldset class="inline">
+                <div class="form-group">
+                  <label class="block-label" for="lived-outside-yes" data-target="worked-hidden">
+                    <input id="lived-outside-yes" type="radio" name="lived-outside-select" value="Yes">
+                    Yes
+                  </label>
 
-                <label class="block-label" for="lived-outside-no">
-                  <input id="lived-outside-no" type="radio" name="lived-outside-select" value="No">
-                  No
-                </label>
-              </div>
+                  <label class="block-label" for="lived-outside-no">
+                    <input id="lived-outside-no" type="radio" name="lived-outside-select" value="No">
+                    No
+                  </label>
+                </div>
 
-              <div class="panel-indent js-hidden" id="worked-hidden">
-                <h2 class="heading-medium">When did you work in this country?</h1>
+                <div class="panel-indent js-hidden" id="worked-hidden">
+                  <h2 class="heading-medium">When did you work in this country?</h1>
 
-                <fieldset>
-                  <div class="form-group">
+                  <fieldset>
+                    <div class="form-group">
 
-                    <div class="form-date">
-                      <h2 class="heading-small">From</h1>
+                      <div class="form-date">
+                        <h2 class="heading-small">From</h1>
 
-                      <div class="form-group form-group-day">
-                        <label for="working-start-day">Day</label>
-                        <input class="form-control" id="working-start-day" name="working-start-day" type="number" pattern="[0-9]*" min="0" max="31">
-                      </div>
+                        <div class="form-group form-group-day">
+                          <label for="working-start-day">Day</label>
+                          <input class="form-control" id="working-start-day" name="working-start-day" type="number" pattern="[0-9]*" min="0" max="31">
+                        </div>
 
-                      <div class="form-group form-group-month">
-                        <label for="working-start-month">Month</label>
-                        <input class="form-control" id="working-start-month" name="working-start-month" type="number" pattern="[0-9]*" min="0" max="12">
-                      </div>
+                        <div class="form-group form-group-month">
+                          <label for="working-start-month">Month</label>
+                          <input class="form-control" id="working-start-month" name="working-start-month" type="number" pattern="[0-9]*" min="0" max="12">
+                        </div>
 
-                      <div class="form-group form-group-year">
-                        <label for="working-start-year">Year</label>
-                        <input class="form-control" id="working-start-year" name="working-start-year" type="number" pattern="[0-9]*" min="0" max="2016">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="form-date">
-                      <h2 class="heading-small">To</h1>
-
-                      <div class="form-group form-group-day">
-                        <label for="working-stop-day">Day</label>
-                        <input class="form-control" id="working-stop-day" name="working-stop-day" type="number" pattern="[0-9]*" min="0" max="31">
-                      </div>
-
-                      <div class="form-group form-group-month">
-                        <label for="working-stop-month">Month</label>
-                        <input class="form-control" id="working-stop-month" name="working-stop-month" type="number" pattern="[0-9]*" min="0" max="12">
-                      </div>
-
-                      <div class="form-group form-group-year">
-                        <label for="working-stop-year">Year</label>
-                        <input class="form-control" id="working-stop-year" name="working-stop-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                        <div class="form-group form-group-year">
+                          <label for="working-start-year">Year</label>
+                          <input class="form-control" id="working-start-year" name="working-start-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="form-group">
-                    <label class="form-label" for="nino-equiv">What was the equivalent of your NI number in this country?</label>
-                    <input class="form-control" id="nino-equiv" type="text">
-                  </div>
-                </fieldset>
-              </div>
-            </fieldset>
+                    <div class="form-group">
+                      <div class="form-date">
+                        <h2 class="heading-small">To</h1>
 
+                        <div class="form-group form-group-day">
+                          <label for="working-stop-day">Day</label>
+                          <input class="form-control" id="working-stop-day" name="working-stop-day" type="number" pattern="[0-9]*" min="0" max="31">
+                        </div>
 
+                        <div class="form-group form-group-month">
+                          <label for="working-stop-month">Month</label>
+                          <input class="form-control" id="working-stop-month" name="working-stop-month" type="number" pattern="[0-9]*" min="0" max="12">
+                        </div>
+
+                        <div class="form-group form-group-year">
+                          <label for="working-stop-year">Year</label>
+                          <input class="form-control" id="working-stop-year" name="working-stop-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="nino-equiv">What was the equivalent of your NI number in this country?</label>
+                      <input class="form-control" id="nino-equiv" type="text">
+                    </div>
+                  </fieldset>
+                </div>
+              </fieldset>
+            {{/countryType.resident}}
 
             <input type="submit" class="button" value="Continue">
           </form>

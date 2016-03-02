@@ -1,14 +1,30 @@
 var countries = {
-  resident: function() {
+  type: function(country) {
+    var countryType = { 'resident': false, 'insurance': false };
+    var resident = functions.get_resident();
+    var insurance = functions.get_insurance();
+
+    if ( resident.indexOf(country) > -1 ) {
+      countryType.resident = true;
+    } else if ( insurance.indexOf(country) > -1 ){
+      countryType.insurance = true;
+    }
+
+    return countryType;
+  }
+};
+
+var functions = {
+  get_resident: function() {
     var resident = [
       'Australia',
       'Canada',
-      'New Zeland'
+      'New Zealand'
     ];
     return resident;
   },
 
-  insurance: function() {
+  get_insurance: function() {
     var insurance = [
       'Barbados',
       'Bermuda',
