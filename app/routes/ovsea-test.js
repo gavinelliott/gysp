@@ -92,7 +92,7 @@ router.post('/tell-us-about-lived', function(req, res) {
   res.cookie('c-lived-count', countries.length);
   res.cookie('c-lived-list', countries);
   res.cookie('c-lived-step', step);
-  
+
   if ( countries.length > 0 ) {
     res.redirect('tell-us-about-lived');
   } else {
@@ -126,6 +126,8 @@ router.post('/what-countries-have-you-worked-in', function(req, res) {
   }
   res.cookie('c-worked-count', countries.length);
   res.cookie('c-worked-list', countries);
+  res.cookie('c-worked-all', countries);
+  res.cookie('c-worked-step', 1);
 
   res.redirect('tell-us-about-worked');
 });
@@ -133,24 +135,51 @@ router.post('/what-countries-have-you-worked-in', function(req, res) {
 // Tell us about the country you worked in?
 router.get('/tell-us-about-worked', function(req, res) {
   var countries = req.cookies['c-worked-list'];
+  var all_countries = req.cookies['c-worked-all'];
+  var resident = get_countries.resident();
+  var insurance = get_countries.insurance();
+
+  for ( var c in all_countries ) {
+    if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
+      delete all_countries[c];
+    }
+  }
+
+  var step = {'on': req.cookies['c-worked-step'], 'of': Object.keys(all_countries).length};
+
   var country = '';
   if ( countries !== undefined ) {
     country = countries.shift();
   }
+  var countryType = get_countries.type(country);
 
-  res.render('ovsea-test/tell-us-about-worked', {country: country});
-  });
+  if ( countryType.insurance ) {
+    res.render('ovsea-test/tell-us-about-worked', {country: country, step: step});
+  } else {
+    res.cookie('c-worked-count', countries.length);
+    res.cookie('c-worked-list', countries);
+
+    if ( countries.length > 0 ) {
+      res.redirect('tell-us-about-worked');
+    } else {
+      res.redirect('reset');
+    }
+  }
+});
 
 router.post('/tell-us-about-worked', function(req, res) {
   var countries = req.cookies['c-worked-list'];
   var country = '';
+  var step = req.cookies['c-worked-step'];
+  step++;
+
   if ( countries !== undefined ) {
     country = countries.shift();
   }
 
   res.cookie('c-worked-count', countries.length);
   res.cookie('c-worked-list', countries);
-
+  res.cookie('c-worked-step', step);
   if ( countries.length > 0 ) {
     res.redirect('tell-us-about-worked');
   } else {
