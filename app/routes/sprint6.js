@@ -365,10 +365,8 @@ router.post('/bank-details', function(req, res) {
   }
 });
 
-
-
 router.post('/contact', function(req, res) {
-  res.redirect('bank-details');
+  res.redirect('when-do-you-want-paid');
 });
 
 router.get('/unhappy-ending', function(req, res) {
