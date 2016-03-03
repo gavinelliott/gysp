@@ -63,17 +63,18 @@ app.use(function (req, res, next) {
       iteration3v2 = require(__dirname + '/app/routes/iteration3-v2.js'),
       iteration1 = require(__dirname + '/app/routes/iteration1.js'),
       demo = require(__dirname + '/app/routes/demo.js'),
+      beta = require(__dirname + '/app/routes/beta.js'),
       january = require(__dirname + '/app/routes/january.js'),
       sprint3 = require(__dirname + '/app/routes/sprint3.js'),
       sprint4 = require(__dirname + '/app/routes/sprint4.js'),
       sprint5 = require(__dirname + '/app/routes/sprint5.js'),
-      beta = require(__dirname + '/app/routes/beta.js'),
+      sprint6 = require(__dirname + '/app/routes/sprint6.js'),
       ovsea_test = require(__dirname + '/app/routes/ovsea-test.js');
 
 app.use("/", router);
 app.use("/", secure);
-app.use("/demo", demo);
 app.use("/beta", beta);
+app.use("/demo", demo);
 app.use("/iteration1-v4", iteration1v4);
 app.use("/iteration2-v2", iteration2v2);
 app.use("/iteration2-v4", iteration2v2);
@@ -81,10 +82,11 @@ app.use("/iteration3-v1", iteration3v1);
 app.use("/iteration3-v2", iteration3v2);
 app.use("/iteration1", iteration1);
 app.use("/january", january);
+app.use("/ovsea-test", ovsea_test);
 app.use("/sprint3", sprint3);
 app.use("/sprint4", sprint4);
 app.use("/sprint5", sprint5);
-app.use("/ovsea-test", ovsea_test);
+app.use("/sprint6", sprint6);
 
 // auto render any view that exists
 
