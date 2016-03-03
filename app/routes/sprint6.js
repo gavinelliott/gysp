@@ -229,6 +229,7 @@ router.all('/relationship-status', function(req, res) {
   }
 });
 
+// Relationship date
 router.all('/relationship-status-date/:type', function(req, res) {
   if (req.body.submit === "Continue") {
     res.redirect("/sprint6/relationship-status-more/"+req.params.type);
@@ -281,7 +282,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint6/bank-details");
+    res.redirect("/sprint6/when-do-you-want-paid");
   }else{
     var isMarried = false,
         isEnded = false;
@@ -316,6 +317,15 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
     res.render('sprint6/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
   }
+});
+
+// When do you want paid
+router.get('/when-do-you-want-paid', function(req, res) {
+  res.render('sprint6/when-do-you-want-paid');
+});
+
+router.post('/when-do-you-want-paid', function(req, res) {
+  res.redirect('bank-details');
 });
 
 // Bank details
