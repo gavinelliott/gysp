@@ -282,7 +282,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint6/when-do-you-want-paid");
+    res.redirect("/sprint6/contact");
   }else{
     var isMarried = false,
         isEnded = false;
@@ -317,6 +317,11 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
     res.render('sprint6/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
   }
+});
+
+// Contact page
+router.get('/contact', function(req, res) {
+  res.render('sprint6/contact');
 });
 
 // When do you want paid
