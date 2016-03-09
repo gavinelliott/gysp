@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/download_fake_letter', function(req,res){
-    res.download('./public//images/fake_letter.pdf', 'download.pdf');
+    res.download('./public/images/fake_letter.pdf', 'download.pdf');
+});
+
+router.get('/download_fake_letter2', function(req,res){
+    res.download('./public/images/fake_letter2.pdf', 'download.pdf');
 });
 
 Array.prototype.getRandom= function(num, cut){
