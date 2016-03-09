@@ -1,0 +1,37 @@
+{{<layout}}
+
+  {{$pageTitle}}
+  	State Pension Activation
+  {{/pageTitle}}
+
+  {{$content}}
+  <main id="content" role="main">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        {{>includes/parts/phase-banner}}
+
+          <h1 class="heading-xlarge">Have you worked outside the UK?</h1>
+
+          <form action="have-you-worked-abroad" method="post">
+            <fieldset class="inline">
+              <div class="form-group">
+                <legend class="visuallyhidden">Have you ever worked outside of the UK?</legend>
+
+                <label class="block-label" for="worked-outside-yes">
+                  <input id="worked-outside-yes" type="radio" name="worked-outside-select" value="Yes">
+                  Yes
+                </label>
+                <label class="block-label" for="worked-outside-no">
+                  <input id="worked-outside-no" type="radio" name="worked-outside-select" value="No">
+                  No
+                </label>
+              </div>
+            </fieldset>
+
+            <input type="submit" class="button" value="Continue">
+          </form>
+        </div>
+      </div>
+    </main>
+  {{/content}}
+{{/layout}}

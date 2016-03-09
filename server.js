@@ -64,12 +64,13 @@ app.use(function (req, res, next) {
       iteration1 = require(__dirname + '/app/routes/iteration1.js'),
       demo = require(__dirname + '/app/routes/demo.js'),
       beta = require(__dirname + '/app/routes/beta.js'),
+      ovsea_test = require(__dirname + '/app/routes/ovsea-test.js'),
       january = require(__dirname + '/app/routes/january.js'),
       sprint3 = require(__dirname + '/app/routes/sprint3.js'),
       sprint4 = require(__dirname + '/app/routes/sprint4.js'),
       sprint5 = require(__dirname + '/app/routes/sprint5.js'),
       sprint6 = require(__dirname + '/app/routes/sprint6.js'),
-      ovsea_test = require(__dirname + '/app/routes/ovsea-test.js');
+      sprint7 = require(__dirname + '/app/routes/sprint7.js');
 
 app.use("/", router);
 app.use("/", secure);
@@ -87,6 +88,7 @@ app.use("/sprint3", sprint3);
 app.use("/sprint4", sprint4);
 app.use("/sprint5", sprint5);
 app.use("/sprint6", sprint6);
+app.use("/sprint7", sprint7);
 
 // auto render any view that exists
 
