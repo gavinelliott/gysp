@@ -31,9 +31,22 @@
 
 						<div class="form-group">
 							<label class="form-label-bold" for="full-name">All their other names they have been known by</label>
-							<p class="form-hint">Include maiden name, former married names and changes of family name.</p>
 							<input type="text" class="form-control" id="other-name" name ="other-name">
 						</div>
+
+
+						<fieldset id="other-name-container">
+              <div class="form-group">
+                <label class="form-label-bold" for="country-name-1">Other name <span class="remove-link"></span></label>
+								<p class="form-hint">Include maiden name, former married names and changes of family name.</p>
+                <input class="form-control" id="country-name-1" type="text" name="country-name-1" autocomplete="off">
+              </div>
+            </fieldset>
+
+            <p>
+              <a id="add-another-name" href="#">Add another name</a>
+            </p>
+
 
 						<div class="form-group js-hidden panel-indent" id="ni-details">
 							<label class="form-label-bold" for="ni-yes">
@@ -85,5 +98,6 @@
 
 	{{$pageScripts}}
 			{{>includes/scripts/dobFocus}}
+			{{>sprint7/scripts/other-names}}
 	{{/pageScripts}}
 {{/layout}}
