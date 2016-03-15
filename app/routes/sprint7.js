@@ -234,48 +234,42 @@ router.all('/relationship-status-date/:type', function(req, res) {
   if (req.body.submit === "Continue") {
     res.redirect("/sprint7/relationship-status-more/"+req.params.type);
   }else{
+    var isMarried = false,
+        isEnded = false;
 
-    if(req.params.type === "Widowed"){
-        res.redirect("/sprint7/relationship-status-more/"+req.params.type);
-    }else{
-
-      var isMarried = false,
-          isEnded = false;
-
-      if (req.params.type == "Married" || req.params.type == "Civil") {
-        isMarried = true;
-      }
-
-      if (req.params.type == "Divorced" || req.params.type == "Widowed") {
-        isEnded = true;
-      }
-
-      var eventText = "";
-
-      switch (req.params.type) {
-        case "Married":
-          eventText = "What date did you get married?";
-          break;
-        case "Civil":
-          eventText = "What date was your civil partnership registered?";
-          break;
-        case "Divorced":
-          eventText = "What date did you get divorced?";
-          break;
-        case "Dissolved":
-          eventText = "What date was your civil partnership dissolved?";
-          break;
-        case "Widowed":
-          eventText = "What date did they die?";
-          break;
-      }
-      res.render('sprint7/relationship-status-date', {
-        eventText: eventText,
-        type: req.params.type,
-        isEnded: isEnded,
-        isMarried: isMarried
-      });
+    if (req.params.type == "Married" || req.params.type == "Civil") {
+      isMarried = true;
     }
+
+    if (req.params.type == "Divorced" || req.params.type == "Widowed") {
+      isEnded = true;
+    }
+
+    var eventText = "";
+
+    switch (req.params.type) {
+      case "Married":
+        eventText = "What date did you get married?";
+        break;
+      case "Civil":
+        eventText = "What date was your civil partnership registered?";
+        break;
+      case "Divorced":
+        eventText = "What date did you get divorced?";
+        break;
+      case "Dissolved":
+        eventText = "What date was your civil partnership dissolved?";
+        break;
+      case "Widowed":
+        eventText = "What date were you widowed?";
+        break;
+    }
+    res.render('sprint7/relationship-status-date', {
+      eventText: eventText,
+      type: req.params.type,
+      isEnded: isEnded,
+      isMarried: isMarried
+    });
   }
 });
 
