@@ -26,16 +26,23 @@
               <div class="form-group">
                 <label class="block-label" for="select-asap">
                   <input id="select-asap" type="radio" name="when-paid-select" value="asap">
-                  As soon as possible
+                  My State Pension age
                 </label>
 
                 <label class="block-label" data-target="set-date-hidden" for="select-set">
                   <input id="select-set" type="radio" name="when-paid-select" value="set">
-                  A set date
+                  A date after my State Pension age
                 </label>
 
                 <div class="panel panel-indent js-hidden" id="set-date-hidden">
+									<p class="text form-hint">You'll need to put off claiming for at least 9 weeks to increase your State Pension.</p>
+
+									<h2 class="heading-small">What date do you want to get your State Pension?</h2>
                   <fieldset>
+										<span id="error-message" class="error-message" style="display: none;">
+					            The date you have entered is more than four months from now.<br />To claim on this date please come back on <span></span>.
+					          </span>
+
                     <div class="form-date">
                       <div class="form-group form-group-day">
                         <label for="set-day">Day</label>
@@ -52,11 +59,11 @@
                         <input class="form-control" id="set-year" name="set-year" type="number" pattern="[0-9]*" min="0" max="2016">
                       </div>
                     </div>
-
                   </fieldset>
-                </div>
+								</div>
               </div>
             </fieldset>
+
 
             <input type="submit" class="button" value="Continue" />
           </form>
@@ -66,5 +73,6 @@
 	{{/content}}
 
 	{{$pageScripts}}
+		{{>sprint7/scripts/when-do-you-want-paid}}
 	{{/pageScripts}}
 {{/layout}}
