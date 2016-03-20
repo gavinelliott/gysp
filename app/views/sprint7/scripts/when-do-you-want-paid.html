@@ -1,33 +1,55 @@
 <script>
-  $(document).on('keyup', 'input', function() {
-    var date = get_dates();
+  $(document).ready(function() {
+    var marker = 0;
 
-    if ( date.input_date > date.four_months ) {
-      $('#error-message').css('display', 'block');
-      $('#error-message span').html(date.valid_date);
-      $('#error-message').parent().addClass('error');
-    } else {
-      $('#error-message').css('display', 'none');
-      $('#error-message').parent().removeClass('error');
-    }
-  });
-
-  $(document).on('click', 'label', function() {
-    var date = get_dates();
-
-    if ( $(this).find('input').attr('id') === 'select-asap') {
-      $('#error-message').css('display', 'none');
-    } else if ( $(this).find('input').attr('id') === 'select-set') {
-      if ( date.input_date > date.four_months ) {
-        $('#error-message').css('display', 'block');
-        $('#error-message').parent().addClass('error');
-        $('#error-message span').html(date.valid_date);
-      } else {
-        $('#error-message').css('display', 'none');
-        $('#error-message').parent().removeClass('error');
+    $(document).on('keyup', 'input', function() {
+      if ( $('#set-day').val().length >= 1 && $('#set-month').val().length >= 1 && $('#set-year').val().length === 4 ) {
+        marker++;
       }
-    }
+
+      if ( marker != 0 ) {
+        var date = get_dates();
+        var spa_input = new Date( $('#set-year').val() + '-' + $('#set-month').val() + '-' + $('#set-day').val() )
+        var spa_date = new Date( $('#spa-date').val() );
+
+        if ( date.input_date > date.four_months ) {
+          $('#error-message').css('display', 'block');
+          $('#error-message2').css('display', 'none');
+          $('#error-message span').html(date.valid_date);
+          $('#error-message').parent().addClass('error');
+        } else if ( spa_input < spa_date ) {
+          $('#error-message').css('display', 'none');
+          $('#error-message2').css('display', 'block');
+          $('#error-message2').parent().addClass('error');
+        } else {
+          $('#error-message').css('display', 'none');
+          $('#error-message2').css('display', 'none');
+          $('#error-message').parent().removeClass('error');
+        }
+      }
+    });
+
+    $(document).on('click', 'label', function() {
+      if ( marker != 0 ) {
+        var date = get_dates();
+
+        if ( $(this).find('input').attr('id') === 'select-asap') {
+          $('#error-message').css('display', 'none');
+        } else if ( $(this).find('input').attr('id') === 'select-set') {
+          if ( date.input_date > date.four_months ) {
+            $('#error-message').css('display', 'block');
+            $('#error-message').parent().addClass('error');
+            $('#error-message span').html(date.valid_date);
+          }
+        } else {
+          $('#error-message').css('display', 'none');
+          $('#error-message2').css('display', 'none');
+          $('#error-message').parent().removeClass('error');
+        }
+      }
+    });
   });
+
 
   function get_nth_suffix(day) {
     switch (day) {

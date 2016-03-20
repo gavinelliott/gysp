@@ -20,8 +20,10 @@
 					{{/errors}}
 
 					<h1 class="heading-xlarge">When do you want to get your State Pension?</h1>
-
+{{nice_date.day}} {{nice_date.month}} {{nice_date.year}}
           <form action="when-do-you-want-paid" method="post">
+						<input id="spa-date" type="hidden" value="{{date}}">
+
             <fieldset>
               <div class="form-group">
                 <label class="block-label" for="select-asap">
@@ -39,9 +41,13 @@
 
 									<h2 class="heading-small">What date do you want to get your State Pension?</h2>
                   <fieldset>
-										<span id="error-message" class="error-message" style="display: none;">
-					            The date you have entered is more than four months from now.<br />To claim on this date please come back on <span></span>.
-					          </span>
+										<p id="error-message" class="error-message" style="display: none;">
+					            The date you have entered is more than four months from now. To claim on this date please come back on <span></span>.
+					          </p>
+
+										<p id="error-message2" class="error-message" style="display: none;">
+					            The date you have entered is before your State Pension age. The earliest you can claim is {{nice_date.day}} {{nice_date.month}} {{nice_date.year}}.
+					          </p>
 
                     <div class="form-date">
                       <div class="form-group form-group-day">

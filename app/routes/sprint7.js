@@ -320,7 +320,36 @@ router.get('/contact', function(req, res) {
 
 // When do you want paid
 router.get('/when-do-you-want-paid', function(req, res) {
-  res.render('sprint7/when-do-you-want-paid');
+  var options = req.cookies.options;
+  var nice_date = {};
+
+  if ( options !== undefined ) {
+    var suffix = '';
+    if ( options.day.substr(-1) == 1 ) {
+      suffix = 'st';
+    } else if ( options.day.substr(-1) == 2 ) {
+      suffix = 'nd';
+    } else if ( options.day.substr(-1) == 3 ) {
+      suffix = 'rd';
+    } else {
+      suffix = 'th';
+    }
+    var day = options.day + suffix;
+    var months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    var month_num = options.month - 1;
+    nice_date = {
+      day: day,
+      month: months[month_num],
+      year: options.year
+    };
+  } else {
+    options = {};
+  }
+  var date = new Date(options.year + '-' + options.month + '-' + options.day);
+  res.render('sprint7/when-do-you-want-paid', {date: date, nice_date: nice_date});
 });
 
 router.post('/when-do-you-want-paid', function(req, res) {
@@ -390,6 +419,20 @@ router.get('/reset', function(req, res) {
     }
   }
   res.redirect('/');
+});
+
+router.get('/settings', function(req, res) {
+  res.render('sprint7/settings');
+});
+
+router.post('/settings', function(req, res) {
+  var settings = {
+    "day": req.body['spa-day'],
+    "month": req.body['spa-month'],
+    "year": req.body['spa-year']
+  };
+  res.cookie("options", settings);
+  res.redirect('start');
 });
 
 module.exports = router;
