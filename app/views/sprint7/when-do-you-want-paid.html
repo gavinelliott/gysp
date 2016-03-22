@@ -52,17 +52,17 @@
                     <div class="form-date">
                       <div class="form-group form-group-day">
                         <label for="set-day">Day</label>
-                        <input class="form-control" id="set-day" name="set-day" type="number" pattern="[0-9]*" min="0" max="31">
+                        <input class="form-control" id="set-day" name="set-day" type="text" maxlength="2" pattern="[0-9]*" min="0" max="31">
                       </div>
 
                       <div class="form-group form-group-month">
                         <label for="set-month">Month</label>
-                        <input class="form-control" id="set-month" name="set-month" type="number" pattern="[0-9]*" min="0" max="12">
+                        <input class="form-control" id="set-month" name="set-month" type="text" maxlength="2" pattern="[0-9]*" min="0" max="12">
                       </div>
 
                       <div class="form-group form-group-year">
                         <label for="set-year">Year</label>
-                        <input class="form-control" id="set-year" name="set-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                        <input class="form-control" id="set-year" name="set-year" type="text" maxlength="4" pattern="[0-9]*" min="0" max="2016">
                       </div>
                     </div>
                   </fieldset>
@@ -80,5 +80,6 @@
 
 	{{$pageScripts}}
 		{{>sprint7/scripts/when-do-you-want-paid}}
+		{{>includes/scripts/dobFocus}}
 	{{/pageScripts}}
 {{/layout}}
