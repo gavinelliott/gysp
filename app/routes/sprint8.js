@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var get_countries = require('../views/sprint7/scripts/countries.js');
+var get_countries = require('../views/sprint8/scripts/countries.js');
 
 // Secure page with invite code
 router.get('/secure', function(req, res) {
-  res.render('sprint7/secure');
+  res.render('sprint8/secure');
 });
 
 router.post('/secure', function(req, res) {
@@ -23,14 +23,14 @@ router.post('/secure', function(req, res) {
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
     } else {
-      res.render('sprint7/secure');
+      res.render('sprint8/secure');
     }
   }
 });
 
 // Have you ever lived outside the UK?
 router.get('/have-you-lived-abroad', function(req, res) {
-  res.render('sprint7/have-you-lived-abroad');
+  res.render('sprint8/have-you-lived-abroad');
 });
 
 router.post('/have-you-lived-abroad', function(req, res) {
@@ -43,7 +43,7 @@ router.post('/have-you-lived-abroad', function(req, res) {
 
 // Which countries have you lived in?
 router.get('/what-countries-have-you-lived-in', function(req, res) {
-  res.render('sprint7/what-countries-have-you-lived-in');
+  res.render('sprint8/what-countries-have-you-lived-in');
 });
 
 router.post('/what-countries-have-you-lived-in', function(req, res) {
@@ -79,7 +79,7 @@ router.get('/tell-us-about-lived', function(req, res) {
   var countryType = get_countries.type(country);
 
   if ( countryType.resident || countryType.insurance ) {
-    res.render('sprint7/tell-us-about-lived', {country: country, countryType: countryType, step: step});
+    res.render('sprint8/tell-us-about-lived', {country: country, countryType: countryType, step: step});
   } else {
     res.cookie('c-lived-count', countries.length);
     res.cookie('c-lived-list', countries);
@@ -115,7 +115,7 @@ router.post('/tell-us-about-lived', function(req, res) {
 
 // Have you worked abroad?
 router.get('/have-you-worked-abroad', function(req, res) {
-  res.render('sprint7/have-you-worked-abroad');
+  res.render('sprint8/have-you-worked-abroad');
 });
 
 router.post('/have-you-worked-abroad', function(req, res) {
@@ -128,7 +128,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
 
 // Have you worked anywhere else?
 router.get('/have-you-worked-anywhere-else', function(req, res) {
-  res.render('sprint7/have-you-worked-anywhere-else');
+  res.render('sprint8/have-you-worked-anywhere-else');
 });
 
 router.post('/have-you-worked-anywhere-else', function(req, res) {
@@ -141,7 +141,7 @@ router.post('/have-you-worked-anywhere-else', function(req, res) {
 
 // Which countries have you worked in?
 router.get('/what-countries-have-you-worked-in', function(req, res) {
-  res.render('sprint7/what-countries-have-you-worked-in');
+  res.render('sprint8/what-countries-have-you-worked-in');
 });
 
 router.post('/what-countries-have-you-worked-in', function(req, res) {
@@ -180,7 +180,7 @@ router.get('/tell-us-about-worked', function(req, res) {
   var countryType = get_countries.type(country);
 
   if ( countryType.insurance ) {
-    res.render('sprint7/tell-us-about-worked', {country: country, step: step});
+    res.render('sprint8/tell-us-about-worked', {country: country, step: step});
   } else {
     res.cookie('c-worked-count', countries.length);
     res.cookie('c-worked-list', countries);
@@ -225,14 +225,14 @@ router.all('/relationship-status', function(req, res) {
 
     res.redirect("relationship-status-date/" + req.body.relationship);
   } else {
-    res.render('sprint7/relationship-status');
+    res.render('sprint8/relationship-status');
   }
 });
 
 // Relationship date
 router.all('/relationship-status-date/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint7/relationship-status-more/"+req.params.type);
+    res.redirect("/sprint8/relationship-status-more/"+req.params.type);
   }else{
     var isMarried = false,
         isEnded = false;
@@ -264,7 +264,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
         eventText = "What date were you widowed?";
         break;
     }
-    res.render('sprint7/relationship-status-date', {
+    res.render('sprint8/relationship-status-date', {
       eventText: eventText,
       type: req.params.type,
       isEnded: isEnded,
@@ -276,7 +276,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint7/contact");
+    res.redirect("/sprint8/contact");
   }else{
     var isMarried = false,
         isEnded = false;
@@ -309,13 +309,13 @@ router.all('/relationship-status-more/:type', function(req, res) {
         break;
     }
 
-    res.render('sprint7/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
+    res.render('sprint8/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
   }
 });
 
 // Contact page
 router.get('/contact', function(req, res) {
-  res.render('sprint7/contact');
+  res.render('sprint8/contact');
 });
 
 // When do you want paid
@@ -349,7 +349,7 @@ router.get('/when-do-you-want-paid', function(req, res) {
     options = {};
   }
   var date = new Date(options.year + '-' + options.month + '-' + options.day);
-  res.render('sprint7/when-do-you-want-paid', {date: date, nice_date: nice_date});
+  res.render('sprint8/when-do-you-want-paid', {date: date, nice_date: nice_date});
 });
 
 router.post('/when-do-you-want-paid', function(req, res) {
@@ -358,7 +358,7 @@ router.post('/when-do-you-want-paid', function(req, res) {
 
 // Bank details
 router.get('/bank-details', function(req, res) {
-  res.render('sprint7/bank-details');
+  res.render('sprint8/bank-details');
 });
 
 router.post('/bank-details', function(req, res) {
@@ -388,7 +388,7 @@ router.post('/bank-details', function(req, res) {
         'text':"Please check that you've entered your bank account details correctly:",
         'bank_type': req.body.building
       };
-      res.render('sprint7/bank-details', {errors: errors});
+      res.render('sprint8/bank-details', {errors: errors});
     }
   }
 });
@@ -399,13 +399,13 @@ router.post('/contact', function(req, res) {
 
 router.get('/unhappy-ending', function(req, res) {
   req.session.view = null;
-  res.render('sprint7/unhappy-ending');
+  res.render('sprint8/unhappy-ending');
 });
 
 router.get('/end', function(req, res) {
   var completeDate = get_todays_date();
 
-  res.render('sprint7/end', {completeDate: completeDate});
+  res.render('sprint8/end', {completeDate: completeDate});
 });
 
 router.get('/download', function(req,res){
@@ -422,7 +422,7 @@ router.get('/reset', function(req, res) {
 });
 
 router.get('/settings', function(req, res) {
-  res.render('sprint7/settings');
+  res.render('sprint8/settings');
 });
 
 router.post('/settings', function(req, res) {
