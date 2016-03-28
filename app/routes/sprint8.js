@@ -67,32 +67,42 @@ router.get('/tell-us-about-lived', function(req, res) {
   var resident = get_countries.resident();
   var insurance = get_countries.insurance();
 
-  for ( var c in all_countries ) {
-    if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
-      delete all_countries[c];
-    }
-  }
-
-  var step = {'on': req.cookies['c-lived-step'], 'of': Object.keys(all_countries).length};
-
-  var country = countries.shift();
-  var countryType = get_countries.type(country);
-
-  if ( countryType.resident || countryType.insurance ) {
-    res.render('sprint8/tell-us-about-lived', {country: country, countryType: countryType, step: step});
+  if ( countries.length === 0 ) {
+    res.redirect('what-countries-have-you-lived-in');
   } else {
-    res.cookie('c-lived-count', countries.length);
-    res.cookie('c-lived-list', countries);
+    for ( var c in all_countries ) {
+      if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
+        delete all_countries[c];
+      }
+    }
 
-    if ( countries.length > 0 ) {
-      res.redirect('tell-us-about-lived');
+    var step = {'on': req.cookies['c-lived-step'], 'of': Object.keys(all_countries).length};
+
+    var country = countries.shift();
+    var countryType = get_countries.type(country);
+
+    if ( countryType.resident || countryType.insurance ) {
+      res.render('sprint8/tell-us-about-lived', {country: country, countryType: countryType, step: step});
     } else {
-      res.redirect('have-you-worked-abroad');
+      res.cookie('c-lived-count', countries.length);
+      res.cookie('c-lived-list', countries);
+
+      if ( countries.length > 0 ) {
+        res.redirect('tell-us-about-lived');
+      } else {
+        res.redirect('have-you-worked-abroad');
+      }
     }
   }
 });
 
 router.post('/tell-us-about-lived', function(req, res) {
+  if ( req.body['worked-outside-select'] == 'Yes' ) {
+    res.cookie('equiv_nino', 'yes');
+  } else {
+    res.cookie('equiv_nino', 'no');
+  }
+
   var countries = req.cookies['c-lived-list'];
   var country = '';
   var step = req.cookies['c-lived-step'];
@@ -108,29 +118,24 @@ router.post('/tell-us-about-lived', function(req, res) {
   if ( countries.length > 0 ) {
     res.redirect('tell-us-about-lived');
   } else {
-    res.redirect('have-you-worked-anywhere-else');
+    res.redirect('have-you-worked-abroad');
   }
 });
 
 // Have you worked abroad?
 router.get('/have-you-worked-abroad', function(req, res) {
-  res.render('sprint8/have-you-worked-abroad');
+  var equiv_nino = req.cookies.equiv_nino;
+  var title = '';
+
+  if ( equiv_nino == 'yes' ) {
+    title = 'Have you worked anywhere else outside of the UK?';
+  } else {
+    title = 'Have you worked outside of the UK?';
+  }
+  res.render('sprint8/have-you-worked-abroad', {title: title});
 });
 
 router.post('/have-you-worked-abroad', function(req, res) {
-  if ( req.body['worked-outside-select'] === 'Yes' ) {
-    res.redirect('what-countries-have-you-worked-in');
-  } else {
-    res.redirect('relationship-status');
-  }
-});
-
-// Have you worked anywhere else?
-router.get('/have-you-worked-anywhere-else', function(req, res) {
-  res.render('sprint8/have-you-worked-anywhere-else');
-});
-
-router.post('/have-you-worked-anywhere-else', function(req, res) {
   if ( req.body['worked-outside-select'] === 'Yes' ) {
     res.redirect('what-countries-have-you-worked-in');
   } else {
@@ -164,30 +169,34 @@ router.get('/tell-us-about-worked', function(req, res) {
   var resident = get_countries.resident();
   var insurance = get_countries.insurance();
 
-  for ( var c in all_countries ) {
-    if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
-      delete all_countries[c];
-    }
-  }
-
-  var step = {'on': req.cookies['c-worked-step'], 'of': Object.keys(all_countries).length};
-
-  var country = '';
-  if ( countries !== undefined ) {
-    country = countries.shift();
-  }
-  var countryType = get_countries.type(country);
-
-  if ( countryType.insurance ) {
-    res.render('sprint8/tell-us-about-worked', {country: country, step: step});
+  if ( countries.length === 0 ) {
+    res.redirect('what-countries-have-you-worked-in');
   } else {
-    res.cookie('c-worked-count', countries.length);
-    res.cookie('c-worked-list', countries);
+    for ( var c in all_countries ) {
+      if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
+        delete all_countries[c];
+      }
+    }
 
-    if ( countries.length > 0 ) {
-      res.redirect('tell-us-about-worked');
+    var step = {'on': req.cookies['c-worked-step'], 'of': Object.keys(all_countries).length};
+
+    var country = '';
+    if ( countries !== undefined ) {
+      country = countries.shift();
+    }
+    var countryType = get_countries.type(country);
+
+    if ( countryType.insurance ) {
+      res.render('sprint8/tell-us-about-worked', {country: country, step: step});
     } else {
-      res.redirect('relationship-status');
+      res.cookie('c-worked-count', countries.length);
+      res.cookie('c-worked-list', countries);
+
+      if ( countries.length > 0 ) {
+        res.redirect('tell-us-about-worked');
+      } else {
+        res.redirect('relationship-status');
+      }
     }
   }
 });
