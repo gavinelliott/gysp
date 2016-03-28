@@ -25,12 +25,12 @@
 
                   <div class="form-group form-group-month">
                     <label for="working-start-month">Month</label>
-                    <input class="form-control" id="working-start-month" name="working-start-month" type="number" pattern="[0-9]*" min="0" max="12">
+                    <input class="form-control" id="working-start-month" name="working-start-month" type="text" pattern="[0-9]*" min="0" max="12" maxlength="2">
                   </div>
 
                   <div class="form-group form-group-year">
                     <label for="working-start-year">Year</label>
-                    <input class="form-control" id="working-start-year" name="working-start-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                    <input class="form-control" id="working-start-year" name="working-start-year" type="text" pattern="[0-9]*" min="0" max="2016" maxlength="4">
                   </div>
                 </div>
               </div>
@@ -41,12 +41,12 @@
 
                   <div class="form-group form-group-month">
                     <label for="working-stop-month">Month</label>
-                    <input class="form-control" id="working-stop-month" name="working-stop-month" type="number" pattern="[0-9]*" min="0" max="12">
+                    <input class="form-control" id="working-stop-month" name="working-stop-month" type="text" pattern="[0-9]*" min="0" max="12" maxlength="2">
                   </div>
 
                   <div class="form-group form-group-year">
                     <label for="working-stop-year">Year</label>
-                    <input class="form-control" id="working-stop-year" name="working-stop-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                    <input class="form-control" id="working-stop-year" name="working-stop-year" type="text" pattern="[0-9]*" min="0" max="2016" maxlength="4">
                   </div>
                 </div>
               </div>
@@ -63,4 +63,8 @@
       </div>
     </main>
   {{/content}}
+
+  {{$pageScripts}}
+      {{>includes/scripts/country-dates-focus}}
+  {{/pageScripts}}
 {{/layout}}
