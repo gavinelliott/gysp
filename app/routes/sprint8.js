@@ -326,41 +326,7 @@ router.get('/contact', function(req, res) {
   res.render('sprint8/contact');
 });
 
-// When do you want paid
-router.get('/when-do-you-want-paid', function(req, res) {
-  var options = req.cookies.options;
-  var nice_date = {};
-
-  if ( options !== undefined ) {
-    var suffix = '';
-    if ( options.day.substr(-1) == 1 ) {
-      suffix = 'st';
-    } else if ( options.day.substr(-1) == 2 ) {
-      suffix = 'nd';
-    } else if ( options.day.substr(-1) == 3 ) {
-      suffix = 'rd';
-    } else {
-      suffix = 'th';
-    }
-    var day = options.day + suffix;
-    var months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    var month_num = options.month - 1;
-    nice_date = {
-      day: day,
-      month: months[month_num],
-      year: options.year
-    };
-  } else {
-    options = {};
-  }
-  var date = new Date(options.year + '-' + options.month + '-' + options.day);
-  res.render('sprint8/when-do-you-want-paid', {date: date, nice_date: nice_date});
-});
-
-router.post('/when-do-you-want-paid', function(req, res) {
+router.post('/contact', function(req, res) {
   res.redirect('bank-details');
 });
 
@@ -399,10 +365,6 @@ router.post('/bank-details', function(req, res) {
       res.render('sprint8/bank-details', {errors: errors});
     }
   }
-});
-
-router.post('/contact', function(req, res) {
-  res.redirect('when-do-you-want-paid');
 });
 
 router.get('/unhappy-ending', function(req, res) {
