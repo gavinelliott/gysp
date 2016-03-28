@@ -50,7 +50,7 @@ router.post('/what-countries-have-you-lived-in', function(req, res) {
   var countries = [];
 
   for ( var country in req.body ) {
-    countries.push(req.body[country]);
+    countries.push(req.body[country].toLowerCase());
   }
   res.cookie('c-lived-count', countries.length);
   res.cookie('c-lived-list', countries);
@@ -101,7 +101,6 @@ router.post('/tell-us-about-lived', function(req, res) {
   if ( countries !== undefined ) {
     country = countries.shift();
   }
-
   res.cookie('c-lived-count', countries.length);
   res.cookie('c-lived-list', countries);
   res.cookie('c-lived-step', step);
@@ -148,7 +147,7 @@ router.post('/what-countries-have-you-worked-in', function(req, res) {
   var countries = [];
 
   for ( var country in req.body ) {
-    countries.push(req.body[country]);
+    countries.push(req.body[country].toLowerCase());
   }
   res.cookie('c-worked-count', countries.length);
   res.cookie('c-worked-list', countries);
