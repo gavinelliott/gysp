@@ -233,20 +233,31 @@
 
     $('#countries').submit(function(e) {
       var matched = 0;
-
+      var errored = [];
+      var valid = [];
       $('input[type="text"]').each(function() {
         var searchTerm = $(this).val().toLowerCase();
 
         for ( var i = 0; i < countries.length; i++ ) {
-          if (countries[i].value === searchTerm) {
+          if (countries[i].value.toLowerCase() === searchTerm) {
             matched++;
-            break;
+            valid.push($(this).attr('id'));
+          } else {
+            errored.push($(this).attr('id'));
           }
         }
       });
 
       if ( matched != $('input[type="text"]').length ) {
         e.preventDefault();
+
+        $('input[type="text"]').each(function() {
+          if ( valid.indexOf($(this).attr('id')) < 0 ) {
+            $(this).closest('.form-group').addClass('error');
+          } else {
+            $(this).closest('.form-group').removeClass('error');
+          }
+        });
       }
     });
 
@@ -263,7 +274,9 @@
 
       activeField.on('blur', function() {
         if ( $(this).val().length >= 4 ) {
-          $(this).val( $('.country-link').first().html() );
+          if ( $('#country-list').children().length > 0 ) {
+            $(this).val( $('.country-link').first().html() );
+          }
           $('#country-list').css('display', 'none');
         }
       });
