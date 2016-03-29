@@ -275,7 +275,7 @@
     $(document).on('focus', 'input[type="text"]', function() {
       var activeField = $(document.activeElement);
 
-      $(document).on('click', function(e) {
+      $(document).on('click touchstart', function(e) {
         if ( /(country-link-)([0-9]*)/.test(e.target.id) ) {
           $('#country-type-ahead input').last().val($('#' + e.target.id).html());
         }
@@ -292,7 +292,7 @@
       });
     });
 
-    $('#add-another-country').on('click', function(e) {
+    $('#add-another-country').on('click touchstart', function(e) {
       e.preventDefault();
       var last_input = $('#country-type-ahead input').last().attr('id'),
           num = last_input.substr(last_input.length - 1);
@@ -355,7 +355,7 @@
       });
     }
 
-    $(document).on('click', 'a', function(e) {
+    $(document).on('click touchstart', 'a', function(e) {
       if ( /(remove-link-)([0-9])/.test($(this).attr('id')) ) {
         e.preventDefault();
         $(this).parent().parent().parent().remove();
