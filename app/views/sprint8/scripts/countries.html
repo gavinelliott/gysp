@@ -1,5 +1,6 @@
 <script>
-   var countries = [
+  $(document).ready( function() {
+    var countries = [
       { "title": "Afghanistan", "value": "afghanistan", "tokens": "afghanistan" },
       { "title": "Albania", "value": "albania", "tokens": "albania" },
       { "title": "Algeria", "value": "algeria", "tokens": "algeria" },
@@ -230,80 +231,114 @@
       { "title": "Zimbabwe", "value": "zimbabwe", "tokens": "zimbabwe, rhodesia" }
     ];
 
-  $(document).on('click', 'a', function(e) {
-    if ( /(remove-link-)([0-9])/.test($(this).attr('id')) ) {
+    $('#countries').submit(function(e) {
+      var matched = 0;
+
+      $('input[type="text"]').each(function() {
+        var searchTerm = $(this).val().toLowerCase();
+
+        for ( var i = 0; i < countries.length; i++ ) {
+          if (countries[i].value === searchTerm) {
+            matched++;
+            break;
+          }
+        }
+      });
+
+      if ( matched != $('input[type="text"]').length ) {
+        e.preventDefault();
+      }
+    });
+
+
+    $(document).on('focus', 'input[type="text"]', function() {
+      var activeField = $(document.activeElement);
+
+      $(document).on('click', function(e) {
+        if ( /(country-link-)([0-9]*)/.test(e.target.id) ) {
+          $('#country-type-ahead input').last().val($('#' + e.target.id).html());
+        }
+        $('#country-list').css('display', 'none');
+      });
+
+      activeField.on('blur', function() {
+        if ( $(this).val().length >= 4 ) {
+          $(this).val( $('.country-link').first().html() );
+          $('#country-list').css('display', 'none');
+        }
+      });
+    });
+
+    $('#add-another-country').on('click', function(e) {
       e.preventDefault();
-      $(this).parent().parent().parent().remove();
+      var last_input = $('#country-type-ahead input').last().attr('id'),
+          num = last_input.substr(last_input.length - 1);
+          num = parseInt(num) + 1;
+
+      $('#country-list').before('<div class="form-group">' +
+                        '<label class="form-label" for="country-name-' + num + '">Country name <span></span></label>' +
+                        '<input class="form-control" id="country-name-' + num + '" name="country-name-' + num + '"type="text" autocomplete="off">' +
+                      '</div>');
+
       remove_links();
+
       $(this).blur();
-    }
-  });
+    });
 
-  $('#country-list').delegate('span', 'click', function() {
-    $('#country-type-ahead input').last().val($(this).html());
-    $('#country-list').css('display', 'none');
-  });
+    $('#country-type-ahead').delegate('input[type="text"]', 'keyup', function() {
+      $('#country-list').html('');
+      $('#country-list').css({'top': $(this).offset().top + $(this).outerHeight()-3, 'left': $(this).offset().left-1, 'display': 'block'});
 
-  $('#country-type-ahead').delegate('input[type="text"]', 'keyup', function() {
-    $('#country-list').html('');
-    $('#country-list').css({'top': $(this).offset().top + $(this).outerHeight(), 'left': $(this).offset().left, 'display': 'block'});
+      if ( /(country-name-)([0-9])/.test($(this).attr('id'))  ) {
+        var counter = 0;
 
-    if ( /(country-name-)([0-9])/.test($(this).attr('id'))  ) {
-      var counter = 0;
+        for ( var i = 0; i < countries.length; i++ ) {
+          var countryList = countries[i].tokens.toLowerCase(),
+              input = $(this).val().toLowerCase();
 
-      for ( var i = 0; i < countries.length; i++ ) {
-        var countryList = countries[i].tokens.toLowerCase(),
-            input = $(this).val().toLowerCase();
-
-        if ( countryList.indexOf(input) > -1 ) {
-          $('#country-list').css('border', '1px solid #ccc')
-          counter ++;
-          if ( counter <= 5 ) {
-            $('#country-list').append('<span id="country-link-' + counter + '" class="country-link">' + countries[i].title + '</span>');
+          if ( countryList.indexOf(input) > -1 ) {
+            $('#country-list').css('border', '3px solid #ffbf47');
+            counter ++;
+            if ( counter <= 5 ) {
+              $('#country-list').append('<span id="country-link-' + counter + '" class="country-link">' + countries[i].title + '</span>');
+            }
           }
         }
       }
-    }
 
-    // Clear html when nothing in input
-    if ( $(this).val().length === 0 ) {
-      $('#country-list').html('');
-      $('#country-list').css('display', 'none');
-    }
+      // Clear html when nothing in input
+      if ( $(this).val().length === 0 ) {
+        $('#country-list').html('');
+        $('#country-list').css('display', 'none');
+      }
 
-    // Clear border when no match
-    if ( $('#country-list').html() === '' ) {
-      $('#country-list').css('display', 'none');
-    }
-  });
-
-  $('#add-another-country').on('click', function(e) {
-    e.preventDefault();
-    var last_input = $('#country-type-ahead input').last().attr('id'),
-        num = last_input.substr(last_input.length - 1);
-        num = parseInt(num) + 1;
-
-    $('#country-list').before('<div class="form-group">' +
-                      '<label class="form-label" for="country-name-' + num + '">Country name <span></span></label>' +
-                      '<input class="form-control" id="country-name-' + num + '" name="country-name-' + num + '"type="text" autocomplete="off">' +
-                    '</div>');
-
-    remove_links();
-
-    $(this).blur();
-  })
-
-  function remove_links() {
-    var last_input = $('#country-type-ahead input').last().attr('id'),
-        num = last_input.substr(last_input.length - 1);
-        num = parseInt(num) + 1;
-
-    $('.form-label').each(function() {
-      if ( num > 2 ) {
-        $(this).find('span').html('<a id="remove-link-' + num + '" href="' + Math.random() + '">Remove</a>');
-      } else {
-        $(this).find('span').html('');
+      // Clear border when no match
+      if ( $('#country-list').html() === '' ) {
+        $('#country-list').css('display', 'none');
       }
     });
-  }
-  </script>
+
+    function remove_links() {
+      var last_input = $('#country-type-ahead input').last().attr('id'),
+          num = last_input.substr(last_input.length - 1);
+          num = parseInt(num) + 1;
+
+      $('.form-label').each(function() {
+        if ( num > 2 ) {
+          $(this).find('span').html('<a id="remove-link-' + num + '" href="' + Math.random() + '">Remove</a>');
+        } else {
+          $(this).find('span').html('');
+        }
+      });
+    }
+
+    $(document).on('click', 'a', function(e) {
+      if ( /(remove-link-)([0-9])/.test($(this).attr('id')) ) {
+        e.preventDefault();
+        $(this).parent().parent().parent().remove();
+        remove_links();
+        $(this).blur();
+      }
+    });
+  });
+</script>
