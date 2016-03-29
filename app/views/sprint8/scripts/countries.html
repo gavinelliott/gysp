@@ -235,6 +235,7 @@
       var matched = 0;
       var errored = [];
       var valid = [];
+
       $('input[type="text"]').each(function() {
         var searchTerm = $(this).val().toLowerCase();
 
@@ -258,6 +259,15 @@
             $(this).closest('.form-group').removeClass('error');
           }
         });
+
+        $('#countries').prepend('<div class="form-group error">' +
+                                  '<span class="form-label-bold">' +
+                                    'Please check the country you have entered' +
+                                  '</span>' +
+                                  '<span class="error-message">' +
+                                    'Country not recognised' +
+                                  '</span>' +
+                                '</div>');
       }
     });
 
@@ -273,7 +283,7 @@
       });
 
       activeField.on('blur', function() {
-        if ( $(this).val().length >= 4 ) {
+        if ( $(this).val().length >= 3 ) {
           if ( $('#country-list').children().length > 0 ) {
             $(this).val( $('.country-link').first().html() );
           }
