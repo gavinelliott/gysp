@@ -257,7 +257,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 
     switch (req.params.type) {
       case "Married":
-        eventText = "What date did you get married?";
+        eventText = "When did you get married?";
         break;
       case "Civil":
         eventText = "What date was your civil partnership registered?";
@@ -450,7 +450,7 @@ function get_todays_date() {
       month   = date.getMonth(),
       year    = date.getFullYear(),
       suffix  = get_nth_suffix(day);
-      date = day + suffix + ' ' + monthNames[month] + ' ' + year;
+      date = day + ' ' + monthNames[month] + ' ' + year;
 
   return date;
 
