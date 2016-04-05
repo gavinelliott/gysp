@@ -127,32 +127,6 @@ span.span_nino2 {
 //   position: relative;
 // }
 
-#country-list {
-  position: absolute;
-  width: 100%;
-  max-width: 33%;
-  z-index: 1;
-  top: 63px;
-  left: 0;
-  background: #fff;
-
-  @media(max-width: 640px) {
-    max-width: 93%;
-  }
-}
-
-.country-link {
-  display: block;
-  padding: 8px;
-  font-weight: bold;
-
-  &:hover {
-    background: #0097cf;
-    color: #fff;
-    cursor: pointer;
-  }
-}
-
 .form-label {
   span {
     padding-left: 30px;
@@ -166,7 +140,5 @@ span.span_nino2 {
   margin-right: 10px;
 }
 
-.country-list {
-  border: 3px solid $focus-colour;
-  margin-top: -3px;
-}
+@import 'sprint7';
+@import 'sprint8';
