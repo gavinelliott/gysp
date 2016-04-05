@@ -231,137 +231,164 @@
       { "title": "Zimbabwe", "value": "zimbabwe", "tokens": "zimbabwe, rhodesia" }
     ];
 
-    $('#countries').submit(function(e) {
-      var matched = 0;
-      var errored = [];
-      var valid = [];
 
-      $('input[type="text"]').each(function() {
-        var searchTerm = $(this).val().toLowerCase();
-
-        for ( var i = 0; i < countries.length; i++ ) {
-          if (countries[i].value.toLowerCase() === searchTerm) {
-            matched++;
-            valid.push($(this).attr('id'));
-          } else {
-            errored.push($(this).attr('id'));
-          }
-        }
-      });
-
-      if ( matched != $('input[type="text"]').length ) {
-        e.preventDefault();
-
-        $('input[type="text"]').each(function() {
-          if ( valid.indexOf($(this).attr('id')) < 0 ) {
-            $(this).closest('.form-group').addClass('error');
-          } else {
-            $(this).closest('.form-group').removeClass('error');
-          }
-        });
-
-        $('#countries').prepend('<div class="form-group error">' +
-                                  '<span class="form-label-bold">' +
-                                    'Please check the country you have entered' +
-                                  '</span>' +
-                                  '<span class="error-message">' +
-                                    'Country not recognised' +
-                                  '</span>' +
-                                '</div>');
-      }
-    });
-
-
-    $(document).on('focus', 'input[type="text"]', function() {
-      var activeField = $(document.activeElement);
-
-      $(document).on('click touchend', function(e) {
-        if ( /(country-link-)([0-9]*)/.test(e.target.id) ) {
-          $('#country-type-ahead input').last().val($('#' + e.target.id).html());
-        }
-        $('#country-list').css('display', 'none');
-      });
-
-      activeField.on('blur', function() {
-        if ( $(this).val().length >= 3 ) {
-          if ( $('#country-list').children().length > 0 ) {
-            $(this).val( $('.country-link').first().html() );
-          }
-          $('#country-list').css('display', 'none');
-        }
-      });
-    });
-
-    $('#add-another-country').on('click touchend', function(e) {
+    // When you click add new country
+    $(document).on('click touchend', '#add-another-country', function(e) {
+      // Stop the link clicking
       e.preventDefault();
-      var last_input = $('#country-type-ahead input').last().attr('id'),
-          num = last_input.substr(last_input.length - 1);
-          num = parseInt(num) + 1;
 
-      $('#country-list').before('<div class="form-group">' +
-                        '<label class="form-label" for="country-name-' + num + '">Country name <span></span></label>' +
-                        '<input class="form-control" id="country-name-' + num + '" name="country-name-' + num + '"type="text" autocomplete="off">' +
-                      '</div>');
+      // Run the add links function
+      add_remove_links();
 
-      remove_links();
-
-      $(this).blur();
+      // Run the sortg links function
+      sort_remove_links();
     });
 
-    $('#country-type-ahead').delegate('input[type="text"]', 'keyup', function() {
-      $('#country-list').html('');
-      $('#country-list').css({'top': $(this).offset().top + $(this).outerHeight()-3, 'left': $(this).offset().left-1, 'display': 'block'});
 
-      if ( /(country-name-)([0-9])/.test($(this).attr('id'))  ) {
-        var counter = 0;
+    // When you click remove country
+    $(document).on('click touchend', '.remove-link', function(e) {
+      // Stop the link clicking
+      e.preventDefault();
 
-        for ( var i = 0; i < countries.length; i++ ) {
-          var countryList = countries[i].tokens.toLowerCase(),
-              input = $(this).val().toLowerCase();
+      // Remove the block containing the input field
+      $(this).parents('.form-group').remove();
 
-          if ( countryList.indexOf(input) > -1 ) {
-            $('#country-list').css('border', '3px solid #ffbf47');
-            counter ++;
-            if ( counter <= 5 ) {
-              $('#country-list').append('<span id="country-link-' + counter + '" class="country-link">' + countries[i].title + '</span>');
-            }
+      // Run the sort links function
+      sort_remove_links();
+    });
+
+
+    // When you click into an input field
+    $(document).on('focus', 'input', function() {
+      // Find the country list for this input
+      var countryList = $(this).parent().find('.country-list');
+
+      // if there is nothing typed in this input
+      if ( $(this).val().length === 0 ) {
+        // Clear the country list
+        countryList.html('');
+      }
+
+      // Run the show hide country list function
+      show_hide_country_list($(this), countryList);
+    });
+
+
+    // When you unselect an input field
+    $(document).on('blur', 'input', function() {
+      // Find the country list for this field
+      var countryList = $(this).parent().find('.country-list');
+
+      // if the country list is visible, and there is 3 or more
+      // characters typed in the input field
+      if ( countryList.css('display') != 'none' && $(this).val().length >= 3 ) {
+        // Set the text in the input field to the first match
+        $(this).val(countryList.children('span').text());
+      }
+
+      // Run the show hide country list function
+      show_hide_country_list($(this), countryList);
+    });
+
+
+    // When you type in an input field
+    $(document).on('keyup', '.country-name', function() {
+      // Find the country list for this field
+      var countryList = $(this).parent('.form-group').find('.country-list');
+
+      // Run the country_match function
+      var matched = country_match( $(this).val() );
+
+      // Fill the country list with the matched countries
+      countryList.html(matched);
+
+      // Run the show hide country list function
+      show_hide_country_list($(this), countryList);
+    });
+
+
+    function country_match(i) {
+      // Get the text in the input and convert to lowercase
+      var input = i.toLowerCase();
+
+      // Setup blank variables
+      var matched = [];
+      var html = '';
+
+      // Loop each country in the list
+      for ( var i = 0; i < countries.length; i++ ) {
+        // if the text in the input matches the tokens of a country,
+        // push that country into the matched array
+        if ( countries[i].tokens.toLowerCase().indexOf(input) > -1 ) {
+          matched.push(countries[i].title);
+
+          // Quit loop if 4 countries have been matched
+          if ( matched.length === 4 ) {
+            break;
           }
         }
       }
 
-      // Clear html when nothing in input
-      if ( $(this).val().length === 0 ) {
-        $('#country-list').html('');
-        $('#country-list').css('display', 'none');
+      // Format each match in the array as html
+      for ( var i = 0; i < matched.length; i++ ) {
+        // Wrap each country in <span> tags and add it to the variable html
+        html += '<span class="country-link">' + matched[i] + '</span>';
       }
 
-      // Clear border when no match
-      if ( $('#country-list').html() === '' ) {
-        $('#country-list').css('display', 'none');
-      }
-    });
-
-    function remove_links() {
-      var last_input = $('#country-type-ahead input').last().attr('id'),
-          num = last_input.substr(last_input.length - 1);
-          num = parseInt(num) + 1;
-
-      $('.form-label').each(function() {
-        if ( num > 2 ) {
-          $(this).find('span').html('<a id="remove-link-' + num + '" href="' + Math.random() + '">Remove</a>');
-        } else {
-          $(this).find('span').html('');
-        }
-      });
+      // Return the html variable
+      return html;
     }
 
-    $(document).on('click touchend', 'a', function(e) {
-      if ( /(remove-link-)([0-9])/.test($(this).attr('id')) ) {
-        e.preventDefault();
-        $(this).parent().parent().parent().remove();
-        remove_links();
-        $(this).blur();
+    function show_hide_country_list(element, countryList) {
+      // Get the number of links in the country list
+      var links = countryList.find('.country-link').length;
+
+      // Find the first matched country
+      var first_match = countryList.find('.country-link:first').text().toLowerCase();
+
+      // if there is more than one character typed, more than one match,
+      // the first match is not equal to what is typed and the input is active
+      if (  element.val().length > 0 && element.is(':focus') &&
+            links > 0 && first_match != $(element).val().toLowerCase() ) {
+        // Show the country list
+        countryList.show();
+      } else {
+        // Hide the country list
+        countryList.hide();
       }
-    });
+    }
+
+
+    function add_remove_links() {
+      // Set the number for the next country field
+      var element_num = $('.country-name').length + 1;
+
+      // Add the html block for the new country
+      $('#country-type-ahead').append(
+        '<div class="form-group">' +
+          '<label class="form-label" for="country-name-' + element_num + '">Country name <span class="remove-link"></span></label>' +
+          '<input class="form-control country-name" id="country-name-' + element_num + '" type="text" name="country-name-' + element_num+ '" autocomplete="off">' +
+          '<div class="country-list" style="display:none;">' +
+            '' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+
+    function sort_remove_links() {
+      // if there is more than one country box on the page
+      if ( $('.country-name').length > 1 ) {
+        // Add the remove links to each block
+        $('.form-label').each(function() {
+          $(this).html('Country name <a href="#" class="remove-link">Remove</a>')
+        });
+      } else {
+        // Remove the link from the block
+        $('.form-label').each(function() {
+          $(this).html('Country name')
+        });
+      }
+    }
   });
 </script>
