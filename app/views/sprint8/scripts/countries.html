@@ -486,6 +486,15 @@
           $(this).html('Country name')
         });
       }
+
+      var id = 1;
+
+      $('.country-name').each(function() {
+        $(this).parent().find('label').attr('for', 'country-name-' + id);
+        $(this).attr('id', 'country-name-' + id);
+        $(this).attr('name', 'country-name-' + id);
+        id++;
+      });
     }
   });
 </script>
