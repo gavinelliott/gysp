@@ -1,5 +1,6 @@
 <script>
   $(document).ready( function() {
+    // List of countries
     var countries = [
       { "title": "Afghanistan", "value": "afghanistan", "tokens": "afghanistan" },
       { "title": "Albania", "value": "albania", "tokens": "albania" },
@@ -232,62 +233,73 @@
     ];
 
 
-    // When you click add new country
-    $(document).on('click touchend', '#add-another-country', function(e) {
-      // Stop the link clicking
-      e.preventDefault();
-
-      // Run the add links function
-      add_remove_links();
-
-      // Run the sortg links function
-      sort_remove_links();
-    });
-
-
-    // When you click remove country
-    $(document).on('click touchend', '.remove-link', function(e) {
-      // Stop the link clicking
-      e.preventDefault();
-
-      // Remove the block containing the input field
-      $(this).parents('.form-group').remove();
-
-      // Run the sort links function
-      sort_remove_links();
-    });
-
-
-    // When you click into an input field
-    $(document).on('focus', 'input', function() {
-      // Find the country list for this input
-      var countryList = $(this).parent().find('.country-list');
-
-      // if there is nothing typed in this input
-      if ( $(this).val().length === 0 ) {
-        // Clear the country list
-        countryList.html('');
+    // When you click something of importance
+    $(document).on('click touchend', function(e) {
+      // if you clicked add another country
+      if ( e.target.id === 'add-another-country' ) {
+        // Stop the link clicking
+        e.preventDefault();
+        // Run the add links function
+        add_remove_links();
+        // Run the sortg links function
+        sort_remove_links();
       }
 
-      // Run the show hide country list function
-      show_hide_country_list($(this), countryList);
+      // if you clicked a remove link
+      if ( e.target.className === 'remove-link' ) {
+        // Stop the link clicking
+        e.preventDefault();
+        // Remove the block containing the input field
+        $(e.target).parents('.form-group').remove();
+        // Run the sort links function
+        sort_remove_links();
+      }
+
+      // if you clicked a country from the country list
+      if ( e.target.className === 'country-link' ) {
+        // find the input above the country list
+        var input = $(e.target).parents('.form-group').find('.country-name');
+        // change the text of the input to match the selected country
+        input.val( $(e.target).text() );
+      }
+
     });
 
 
     // When you unselect an input field
     $(document).on('blur', 'input', function() {
-      // Find the country list for this field
-      var countryList = $(this).parent().find('.country-list');
+      if ( $(this).hasClass('country-name') ) {
+        // Find the country list for this field
+        var countryList = $(this).parent().find('.country-list');
 
-      // if the country list is visible, and there is 3 or more
-      // characters typed in the input field
-      if ( countryList.css('display') != 'none' && $(this).val().length >= 3 ) {
-        // Set the text in the input field to the first match
-        $(this).val(countryList.children('span').text());
+        // if the country list is visible, and there is 3 or more
+        // characters typed in the input field
+        if ( countryList.css('display') != 'none' && $(this).val().length >= 3 ) {
+          // Set the text in the input field to the first match
+          $(this).val(countryList.children('span').text());
+        }
+
+        // Run the show hide country list function
+        show_hide_country_list($(this), countryList);
       }
+    });
 
-      // Run the show hide country list function
-      show_hide_country_list($(this), countryList);
+
+    // When you click into an input field
+    $(document).on('focus', 'input', function() {
+      if ( $(this).hasClass('country-name') ) {
+        // Find the country list for this input
+        var countryList = $(this).parent().find('.country-list');
+
+        // if there is nothing typed in this input
+        if ( $(this).val().length === 0 ) {
+          // Clear the country list
+          countryList.html('');
+        }
+
+        // Run the show hide country list function
+        show_hide_country_list($(this), countryList);
+      }
     });
 
 
@@ -305,6 +317,84 @@
       // Run the show hide country list function
       show_hide_country_list($(this), countryList);
     });
+
+
+    // When you submit the form
+    $('#countries').on('submit', function(e) {
+      validate_form(e);
+    });
+
+
+    function validate_form(e) {
+      // Set up array for valid fields and error messages
+      var valid = [];
+      var error_message = ['Check you have entered a valid country', ''];
+      var invalid = 0;
+
+      // Check each field for validation
+      $('.country-name').each(function() {
+        // Get the text from the field
+        var input = $(this).val();
+
+        // if the input is not empty
+        if ( input.length > 0 ) {
+          // Loop through each country in the list
+          for ( var i = 0; i < countries.length; i++ ) {
+            // If the text in the input matches a country
+            // push it into the valid array
+            if ( countries[i].title.toLowerCase() === input.toLowerCase() ) {
+              valid.push($(this).attr('id'));
+            }
+          }
+        }
+        // If there is no text in the field and it is not the first field
+        // on the page, then mark it as valid
+        else if ( input.length === 0 && $(this).attr('id') !== 'country-name-1') {
+          valid.push($(this).attr('id'));
+        }
+      });
+
+      // If any of the fields are not valid, stop the submit and validate
+      if ( valid.length !== $('.country-name').length ) {
+        e.preventDefault();
+
+        $('.country-name').each(function() {
+          // if this country field is not in the valid array
+          // add to the count of invalid fields and add error to this field
+          if ( valid.indexOf( $(this).attr('id') ) < 0 ) {
+            invalid++;
+            $(this).parent().addClass('error');
+          }
+          // else reduce the count of invalid fields and remove error from
+          // this field
+          else {
+            invalid--;
+            $(this).parent().removeClass('error');
+          }
+        });
+      }
+
+      // if the first field has no text in the field, create an error
+      // message to say that it is empty
+      if ( $('.country-name:first').val().length === 0 ) {
+        error_message[1] = 'You have not typed anything';
+      }
+      // else if there is invalid country names, create an error
+      // to explain this
+      else if ( invalid > 0 ) {
+        error_message[1] = 'We could not find a country with this name';
+      }
+
+      $('#error-message').remove();
+      $('#country-type-ahead').prepend('<div class="form-group error" id="error-message">' +
+                                  '<span class="form-label-bold">' +
+                                    error_message[0] +
+                                  '</span>' +
+                                  '<span class="error-message">' +
+                                    error_message[1] +
+                                  '</span>' +
+                                '</div>');
+      }
 
 
     function country_match(i) {
@@ -339,6 +429,7 @@
       return html;
     }
 
+
     function show_hide_country_list(element, countryList) {
       // Get the number of links in the country list
       var links = countryList.find('.country-link').length;
@@ -349,12 +440,16 @@
       // if there is more than one character typed, more than one match,
       // the first match is not equal to what is typed and the input is active
       if (  element.val().length > 0 && element.is(':focus') &&
-            links > 0 && first_match != $(element).val().toLowerCase() ) {
+            links > 0 && first_match != $(element).val().toLowerCase() )
+      {
         // Show the country list
         countryList.show();
       } else {
-        // Hide the country list
-        countryList.hide();
+        // Hide the country list, the delay allows the click event to happen
+        // on the country links, without it the list vanishes too early
+        setTimeout(function() {
+          countryList.hide();
+        }, 100);
       }
     }
 
