@@ -1,0 +1,56 @@
+{{<layout}}
+
+	{{$pageTitle}}
+		State Pension Activation
+	{{/pageTitle}}
+
+	{{$content}}
+
+		<!-- #page-container -->
+		<main id="content" role="main">
+			{{>includes/parts/phase-banner}}
+
+			<form method="post" action="secure">
+				<div class="grid-row">
+					<div class="column-two-thirds">
+
+						<h1 class="heading-xlarge">Your details</h1>
+
+						<div class="form-group">
+							<fieldset>
+								<label class="form-label-bold" for="ni_number">
+									Invite code
+									<p class="form-hint">Can be found on your Get your State Pension letter.</p>
+								</label>
+
+								<div class="form-group">
+									<input type="text" class="form-control" id="reference" name="reference" data-required="true"/><br/>
+								</div>
+							</fieldset>
+
+							<fieldset>
+								<label class="form-label-bold label-no-hint" for="surname">
+									Surname
+								</label>
+
+								<div class="form-group">
+									<input class="form-control" name="surname" id="surname" type="text" data-required="true">
+								</div>
+							</fieldset>
+						</div>
+
+						<div class="form-group">
+							<button class="button" value="Continue">Continue</button> <br>
+						</div>
+					</div>
+				</div>
+			</form>
+		</main>
+	{{/content}}
+
+	{{$pageScripts}}
+		{{>includes/scripts/ninoFocus}}
+		{{>includes/scripts/dobFocus}}
+		{{>sprint8v2/scripts/clear_fields}}
+	{{/pageScripts}}
+{{/layout}}
