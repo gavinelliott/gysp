@@ -226,12 +226,13 @@ router.all('/relationship-status', function(req, res) {
   if (req.body.relationship === "Never been married") {
     res.redirect("contact");
   } else if ( req.body.relationship === "Married" ||
-              req.body.relationship === "Widowed" ||
               req.body.relationship === "Divorced" ||
               req.body.relationship === "Civil" ||
               req.body.relationship === "Dissolved") {
 
     res.redirect("relationship-status-date/" + req.body.relationship);
+  } else if ( req.body.relationship === "Widowed" ) {
+    res.redirect("relationship-status-more/" + req.body.relationship);
   } else {
     res.render('sprint8v2/relationship-status');
   }
@@ -287,7 +288,8 @@ router.all('/relationship-status-more/:type', function(req, res) {
     res.redirect("/sprint8v2/contact");
   }else{
     var isMarried = false,
-        isEnded = false;
+        isEnded = false,
+        dateTitle = false;
 
     if (req.params.type == "Married" || req.params.type == "Civil") {
       isMarried = true;
@@ -314,10 +316,11 @@ router.all('/relationship-status-more/:type', function(req, res) {
         break;
       case "Widowed":
         pageHeader = "About your late spouse";
+        dateTitle = "What date were you widowed?";
         break;
     }
 
-    res.render('sprint8v2/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried });
+    res.render('sprint8v2/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, dateTitle: dateTitle });
   }
 });
 
