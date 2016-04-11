@@ -289,7 +289,7 @@ router.all('/relationship-status-more/:type', function(req, res) {
   }else{
     var isMarried = false,
         isEnded = false,
-        dateTitle = false;
+        widowed = false;
 
     if (req.params.type == "Married" || req.params.type == "Civil") {
       isMarried = true;
@@ -297,6 +297,10 @@ router.all('/relationship-status-more/:type', function(req, res) {
 
     if (req.params.type == "Divorced" || req.params.type == "Widowed") {
       isEnded = true;
+    }
+
+    if (req.params.type == "Widowed") {
+      widowed = true;
     }
 
     var pageHeader = "";
@@ -316,11 +320,10 @@ router.all('/relationship-status-more/:type', function(req, res) {
         break;
       case "Widowed":
         pageHeader = "About your late spouse";
-        dateTitle = "What date were you widowed?";
         break;
     }
 
-    res.render('sprint8v2/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, dateTitle: dateTitle });
+    res.render('sprint8v2/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
   }
 });
 
