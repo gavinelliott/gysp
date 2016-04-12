@@ -266,52 +266,91 @@
       {name: "Zimbabwe", value: "zimbabwe", tokens: ["zimbabwe", "rhodesia"]}
     ];
 
+    // Set the last active input to the first input to avoid errors
     var lastActiveInput = $('.country-name:first');
 
+    // When an input is focussed, hide any country lists that are showing
     $(document).on('focus', 'input', function () {
       $('.country-list').hide();
     });
 
+    // When an input is blurred, set the last active input to that one
     $(document).on('blur', 'input', function () {
       lastActiveInput = $(this);
     });
 
+    // When a key is pressed inside an input field
     $(document).on('keyup', 'input', function () {
+      // Find the country list for this input field
       var countryList = $(this).parent().find('.country-list');
+      // Match any text typed to the country array
       var matched = countryMatch($(this).val());
+      // Format the html for the matched countries
       countryList.html(matched);
-
+      // If there is more than 1 character in the input and there is
+      // more than one matched country
       if ($(this).val().length > 0 && matched.length > 0) {
+        // Show the country list
         countryList.show();
       } else {
+        // Hide the country list
         countryList.hide();
       }
     });
 
-    $(document).on('click', function (e) {
+    // When a mouse is clicked or the screen is touched
+    $(document).on('click touchend', function (e) {
+      // If what was clicked was not a country field
       if (!$(e.target).hasClass('country-name')) {
+        // Find the country list for the last ative input
         var countryList = $(lastActiveInput).parent().find('.country-list');
 
+        // If the thing clicked was the add-another-country button
         if (e.target.id === 'add-another-country') {
+          // Stop the link being clicked
           e.preventDefault();
+          // Run the removeLinks function
           addRemoveLinks();
+          // Run the sortLinks function
           sortRemoveLinks();
+        // Else if the thing clicked was the remove-link button
         } else if (e.target.className === 'remove-link') {
+          // Stop the link being clicked
           e.preventDefault();
+          // Find and remove this block at its parent form-group
           $(e.target).parents('.form-group').remove();
+          // Run the sort links functions
           sortRemoveLinks();
+        // Else if the thing clicked was a country-link button
         } else if ($(e.target).hasClass('country-link')) {
+          // Set link to the thing clicked
           var link = $(e.target);
+          // Set input to the country input field attached to this
           var input = link.parents('.form-group').find('.country-name');
+          // Change the value of the input to the value of the country-link clicked
           input.val(link.text());
+          // Hide the country list
           countryList.hide();
         } else {
+          // Find the top hit in the country list
           var topHit = $(countryList).children('span').first().text();
-
+          // If there is more than 3 characters in the input field
           if ($(lastActiveInput).val().length >= 3) {
-            $(lastActiveInput).val(topHit);
+            var matched = 0;
+            for ( var i = 0; i < countries.length; i++ ) {
+              // If the text in the input matches a country
+              // push it into the valid array
+              if ( countries[i].name.toLowerCase() === $(lastActiveInput).val().toLowerCase() ) {
+                matched = 1;
+                break;
+              }
+            }
+            if (matched === 0) {
+              // Change the input to match the top hit
+              $(lastActiveInput).val(topHit);
+            }
           }
-
+          // Hide the country list
           countryList.hide();
         }
       }
@@ -319,10 +358,13 @@
 
     // When you submit the form
     $('#countries').on('submit', function(e) {
+      // Run the validation function
       validate_form(e);
     });
+
+    // Functions
     function validate_form(e) {
-      // Set up array for valid fields and error messages
+      // Set up variables
       var valid = [];
       var error_message = ['Check you have entered a valid country', ''];
       var invalid = 0;
@@ -366,15 +408,21 @@
             else if ( invalid > 0 ) {
               error_message[1] = 'We could not find a country with this name';
             }
+            // Remove any existing error messages
             $('#error-message').remove();
-            $('#country-type-ahead').prepend('<div class="form-group error" id="error-message">' +
-                                        '<span class="form-label-bold">' +
-                                          error_message[0] +
-                                        '</span>' +
-                                        '<span class="error-message">' +
-                                          error_message[1] +
-                                        '</span>' +
-                                      '</div>');
+            // Add the new error message
+            $('#country-type-ahead').prepend(
+              String(`
+                <div class="form-group error" id="error-message">
+                  <span class="form-label-bold">
+                    ${error_message[0]}
+                  </span>
+                  <span class="error-message">
+                    ${error_message[1]}
+                  </span>
+                </div>
+              `)
+            );
           }
           // else reduce the count of invalid fields and remove error from
           // this field
