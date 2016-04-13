@@ -63,6 +63,7 @@ app.use(function (req, res, next) {
       iteration3v2 = require(__dirname + '/app/routes/iteration3-v2.js'),
       iteration1 = require(__dirname + '/app/routes/iteration1.js'),
       demo = require(__dirname + '/app/routes/demo.js'),
+      d1build = require(__dirname + '/app/routes/d1build.js'),
       beta = require(__dirname + '/app/routes/beta.js'),
       ovsea_test = require(__dirname + '/app/routes/ovsea-test.js'),
       january = require(__dirname + '/app/routes/january.js'),
@@ -77,6 +78,7 @@ app.use(function (req, res, next) {
 app.use("/", router);
 app.use("/", secure);
 app.use("/beta", beta);
+app.use("/d1build", d1build);
 app.use("/demo", demo);
 app.use("/iteration1-v4", iteration1v4);
 app.use("/iteration2-v2", iteration2v2);
