@@ -46,21 +46,12 @@
 						<div class="js-hidden" id="bank-details">
 							<div class="form-group">
 								<fieldset>
-									<label class="form-label-bold label-no-hint" for="ba-account-holder">Name of account holder</label>
+									<label class="form-label-bold label-no-hint" for="ba-account-holder">Account holder name</label>
 									<input type="text" class="form-control" id="ba-account-holder" name="ba-account-holder" value="{{data.ba-account-holder}}">
 								</fieldset>
 							</div>
 
-							<div class="form-group">
-								<fieldset>
-									<label class="form-label-bold" for="ba-account-number">
-										Account number
-									</label>
-									<input type="text" class="form-control" id="ba-account-number" name="ba-account-number" value="{{data.ba-account-number}}" maxlength="8">
-								</fieldset>
-							</div>
-
-						    <legend class="form-label-bold">Sort code</legend>
+							  <legend class="form-label-bold">Sort code</legend>
 
 						    <div class="form-date form-group">
 									<fieldset>
@@ -81,6 +72,15 @@
 									</fieldset>
 						    </div>
 
+								<div class="form-group">
+									<fieldset>
+										<label class="form-label-bold" for="ba-account-number">
+											Account number
+										</label>
+										<input type="text" class="form-control" id="ba-account-number" name="ba-account-number" value="{{data.ba-account-number}}" maxlength="8">
+									</fieldset>
+								</div>
+
 							<div class="form-group">
 								<button type="submit" class="button">Confirm details</button>
 							</div>
@@ -89,15 +89,8 @@
 						<div class="js-hidden" id="building-soc-details">
 							<div class="form-group">
 								<fieldset>
-									<label class="form-label-bold label-no-hint" for="bs-account-holder">Name of account holder</label>
+									<label class="form-label-bold label-no-hint" for="bs-account-holder">Account holder name</label>
 									<input type="text" class="form-control" id="bs-account-holder" name="bs-account-holder" value="{{data.bs-account-holder}}">
-								</fieldset>
-							</div>
-
-							<div class="form-group">
-								<fieldset>
-									<label class="form-label-bold" for="bs-account-number">Account number</label>
-									<input type="text" class="form-control" id="bs-account-number" name="bs-account-number" value="{{data.bs-account-number}}" maxlength="8">
 								</fieldset>
 							</div>
 
@@ -121,6 +114,13 @@
 						      </div>
 						    </div>
 						  </fieldset>
+
+							<div class="form-group">
+								<fieldset>
+									<label class="form-label-bold" for="bs-account-number">Account number</label>
+									<input type="text" class="form-control" id="bs-account-number" name="bs-account-number" value="{{data.bs-account-number}}" maxlength="8">
+								</fieldset>
+							</div>
 
 							<div class="form-group">
 								<fieldset>
