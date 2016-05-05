@@ -6,9 +6,11 @@
 
   {{$content}}
   <main id="content" role="main">
+    {{>includes/parts/phase-banner}}
     <div class="grid-row">
+
       <div class="column-two-thirds">
-        {{>includes/parts/phase-banner}}
+
 
           <h1 class="heading-xlarge">What countries have you lived in?</h1>
 
@@ -29,6 +31,10 @@
 
             <input type="submit" class="button" value="Continue">
           </form>
+        </div>
+
+        <div class="column-one-third">
+          {{>includes/parts/help}}
         </div>
       </div>
     </main>
