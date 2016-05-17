@@ -14,7 +14,7 @@ router.post('/secure', function(req, res) {
     res.cookie('sp3_fail_attempts', 0);
   }
 
-  if ((req.body.reference.replace(/\s/g, "") === "1234567843218765" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qwx5ychpnrjv")) {
+  if ((req.body.reference.replace(/\s/g, "") === "WOOD435HN3" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qwx5ychpnrjv")) {
     req.session.view = null;
     res.redirect("have-you-lived-abroad");
   } else {
