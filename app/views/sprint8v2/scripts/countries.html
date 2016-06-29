@@ -409,18 +409,7 @@
             // Remove any existing error messages
             $('#error-message').remove();
             // Add the new error message
-            $('#country-type-ahead').prepend(
-              String(`
-                <div class="form-group error" id="error-message">
-                  <span class="form-label-bold">
-                    ${errorMessage[0]}
-                  </span>
-                  <span class="error-message">
-                    ${errorMessage[1]}
-                  </span>
-                </div>
-              `)
-            );
+            $('#country-type-ahead').prepend('<div class="form-group error" id="error-message"><span class="form-label-bold">${errorMessage[0]}</span><span class="error-message">${errorMessage[1]}</span></div>');
           // else reduce the count of invalid fields and remove error from
           // this field
           } else {
@@ -458,16 +447,7 @@
     function addRemoveLinks() {
       var elementNum = $('.country-name').length + 1;
 
-      $('#country-type-ahead').append(
-        String(`
-          <div class="form-group">
-            <label class="form-label" for="country-name-${elementNum}">
-              Country name <span class="remove-link"></span>
-            </label>
-            <input class="form-control country-name" id="country-name-${elementNum}" type="text" name="country-name-${elementNum}" autocomplete="off">
-            <div class="country-list" style="display:none;"></div>
-          </div>`)
-      );
+      $('#country-type-ahead').append('<div class="form-group"><label class="form-label" for="country-name-${elementNum}">Country name <span class="remove-link"></span></label><input class="form-control country-name" id="country-name-${elementNum}" type="text" name="country-name-${elementNum}" autocomplete="off"><div class="country-list" style="display:none;"></div></div>');
     }
 
     function sortRemoveLinks() {
