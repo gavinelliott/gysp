@@ -73,7 +73,8 @@ app.use(function (req, res, next) {
       sprint6 = require(__dirname + '/app/routes/sprint6.js'),
       sprint7 = require(__dirname + '/app/routes/sprint7.js'),
       sprint8 = require(__dirname + '/app/routes/sprint8.js'),
-      sprint8v2 = require(__dirname + '/app/routes/sprint8v2.js');
+      sprint8v2 = require(__dirname + '/app/routes/sprint8v2.js'),
+      sprint9 = require(__dirname + '/app/routes/sprint9.js');
 
 app.use("/", router);
 app.use("/", secure);
@@ -95,6 +96,7 @@ app.use("/sprint6", sprint6);
 app.use("/sprint7", sprint7);
 app.use("/sprint8", sprint8);
 app.use("/sprint8v2", sprint8v2);
+app.use("/sprint9", sprint9);
 
 // auto render any view that exists
 
