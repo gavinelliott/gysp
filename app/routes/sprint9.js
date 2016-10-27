@@ -16,7 +16,7 @@ router.post('/secure', function(req, res) {
 
   if ((req.body.reference.replace(/\s/g, "") === "WOOD435HN3" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qwx5ychpnrjv")) {
     req.session.view = null;
-    res.redirect("pension-age");
+    res.redirect("dob-check");
   } else {
     req.session.view++;
 
