@@ -28,6 +28,27 @@ router.post('/secure', function(req, res) {
   }
 });
 
+router.post('/secure', function(req, res) {
+  res.locals.error = true;
+
+  if ( req.cookies.sp3_fail_attempts ) {
+    res.cookie('sp3_fail_attempts', 0);
+  }
+
+  if ((req.body.reference.replace(/\s/g, "") === "EDMO435HN3" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qyx5ychpnrjv")) {
+    req.session.view = null;
+    res.redirect("unhappy-ending");
+  } else {
+    req.session.view++;
+
+    if (req.session.view > 2) {
+      res.redirect("unhappy-ending");
+    } else {
+      res.render('sprint9/secure');
+    }
+  }
+});
+
 // Have you ever lived outside the UK?
 router.get('/have-you-lived-abroad', function(req, res) {
   res.render('sprint9/have-you-lived-abroad');
