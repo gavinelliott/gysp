@@ -147,7 +147,7 @@ function check_validation(e) {
     }
 
     if ( $(this).attr('id') === 'reference' ) {
-      if ( $(this).val() != "WOOD435HN3" &&  $(this).val().toLowerCase() != "qwx5ychpnrjv" ) {
+      if ( $(this).val() != "WOOD435HN3" &&  $(this).val().toLowerCase() != "qwx5ychpnrjv" && $(this).val() != "EDMO435HN3") {
         error_count++;
         error_fields.push($(this).attr('name'));
       }

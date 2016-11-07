@@ -14,17 +14,10 @@ router.post('/secure', function(req, res) {
     res.cookie('sp3_fail_attempts', 0);
   }
 
-  if ((req.body.reference.replace(/\s/g, "") === "WOOD435HN3" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qwx5ychpnrjv")) {
-    req.session.view = null;
-    res.redirect("dob-check");
+  if (req.body.reference.toLowerCase() === 'EDMO435HN3'.toLowerCase()) {
+    res.redirect('/sprint9/dob-check?fail=true');
   } else {
-    req.session.view++;
-
-    if (req.session.view > 2) {
-      res.redirect("unhappy-ending");
-    } else {
-      res.render('sprint9/secure');
-    }
+    res.redirect('/sprint9/dob-check');
   }
 });
 
@@ -46,6 +39,15 @@ router.post('/secure', function(req, res) {
     } else {
       res.render('sprint9/secure');
     }
+  }
+});
+
+// DOB check
+router.post('/dob-check', function(req, res) {
+  if (req.query.fail) {
+    res.redirect('dob-fail');
+  } else {
+    res.redirect('pension-age');
   }
 });
 
