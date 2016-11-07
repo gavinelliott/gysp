@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var get_countries = require('../views/sprint9/scripts/countries.js');
 
+var forceFail = true;
+
 // Secure page with invite code
 router.get('/secure', function(req, res) {
   res.render('sprint9/secure');
@@ -378,7 +380,7 @@ router.post('/bank-details', function(req, res) {
 
   blank_fields = blank_fields - fieldLimit;
 
-  if ( blank_fields === 0 ) {
+  if ( blank_fields === 0 && forceFail === false) {
     res.redirect('declaration');
   } else {
     fail_attempts++;
