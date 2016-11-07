@@ -385,7 +385,7 @@ router.post('/bank-details', function(req, res) {
   } else {
     fail_attempts++;
     res.cookie('sp3_fail_attempts', fail_attempts);
-    if ( fail_attempts >= 3 ) {
+    if ( fail_attempts >= 2 ) {
       res.redirect('cant-continue');
     } else {
       var errors = {
