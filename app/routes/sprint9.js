@@ -390,7 +390,7 @@ router.post('/bank-details', function(req, res) {
     } else {
       var errors = {
         'title':"There's a problem",
-        'text':"Please check that you've entered your bank account details correctly:",
+        'text':"Check that you've entered your bank account details correctly.",
         'bank_type': req.body.building
       };
       res.render('sprint9/bank-details', {errors: errors});
