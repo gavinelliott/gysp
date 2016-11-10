@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var get_countries = require('../views/sprint9/scripts/countries.js');
 
-var forceFail = true;
+var forceFail = false;
 
 // Secure page with invite code
 router.get('/secure', function(req, res) {
