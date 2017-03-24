@@ -54,49 +54,29 @@ app.use(function (req, res, next) {
 });
 
 // routes (found in app/routes.js)
-
-  var router = require(__dirname + '/app/routes.js'),
-      secure = require(__dirname + '/app/routes/generic.js'),
-      iteration1v4  = require(__dirname + '/app/routes/iteration1-v4.js'),
-      iteration2v2 = require(__dirname + '/app/routes/iteration2-v2.js'),
-      iteration3v1 = require(__dirname + '/app/routes/iteration3-v1.js'),
-      iteration3v2 = require(__dirname + '/app/routes/iteration3-v2.js'),
-      iteration1 = require(__dirname + '/app/routes/iteration1.js'),
-      demo = require(__dirname + '/app/routes/demo.js'),
-      d1build = require(__dirname + '/app/routes/d1build.js'),
-      beta = require(__dirname + '/app/routes/beta.js'),
-      ovsea_test = require(__dirname + '/app/routes/ovsea-test.js'),
-      january = require(__dirname + '/app/routes/january.js'),
-      sprint3 = require(__dirname + '/app/routes/sprint3.js'),
-      sprint4 = require(__dirname + '/app/routes/sprint4.js'),
-      sprint5 = require(__dirname + '/app/routes/sprint5.js'),
-      sprint6 = require(__dirname + '/app/routes/sprint6.js'),
-      sprint7 = require(__dirname + '/app/routes/sprint7.js'),
-      sprint8 = require(__dirname + '/app/routes/sprint8.js'),
-      sprint8v2 = require(__dirname + '/app/routes/sprint8v2.js'),
-      sprint9 = require(__dirname + '/app/routes/sprint9.js');
-
-app.use("/", router);
-app.use("/", secure);
-app.use("/beta", beta);
-app.use("/d1build", d1build);
-app.use("/demo", demo);
-app.use("/iteration1-v4", iteration1v4);
-app.use("/iteration2-v2", iteration2v2);
-app.use("/iteration2-v4", iteration2v2);
-app.use("/iteration3-v1", iteration3v1);
-app.use("/iteration3-v2", iteration3v2);
-app.use("/iteration1", iteration1);
-app.use("/january", january);
-app.use("/ovsea-test", ovsea_test);
-app.use("/sprint3", sprint3);
-app.use("/sprint4", sprint4);
-app.use("/sprint5", sprint5);
-app.use("/sprint6", sprint6);
-app.use("/sprint7", sprint7);
-app.use("/sprint8", sprint8);
-app.use("/sprint8v2", sprint8v2);
-app.use("/sprint9", sprint9);
+app.use("/", require('./app/routes.js'));
+app.use("/", require('./app/routes/generic.js'));
+app.use("/beta", require('./app/routes/beta.js'));
+app.use("/d1build", require('./app/routes/d1build.js'));
+app.use("/demo", require('./app/routes/demo.js'));
+app.use("/iteration1-v4", require('./app/routes/iteration1-v4.js'));
+app.use("/iteration2-v2", require('./app/routes/iteration2-v2.js'));
+app.use("/iteration2-v4", require('./app/routes/iteration2-v2.js'));
+app.use("/iteration3-v1", require('./app/routes/iteration3-v1.js'));
+app.use("/iteration3-v2", require('./app/routes/iteration3-v2.js'));
+app.use("/iteration1", require('./app/routes/iteration1.js'));
+app.use("/january", require('./app/routes/january.js'));
+app.use("/ovsea-test", require('./app/routes/ovsea-test.js'));
+app.use("/sprint3", require('./app/routes/sprint3.js'));
+app.use("/sprint4", require('./app/routes/sprint4.js'));
+app.use("/sprint5", require('./app/routes/sprint5.js'));
+app.use("/sprint6", require('./app/routes/sprint6.js'));
+app.use("/sprint7", require('./app/routes/sprint7.js'));
+app.use("/sprint8", require('./app/routes/sprint8.js'));
+app.use("/sprint8v2", require('./app/routes/sprint8v2.js'));
+app.use("/sprint9", require('./app/routes/sprint9.js'));
+app.use("/sprint10", require('./app/routes/sprint10.js'));
+app.use("/mvp", require('./app/routes/mvp.js'));
 
 // auto render any view that exists
 
