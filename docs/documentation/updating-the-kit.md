@@ -140,9 +140,9 @@ Becomes…
 
 ### Template blocks
 
-    {{$pageTitle}}
+    {% block pageTitle %}
         GOV.UK prototype kit
-    {{/pageTitle}}
+    {% endblock %}
 
 Becomes…
 
