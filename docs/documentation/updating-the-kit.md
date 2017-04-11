@@ -132,7 +132,7 @@ Converting Mustache templates to Nunjucks ones is relatively simple. Here are th
 
     {% extends 'layout.html' %}
 
-    {{/layout}}
+    
 
 Becomes…
 
