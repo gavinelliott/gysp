@@ -144,7 +144,7 @@
 	{% endblock %}
 
 	{% block pageScripts %}
-		{{>includes/scripts/bankFocus}}
-		{{>sprint5/scripts/clear_fields}}
+		{% include 'includes/scripts/bankFocus.html' %}
+		{% include 'sprint5/scripts/clear_fields.html' %}
 	{% endblock %}
 

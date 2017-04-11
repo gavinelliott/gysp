@@ -164,7 +164,7 @@ Becomes...
 
 ### Includes
 
-    {{>includes/breadcrumbs}}
+    {% include 'includes/breadcrumbs.html' %}
 
 Becomes…
 

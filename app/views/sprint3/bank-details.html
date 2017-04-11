@@ -156,7 +156,7 @@
 	{% endblock %}
 
 	{% block pageScripts %}
-		{{>includes/scripts/bankFocus}}
-		{{>includes/scripts/bankFormatter}}
+		{% include 'includes/scripts/bankFocus.html' %}
+		{% include 'includes/scripts/bankFormatter.html' %}
 	{% endblock %}
 
