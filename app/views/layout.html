@@ -1,30 +1,50 @@
-{{<govuk_template}}
+{% extends "govuk_template.html" %}
 
-{{$head}}
-  {{>includes/head}}
-{{/head}}
+{% block head %}
+  {% include "includes/head.html" %}
+{% endblock %}
 
-{{$propositionHeader}}
-  {{>includes/propositional_navigation}}
-{{/propositionHeader}}
+{% block cookie_message %}
+  <p>{{cookieText | safe }}</p>
+{% endblock %}
 
-{{$headerClass}}with-proposition{{/headerClass}}
+{% block proposition_header %}
+  <div class="header-proposition">
+    <div class="content">
+      <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+      <nav id="proposition-menu">
+        <a href="/" id="proposition-name">
+          {# Set serviceName in config.js. Use a block to override on a page. #}
+          {% block service_name %}
+            {% if serviceName %} {{ serviceName }} {% endif %}
+          {% endblock %}
+        </a>
+        <!--
+        <ul id="proposition-links">
+          <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
+          <li><a href="url-to-page-2">Navigation item #2</a></li>
+        </ul>
+        -->
+      </nav>
+    </div>
+  </div>
+{% endblock %}
 
-{{$bodyEnd}}
-  {{>includes/scripts}}
-  {{$pageScripts}}{{/pageScripts}}
-{{/bodyEnd}}
+{% block header_class %}
+  with-proposition
+{% endblock %}
 
-
-{{$footerSupportLinks}}
-       <ul class="platform-help-links">
-         <li><a href="cookie-policy">Cookies</a></li>
-         <li><a href="https://www.gov.uk/government/organisations/department-for-work-pensions/about/personal-information-charter">Privacy</a></li>
-       </ul>
-       <br />
-      <ul>
+{% block footer_support_links %}
+  {% if useAutoStoreData %}
+    <ul>
+      <li><a href="/prototype-admin/clear-data">Clear data</a></li>
       <li>Made in Newcastle by <a href="https://dwpdigital.blog.gov.uk/">Digital DWP</a></li>
     </ul>
-{{/footerSupportLinks}}
+  {% endif %}
+{% endblock %}
 
-{{/govuk_template}}
+{% block body_end %}
+  {% include "includes/scripts.html" %}
+  {% block pageScripts %}{% endblock %}
+  <!-- GOV.UK Prototype kit {{releaseVersion}} -->
+{% endblock %}
