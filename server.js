@@ -9,6 +9,7 @@ var favicon = require('serve-favicon')
 var app = express()
 var documentationApp = express()
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 var browserSync = require('browser-sync')
 var config = require('./app/config.js')
 var utils = require('./lib/utils.js')
@@ -100,9 +101,8 @@ if (useDocumentation) {
 
 // Support for parsing data in POSTs
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(cookieParser())
 
 // Add variables that are available in all views
 app.locals.analyticsId = analyticsId
