@@ -61,8 +61,8 @@
 	{% endblock %}
 
 	{% block pageScripts %}
-		{{>includes/scripts/ninoFocus}}
-		{{>includes/scripts/dobFocus}}
-		{{>sprint9/scripts/clear_fields}}
+		{% include 'includes/scripts/ninoFocus.html' %}
+		{% include 'includes/scripts/dobFocus.html' %}
+		{% include 'sprint9/scripts/clear_fields.html' %}
 	{% endblock %}
 

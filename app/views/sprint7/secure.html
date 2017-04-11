@@ -49,8 +49,8 @@
 	{% endblock %}
 
 	{% block pageScripts %}
-		{{>includes/scripts/ninoFocus}}
-		{{>includes/scripts/dobFocus}}
+		{% include 'includes/scripts/ninoFocus.html' %}
+		{% include 'includes/scripts/dobFocus.html' %}
 		{{>sprint7/scripts/clear_fields}}
 	{% endblock %}
 
