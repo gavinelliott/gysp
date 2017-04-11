@@ -107,8 +107,8 @@
 		</main><!-- / #page-container -->
 	{% endblock %}
 
-	{{$pageScripts}}
+	{% block pageScripts %}
 			{{>includes/scripts/dobFocus}}
 			{{>sprint8v2/scripts/other-names}}
-	{{/pageScripts}}
+	{% endblock %}
 

@@ -230,7 +230,7 @@
 		</main><!-- / #page-container -->
 	{% endblock %}
 
-	{{$pageScripts}}
+	{% block pageScripts %}
 		{{>includes/scripts/dobFocus}}
-	{{/pageScripts}}
+	{% endblock %}
 

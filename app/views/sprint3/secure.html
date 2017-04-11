@@ -101,8 +101,8 @@
 		</main>
 	{% endblock %}
 
-	{{$pageScripts}}
+	{% block pageScripts %}
 		{{>includes/scripts/ninoFocus}}
 		{{>includes/scripts/dobFocus}}
-	{{/pageScripts}}
+	{% endblock %}
 

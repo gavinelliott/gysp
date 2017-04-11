@@ -48,9 +48,9 @@
 		</main>
 	{% endblock %}
 
-	{{$pageScripts}}
+	{% block pageScripts %}
 		{{>includes/scripts/ninoFocus}}
 		{{>includes/scripts/dobFocus}}
 		{{>sprint7/scripts/clear_fields}}
-	{{/pageScripts}}
+	{% endblock %}
 

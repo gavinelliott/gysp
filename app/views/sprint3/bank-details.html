@@ -155,8 +155,8 @@
 		</main>
 	{% endblock %}
 
-	{{$pageScripts}}
+	{% block pageScripts %}
 		{{>includes/scripts/bankFocus}}
 		{{>includes/scripts/bankFormatter}}
-	{{/pageScripts}}
+	{% endblock %}
 

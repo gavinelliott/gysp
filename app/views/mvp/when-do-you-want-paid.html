@@ -78,8 +78,8 @@
 		</main>
 	{% endblock %}
 
-	{{$pageScripts}}
+	{% block pageScripts %}
 		{{>sprint9/scripts/when-do-you-want-paid}}
 		{{>includes/scripts/dobFocus}}
-	{{/pageScripts}}
+	{% endblock %}
 
