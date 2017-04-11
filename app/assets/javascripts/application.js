@@ -35,6 +35,7 @@ function ShowHideContent() {
 
           var $dataTarget = $('#' + dataTarget);
           $dataTarget.show();
+          $dataTarget.removeClass('js-hidden');
           // Set aria-expanded and aria-hidden for clicked radio
           $radio.attr('aria-expanded', 'true');
           $dataTarget.attr('aria-hidden', 'false');
