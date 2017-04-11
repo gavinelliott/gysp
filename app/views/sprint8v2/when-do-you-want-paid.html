@@ -12,12 +12,12 @@
 
 			<div class="grid-row">
 				<div class="column-two-thirds">
-					{{#errors}}
+					{% if errors %}
 						<div class="error-summary error-message no-margin-top" data-banktype="{{errors.bank_type}}">
 							<h2 class="heading-medium error-summary-heading">{{errors.title}}</h2>
 							<p>{{errors.text}}</p>
 						</div>
-					{{/errors}}
+					{% endif %}
 
 					<h1 class="heading-xlarge">When do you want to get your State Pension?</h1>
 
