@@ -53,7 +53,7 @@
               </div>
             </fieldset>
 
-            {{^countryType.resident}}
+            {% if not countryType.resident %}
               <h2 class="heading-small">Have you paid the equivalent of National Insurance in {{country}}?</h1>
 
               <fieldset class="inline">
@@ -113,7 +113,7 @@
                   </fieldset>
                 </div>
               </fieldset>
-            {{/countryType.resident}}
+            {% endif %}
 
             <input type="submit" class="button" value="Continue">
           </form>
