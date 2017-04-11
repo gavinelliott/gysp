@@ -4,7 +4,7 @@
   	State Pension Activation
   {% endblock %}
 
-  {{$content}}
+  {% block content %}
   <main id="content" role="main">
     {{>includes/parts/phase-banner}}
     <div class="grid-row">
@@ -37,5 +37,5 @@
         </div>
       </div>
     </main>
-  {{/content}}
+  {% endblock %}
 {{/layout}}

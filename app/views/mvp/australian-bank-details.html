@@ -4,7 +4,7 @@
 		State Pension Activation
 	{% endblock %}
 
-	{{$content}}
+	{% block content %}
 
 		<!-- #page-container -->
 		<main id="content" role="main" class="group">
@@ -146,7 +146,7 @@
 
 			</div>
 		</main>
-	{{/content}}
+	{% endblock %}
 
 	{{$pageScripts}}
 		{{>includes/scripts/bankFocus}}

@@ -152,9 +152,9 @@ Becomes…
 
 and
 
-    {{$content}}
+    {% block content %}
     .......
-    {{/content}}
+    {% endblock %}
 
 Becomes...
 

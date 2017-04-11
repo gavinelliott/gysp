@@ -4,7 +4,7 @@
   	State Pension Activation
   {% endblock %}
 
-  {{$content}}
+  {% block content %}
   <main id="content" role="main">
     <div class="grid-row">
       <div class="column-two-thirds">
@@ -32,7 +32,7 @@
         </div>
       </div>
     </main>
-  {{/content}}
+  {% endblock %}
 
   {{$pageScripts}}
       {{>ovsea-test/scripts/countries}}

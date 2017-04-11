@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block pageTitle %} SPA - Prototype {% endblock %} {{$content}} <main id="content" role="main" class="group">
+{% block pageTitle %} SPA - Prototype {% endblock %} {% block content %} <main id="content" role="main" class="group">
 	<div class="phase-banner">
 		<p>
 			<strong class="phase-tag">ALPHA</strong>
@@ -131,6 +131,6 @@
 		</div>
 	</div>
 </main>
-{{/content}}
+{% endblock %}
 
 {{/layout}}
