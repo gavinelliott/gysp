@@ -5,4 +5,28 @@ router.get('/', function (req, res) {
   res.render('index');
 });
 
+// routes (found in app/routes.js)
+router.use("/", require('./routes/generic.js'));
+router.use("/beta", require('./routes/beta.js'));
+router.use("/d1build", require('./routes/d1build.js'));
+router.use("/demo", require('./routes/demo.js'));
+router.use("/iteration1-v4", require('./routes/iteration1-v4.js'));
+router.use("/iteration2-v2", require('./routes/iteration2-v2.js'));
+router.use("/iteration2-v4", require('./routes/iteration2-v2.js'));
+router.use("/iteration3-v1", require('./routes/iteration3-v1.js'));
+router.use("/iteration3-v2", require('./routes/iteration3-v2.js'));
+router.use("/iteration1", require('./routes/iteration1.js'));
+router.use("/january", require('./routes/january.js'));
+router.use("/ovsea-test", require('./routes/ovsea-test.js'));
+router.use("/sprint3", require('./routes/sprint3.js'));
+router.use("/sprint4", require('./routes/sprint4.js'));
+router.use("/sprint5", require('./routes/sprint5.js'));
+router.use("/sprint6", require('./routes/sprint6.js'));
+router.use("/sprint7", require('./routes/sprint7.js'));
+router.use("/sprint8", require('./routes/sprint8.js'));
+router.use("/sprint8v2", require('./routes/sprint8v2.js'));
+router.use("/sprint9", require('./routes/sprint9.js'));
+router.use("/sprint10", require('./routes/sprint10.js'));
+router.use("/mvp", require('./routes/mvp.js'));
+
 module.exports = router;
