@@ -1,56 +1,34 @@
-// Import GOV.UK elements, this will import the frontend toolkit and some base styles.
-// Take a look at elements.scss to see which files are imported.
-@import 'elements';
+// Path to assets for use with the file-url function
+// in the govuk frontend toolkit's url-helpers partial
+$path: "/public/images/";
 
+// Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
+// Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
+@import 'govuk-elements';
 
-@import "elements/confirmation";
+// Take a look at in app/assets/sass/patterns/ to see which files are imported.
+@import 'patterns/check-your-answers';
+@import 'patterns/task-list';
 
+// Related items
+// (These styles will be moved to GOV.UK elements, duplicating here for now.)
+.govuk-related-items {
+  margin-top: $gutter;
+  border-top: 10px solid $govuk-blue;
+  padding-top: 5px;
 
-// Take a look at patterns.scss to see which files are imported.
-@import 'patterns';
-
-// Set up your main content area <main id="content">
-// This will give you a full width content block
-// See elements _layout.scss line 7.
-
-// If you need it, set up your grid layout - refer to the grid layout usage example
-// See elements _layout.scss line 28.
-
-// If you need a phase banner, put this inside the main content area
-// See elements _layout.scss line 22.
-.phase-banner-alpha  {
-  @include phase-banner(alpha); // Change this to (beta) for a beta banner
-}
-.phase-tag-alpha {
-  @include phase-tag(alpha); // Change this to (beta) for a beta tag
-}
-
-.phase-banner-beta  {
-  @include phase-banner(beta); // Change this to (beta) for a beta banner
-}
-.phase-tag-beta {
-  @include phase-tag(beta); // Change this to (beta) for a beta tag
-}
-
-// If you need to create a page as part of your journey, but without GOV.UK branding
-// See localhost:3000/examples/unbranded/
-.unbranded {
-  background: $white;
-  // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
-  * {
-    font-family: Arial !important;
+  .heading-medium {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
   }
-  // Remove GOV.UK footer styles
-  #footer {
-    border: 0;
-    background: $white;
+
+  li {
+    margin-bottom: 10px;
+    list-style-type: none;
   }
 }
 
-// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you,
-// either add and import new partial files, or modify those in GOV.UK elements to fit your user needs.
-
-
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 .label-no-hint {
 	padding-bottom: 10px!important;
