@@ -41,7 +41,7 @@
               <a id="add-another-name" href="#">Add another name</a>
             </p>
 
-						{{# widowed}}
+						{% if widowed %}
 							<div class="form-group">
 								<fieldset>
 									<legend class="form-label-bold">What date did they die?</legend>
@@ -67,7 +67,7 @@
 									</div>
 								</fieldset>
 							</div>
-						{{/widowed}}
+						{% endif %}
 
 						<div class="form-group">
 							<fieldset>
