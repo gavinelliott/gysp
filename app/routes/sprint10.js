@@ -436,6 +436,18 @@ router.post('/settings', function(req, res) {
   res.redirect('start');
 });
 
+router.post('/letter', function(req, res) {
+  if (req.body.letter === "Yes"){
+    res.redirect('invitecode')
+  } else {
+    res.redirect('verify')
+  }
+})
+
+// router.post('/letter', function(req, res) {
+//   res.redirect(req.body.letter)
+// }
+
 module.exports = router;
 
 
