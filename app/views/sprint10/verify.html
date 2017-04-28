@@ -10,7 +10,8 @@
 		<main id="content" role="main">
 			{% include 'includes/parts/phase-banner.html' %}
 
-			<form method="post" action="secure">
+			<form method="post" action="http://govuk-verify-loa1.herokuapp.com/intro?requestId=get-your-state-pension&userLOA=0">
+
 				<div class="grid-row">
 					<div class="column-two-thirds">
 
@@ -24,13 +25,17 @@
 							you can sign in using GOV.UK Verify.<br>
 							<br>
 							If you have not used GOV.UK Verify before,<br>
-							it will take you about 15 minutes to get set up.<br>
+							it will take you about 5 minutes to get set up.<br>
 							You can access other government services securely <br>
 							wherever you see the GOV.UK Verify logo.
 						</p>
 
+						<img src="/public/images/verifylogo.png" width="100" alt="verifylogo.png" />
+						<strong class="heading-medium">GOV.UK
+						</strong>
+
 						<div class="form-group">
-							<button class="button" value="Continue">Continue</button> <br>
+							<button class="button" value="Continue" type=“hidden” name=“requestId” value=“get-your-state-pension”>Continue</button> <br>
 						</div>
 			  	</div>
 

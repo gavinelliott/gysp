@@ -17,7 +17,7 @@ router.post('/secure', function(req, res) {
   }
 
   if (req.body.reference.toLowerCase() === 'EDMO435HN3'.toLowerCase()) {
-    res.redirect('/sprint9/pension-age');
+    res.redirect('/sprint9/dob-check');
   } else {
     res.redirect('/sprint9/pension-age');
   }
