@@ -11,21 +11,23 @@
 
 			<div class="grid-row">
 				<div class="column-two-thirds">
-					<h1 class="heading-xlarge">Your date of birth hasn't been recognised</h1>
+					<h1 class="heading-xlarge">You need to confirm your date of birth</h1>
 
 					<p class="lede">
-						You need to send something that shows your date of birth.
+						You must send one of these original documents:
 					</p>
 
 						<p>It must be one of these original documents:</p>
 
+						<p>
 						<ul class="list-bullet">
-							<li>a birth certificate</li>
-							<li>a certificate of registration of birth</li>
-							<li>an adoption order</li>
-							<li>a certificate of adoption issued by the Registrar General</li>
-							<li>an identity card</li>
+							<li>birth certificate</li>
+							<li>certificate of registration of birth</li>
+							<li>adoption order</li>
+							<li>certificate of adoption issued by the Registrar General</li>
+							<li>identity card</li>
 						</ul>
+						</p>
 
 					<p>Send it to:</p>
 
@@ -36,20 +38,31 @@
 						 WV99 1AQ
 					</p>
 
-					<p>International Pension Centre<br/>
-						 The Pension Service 11<br/>
-						 Mail Handling Site A<br/>
-						 Wolverhampton<br/>
-						 WV98 1LW
-				  </p>
-
 					<p>Your document will be returned to you as soon as possible.</p>
 
+					<div class="notice">
+  					<i class="icon icon-important">
+	    						<span class="visually-hidden">Warning</span>
+  					</i>
+  						<strong class="bold-small">
+    						You can continue to make your claim,
+								but we won’t be able to process it until we
+								receive confirmation of your date of birth.
+  						</strong>
+					</div>
+
+							<p>
+							<div class="form-group" class="continue" id="continue" style="margin-bottom: 70px;">
+									<a href="pension-age" class="button button-continue" role="button">Continue</a>
+							</div>
+							</p>
+
+
 				</div>
-				<div class="column-one-third">
-          {% include 'includes/parts/help.html' %}
-        </div>
+						<div class="column-one-third">
+          	{% include 'includes/parts/help.html' %}
+        		</div>
 			</div>
+
 	</main><!-- / #page-container -->
 	{% endblock %}
-

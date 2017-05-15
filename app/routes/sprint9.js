@@ -51,7 +51,11 @@ router.post('/dob-check', function(req, res) {
   } else {
     res.redirect('pension-age');
   }
+
+
 });
+
+
 
 // Have you ever lived outside the UK?
 router.get('/have-you-lived-abroad', function(req, res) {
