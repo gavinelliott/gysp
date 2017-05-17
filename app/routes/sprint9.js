@@ -46,12 +46,19 @@ router.post('/secure', function(req, res) {
 
 // DOB check
 router.post('/dob-check', function(req, res) {
-  if (req.query.fail) {
-    res.redirect('dob-fail');
-  } else {
-    res.redirect('pension-age');
+  if (req.body["dob-year"] === "1960") {
+    return res.redirect("/sprint9/dob-fail")
   }
 
+  if (req.body["dob-year"] === "1961") {
+    return res.redirect("/sprint9/dob-early")
+  }
+
+  if (req.body["dob-year"] === "1962") {
+    return res.redirect("/sprint9/dob-rules")
+  }
+
+  res.redirect("/sprint9/pension-age")
 
 });
 
@@ -409,6 +416,10 @@ router.get('/unhappy-ending', function(req, res) {
 
 router.get('/end', function(req, res) {
   var completeDate = get_todays_date();
+
+  if (req.session.data["dob-year"] === "1960") {
+    return res.redirect("/sprint9/end-nonverified")
+  }
 
   res.render('sprint9/end', {completeDate: completeDate});
 });
