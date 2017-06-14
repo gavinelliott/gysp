@@ -46,15 +46,15 @@ router.post('/secure', function(req, res) {
 
 // DOB check
 router.post('/dob-check', function(req, res) {
-  if (req.body["dob-year"] === "1960") {
+  if (req.body["dob-year"] === "1952") {
     return res.redirect("/sprint9/dob-fail")
   }
 
-  if (req.body["dob-year"] === "1961") {
+  if (req.body["dob-year"] === "1953") {
     return res.redirect("/sprint9/dob-early")
   }
 
-  if (req.body["dob-year"] === "1962") {
+  if (req.body["dob-year"] === "1950") {
     return res.redirect("/sprint9/dob-rules")
   }
 
