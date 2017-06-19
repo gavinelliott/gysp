@@ -416,8 +416,8 @@ router.get('/unhappy-ending', function(req, res) {
 
 router.get('/end', function(req, res) {
   var completeDate = get_todays_date();
-
-  if (req.session.data["dob-year"] === "1960") {
+console.log(req.session)
+  if (req.session.data["dob-year"] === "1952") {
     return res.redirect("/sprint9/end-nonverified")
   }
 
