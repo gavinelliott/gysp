@@ -26,6 +26,8 @@ router.use("/sprint7", require('./routes/sprint7.js'));
 router.use("/sprint8", require('./routes/sprint8.js'));
 router.use("/sprint8v2", require('./routes/sprint8v2.js'));
 router.use("/sprint9", require('./routes/sprint9.js'));
+router.use("/sprint9v2", require('./routes/sprint9v2.js'));
+router.use("/sprint9v3", require('./routes/sprint9v3.js'));
 router.use("/sprint10", require('./routes/sprint10.js'));
 router.use("/mvp", require('./routes/mvp.js'));
 
