@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var get_countries = require('../views/sprint9/scripts/countries.js');
+var get_countries = require('../views/sprint9v3/scripts/countries.js');
 
 var forceFail = false;
 
 // Secure page with invite code
 router.get('/secure', function(req, res) {
-  res.render('sprint9/secure');
+  res.render('sprint9v3/secure');
 });
 
 router.post('/secure', function(req, res) {
@@ -17,9 +17,9 @@ router.post('/secure', function(req, res) {
   }
 
   if (req.body.reference.toLowerCase() === 'EDMO435HN3' .toLowerCase()) {
-    res.redirect('/sprint9/dob-check');
+    res.redirect('/sprint9v3/dob-check');
   } else {
-    res.redirect('/sprint9/pension-age');
+    res.redirect('/sprint9v3/pension-age');
   }
 });
 
@@ -39,7 +39,7 @@ router.post('/secure', function(req, res) {
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
     } else {
-      res.render('sprint9/secure');
+      res.render('sprint9v3/secure');
     }
   }
 });
@@ -47,18 +47,18 @@ router.post('/secure', function(req, res) {
 // DOB check
 router.post('/dob-check', function(req, res) {
   if (req.body["dob-year"] === "1952") {
-    return res.redirect("/sprint9/dob-fail")
+    return res.redirect("/sprint9v3/pension-age-nv")
   }
 
   if (req.body["dob-year"] === "1953") {
-    return res.redirect("/sprint9/dob-early")
+    return res.redirect("/sprint9v3/dob-early")
   }
 
   if (req.body["dob-year"] === "1950") {
-    return res.redirect("/sprint9/dob-rules")
+    return res.redirect("/sprint9v3/dob-rules")
   }
 
-  res.redirect("/sprint9/pension-age")
+  res.redirect("/sprint9v3/pension-age")
 
 });
 
@@ -66,7 +66,7 @@ router.post('/dob-check', function(req, res) {
 
 // Have you ever lived outside the UK?
 router.get('/have-you-lived-abroad', function(req, res) {
-  res.render('sprint9/have-you-lived-abroad');
+  res.render('sprint9v3/have-you-lived-abroad');
 });
 
 router.post('/have-you-lived-abroad', function(req, res) {
@@ -79,7 +79,7 @@ router.post('/have-you-lived-abroad', function(req, res) {
 
 // Which countries have you lived in?
 router.get('/what-countries-have-you-lived-in', function(req, res) {
-  res.render('sprint9/what-countries-have-you-lived-in');
+  res.render('sprint9v3/what-countries-have-you-lived-in');
 });
 
 router.post('/what-countries-have-you-lived-in', function(req, res) {
@@ -118,7 +118,7 @@ router.get('/tell-us-about-lived', function(req, res) {
     var countryType = get_countries.type(country);
 
     if ( countryType.resident || countryType.insurance ) {
-      res.render('sprint9/tell-us-about-lived', {country: country, countryType: countryType, step: step});
+      res.render('sprint9v3/tell-us-about-lived', {country: country, countryType: countryType, step: step});
     } else {
       res.cookie('c-lived-count', countries.length);
       res.cookie('c-lived-list', countries);
@@ -168,7 +168,7 @@ router.get('/have-you-worked-abroad', function(req, res) {
   } else {
     title = 'Have you worked outside of the UK?';
   }
-  res.render('sprint9/have-you-worked-abroad', {title: title});
+  res.render('sprint9v3/have-you-worked-abroad', {title: title});
 });
 
 router.post('/have-you-worked-abroad', function(req, res) {
@@ -181,7 +181,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
 
 // Which countries have you worked in?
 router.get('/what-countries-have-you-worked-in', function(req, res) {
-  res.render('sprint9/what-countries-have-you-worked-in');
+  res.render('sprint9v3/what-countries-have-you-worked-in');
 });
 
 router.post('/what-countries-have-you-worked-in', function(req, res) {
@@ -223,7 +223,7 @@ router.get('/tell-us-about-worked', function(req, res) {
     var countryType = get_countries.type(country);
 
     if ( countryType.insurance ) {
-      res.render('sprint9/tell-us-about-worked', {country: country, step: step});
+      res.render('sprint9v3/tell-us-about-worked', {country: country, step: step});
     } else {
       res.cookie('c-worked-count', countries.length);
       res.cookie('c-worked-list', countries);
@@ -270,14 +270,14 @@ router.all('/relationship-status', function(req, res) {
   } else if ( req.body.relationship === "Widowed" ) {
     res.redirect("relationship-status-more/" + req.body.relationship);
   } else {
-    res.render('sprint9/relationship-status');
+    res.render('sprint9v3/relationship-status');
   }
 });
 
 // Relationship date
 router.all('/relationship-status-date/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint9/relationship-status-more/"+req.params.type);
+    res.redirect("/sprint9v3/relationship-status-more/"+req.params.type);
   }else{
     var isMarried = false,
         isEnded = false;
@@ -309,7 +309,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
         eventText = "What date were you widowed?";
         break;
     }
-    res.render('sprint9/relationship-status-date', {
+    res.render('sprint9v3/relationship-status-date', {
       eventText: eventText,
       type: req.params.type,
       isEnded: isEnded,
@@ -321,7 +321,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint9/contact");
+    res.redirect("/sprint9v3/contact");
   }else{
     var isMarried = false,
         isEnded = false,
@@ -359,13 +359,13 @@ router.all('/relationship-status-more/:type', function(req, res) {
         break;
     }
 
-    res.render('sprint9/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
+    res.render('sprint9v3/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
   }
 });
 
 // Contact page
 router.get('/contact', function(req, res) {
-  res.render('sprint9/contact');
+  res.render('sprint9v3/contact');
 });
 
 router.post('/contact', function(req, res) {
@@ -374,7 +374,7 @@ router.post('/contact', function(req, res) {
 
 // Bank details
 router.get('/bank-details', function(req, res) {
-  res.render('sprint9/bank-details');
+  res.render('sprint9v3/bank-details');
 });
 
 router.post('/bank-details', function(req, res) {
@@ -392,7 +392,7 @@ router.post('/bank-details', function(req, res) {
   blank_fields = blank_fields - fieldLimit;
 
   if ( blank_fields === 0 && forceFail === false) {
-    res.redirect('declaration');
+    res.redirect('dob-fail');
   } else {
     fail_attempts++;
     res.cookie('sp3_fail_attempts', fail_attempts);
@@ -404,24 +404,24 @@ router.post('/bank-details', function(req, res) {
         'text':"Check that you've entered your bank account details correctly.",
         'bank_type': req.body.building
       };
-      res.render('sprint9/bank-details', {errors: errors});
+      res.render('sprint9v3/bank-details', {errors: errors});
     }
   }
 });
 
 router.get('/unhappy-ending', function(req, res) {
   req.session.view = null;
-  res.render('sprint9/unhappy-ending');
+  res.render('sprint9v3/unhappy-ending');
 });
 
 router.get('/end', function(req, res) {
   var completeDate = get_todays_date();
 console.log(req.session)
   if (req.session.data["dob-year"] === "1952") {
-    return res.redirect("/sprint9/end-nonverified")
+    return res.redirect("/sprint9v3/end-nonverified")
   }
 
-  res.render('sprint9/end', {completeDate: completeDate});
+  res.render('sprint9v3/end', {completeDate: completeDate});
 });
 
 router.get('/download', function(req,res){
@@ -438,7 +438,7 @@ router.get('/reset', function(req, res) {
 });
 
 router.get('/settings', function(req, res) {
-  res.render('sprint9/settings');
+  res.render('sprint9v3/settings');
 });
 
 router.post('/settings', function(req, res) {
