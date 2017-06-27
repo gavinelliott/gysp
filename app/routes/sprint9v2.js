@@ -392,7 +392,7 @@ router.post('/bank-details', function(req, res) {
   blank_fields = blank_fields - fieldLimit;
 
   if ( blank_fields === 0 && forceFail === false) {
-    res.redirect('dob-fail');
+    res.redirect('declaration');
   } else {
     fail_attempts++;
     res.cookie('sp3_fail_attempts', fail_attempts);
