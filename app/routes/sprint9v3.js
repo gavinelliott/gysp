@@ -47,7 +47,7 @@ router.post('/secure', function(req, res) {
 // DOB check
 router.post('/dob-check', function(req, res) {
   if (req.body["dob-year"] === "1952") {
-    return res.redirect("/sprint9v3/dob-fail")
+    return res.redirect("/sprint9v3/pension-age-nv")
   }
 
   if (req.body["dob-year"] === "1953") {
@@ -392,7 +392,7 @@ router.post('/bank-details', function(req, res) {
   blank_fields = blank_fields - fieldLimit;
 
   if ( blank_fields === 0 && forceFail === false) {
-    res.redirect('declaration');
+    res.redirect('dob-fail');
   } else {
     fail_attempts++;
     res.cookie('sp3_fail_attempts', fail_attempts);
