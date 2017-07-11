@@ -169,40 +169,12 @@ function check_validation(e) {
         error_count++;
         error_fields.push($(this).attr('name'));
       }
-    }
 
-    if ( $(this).attr('id') === 'reference' ) {
-      if ( $(this).val() != "WOOD435HN3" &&  $(this).val().toLowerCase() != "qwx5ychpnrjv" && $(this).val() != "EDMO435HN3") {
-        error_count++;
-        error_fields.push($(this).attr('name'));
-      }
-    }
-
-    if ( /dob-day|(dob-day)([0-9])/.test( $(this).attr('id') ) ) {
-      if ( $(this).val() > 31 ) {
-        error_count++;
-        error_fields.push($(this).attr('name'));
-      }
-    }
-
-    if ( /dob-month|(dob-month)([0-9])/.test( $(this).attr('id') ) ) {
-      if ( $(this).val() > 12 ) {
-        error_count++;
-        error_fields.push($(this).attr('name'));
-      }
-    }
-
-    if ( /dob-year|(dob-year)([0-9])/.test( $(this).attr('id') ) ) {
-      if ( $(this).val() > 2016 ) {
-        error_count++;
-        error_fields.push($(this).attr('name'));
-      }
-    }
-
-    if ( $(this).attr('id') === 'phone_number1' ) {
-      if ( $(this).val().length < 5 ) {
-        error_count++;
-        error_fields.push($(this).attr('name'));
+      if ( $(this).attr('id') === 'reference' ) {
+        if ( $(this).val() != "WOOD435HN3" &&  $(this).val().toLowerCase() != "qwx5ychpnrjv" && $(this).val() != "EDMO435HN3") {
+          error_count++;
+          error_fields.push($(this).attr('name'));
+        }
       }
     }
   });
