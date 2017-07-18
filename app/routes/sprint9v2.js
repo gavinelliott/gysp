@@ -424,6 +424,14 @@ console.log(req.session)
   res.render('sprint9v2/end', {completeDate: completeDate});
 });
 
+router.get('/end-nonverified', function(req, res) {
+  var completeDate = get_todays_date();
+console.log(req.session)
+
+  res.render('sprint9v2/end-nonverified', {completeDate: completeDate});
+});
+
+
 router.get('/download', function(req,res){
   res.download('./public/images/download.pdf', 'download.pdf');
 });
