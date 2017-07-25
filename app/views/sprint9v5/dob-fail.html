@@ -13,7 +13,7 @@ State Pension Activation
 		<div class="column-two-thirds">
 			<h1 class="heading-xlarge">You need to send proof of your date of birth</h1>
 
-			<h3 class="heading-medium">You must send one of these original documents:</h3>
+			<h3 class="heading-medium">You must send 1 of these original documents:</h3>
 
 			<ul class="list-bullet">
 				<li>Birth certificate</li>
@@ -24,14 +24,12 @@ State Pension Activation
 			</ul>
 		</br>
 
-		<h4 class="heading-small">Send it to:</h4>
+		<h4 class="heading-small">Include your National Insurance number and send it to:</h4>
 
 		<p>The Pension Service 4<br>
 			Mail Handling Site A<br>
 			Wolverhampton<br>
 			WV98 1AG</p>
-
-			<p> Include your National Insurance number with your document. </p>
 
 
 			<div class="notice">
@@ -45,23 +43,17 @@ State Pension Activation
 				</strong>
 			</div>
 
-		</br>
+			<p>
+				<div class="form-group" class="continue" id="continue" style="margin-bottom: 70px;">
+					<a href="declaration" class="button button-continue" role="button">Continue</a>
+				</div>
+			</p>
 
-		<p><img src="/public/images/icon-file-download.png" style="position: relative; float: left; margin-top: -5px;">&nbsp; <a href="download" target="_new" class="heading-medium">Save this page</a></p>
-		<p><img src="/public/images/icon-print.png" width="30" style="float: left; margin-top: -5px;">&nbsp; <a href="#" onclick="window.print();" class="heading-medium">Print this page</a></p>
-
-
-		<p>
-			<div class="form-group" class="continue" id="continue" style="margin-bottom: 70px;">
-				<a href="declaration" class="button button-continue" role="button">Continue</a>
-			</div>
-		</p>
-
+		</div>
+		<div class="column-one-third">
+			{% include 'includes/parts/help.html' %}
+		</div>
 	</div>
-	<div class="column-one-third">
-		{% include 'includes/parts/help.html' %}
-	</div>
-</div>
 
 </main><!-- / #page-container -->
 {% endblock %}

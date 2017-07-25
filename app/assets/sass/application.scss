@@ -144,3 +144,12 @@ span.span_nino2 {
 @import 'sprint7';
 @import 'sprint8';
 @import 'sprint10';
+
+.icon--top {
+  top: 20px !important;
+}
+
+.notice p, details {
+    display: block;
+    padding-left: 65px;
+    margin-left: -15px; }
