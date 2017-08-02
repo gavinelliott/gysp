@@ -294,7 +294,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 
     switch (req.params.type) {
       case "Married":
-        eventText = "When did you get married?";
+        eventText = "What date did you get married?";
         break;
       case "Civil":
         eventText = "What date was your civil partnership registered?";
