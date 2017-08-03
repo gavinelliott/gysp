@@ -247,7 +247,10 @@ router.post('/tell-us-about-worked', function(req, res) {
 });
 
 // Relationship Status
-router.all('/relationship-status', function(req, res) {
+router.get('/relationship-status', function(req, res) {
+    res.render('sprint10/relationship-status');
+})
+router.post('/relationship-status', function(req, res) {
   if (req.body.relationship === "Never been married") {
     res.redirect("contact");
   } else if ( req.body.relationship === "Married" ||
@@ -259,7 +262,7 @@ router.all('/relationship-status', function(req, res) {
   } else if ( req.body.relationship === "Widowed" ) {
     res.redirect("relationship-status-more/" + req.body.relationship);
   } else {
-    res.render('sprint10/relationship-status');
+    res.redirect('contact');
   }
 });
 
@@ -367,35 +370,9 @@ router.get('/bank-details', function(req, res) {
 });
 
 router.post('/bank-details', function(req, res) {
-  var fields = req.body,
-      fieldLimit = get_field_limit(req),
-      blank_fields = get_blank_fields(req),
-      fail_attempts = get_fail_attempts(req);
 
-  for (var object in fields) {
-    if ( fields[object] === '') {
-      blank_fields++;
-    }
-  }
-
-  blank_fields = blank_fields - fieldLimit;
-
-  if ( blank_fields === 0 && forceFail === false) {
     res.redirect('declaration');
-  } else {
-    fail_attempts++;
-    res.cookie('sp3_fail_attempts', fail_attempts);
-    if ( fail_attempts >= 2 ) {
-      res.redirect('cant-continue');
-    } else {
-      var errors = {
-        'title':"There's a problem",
-        'text':"Check that you've entered your bank account details correctly.",
-        'bank_type': req.body.building
-      };
-      res.render('sprint10/bank-details', {errors: errors});
-    }
-  }
+
 });
 
 router.get('/unhappy-ending', function(req, res) {
