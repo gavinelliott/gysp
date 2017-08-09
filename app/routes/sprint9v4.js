@@ -50,7 +50,15 @@ router.post('/dob-check', function(req, res) {
     return res.redirect("/sprint9v4/pension-age-nv")
   }
 
-  res.redirect("/sprint9v4/pension-age-nv")
+  if (req.body["dob-year"] === "1953") {
+    return res.redirect("/sprint9v2/dob-early")
+  }
+
+  if (req.body["dob-year"] === "1950") {
+    return res.redirect("/sprint9v2/dob-rules")
+  }
+
+  res.redirect("/sprint9v4/pension-age")
 
 });
 
