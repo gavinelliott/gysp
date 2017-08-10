@@ -31,6 +31,7 @@ router.use("/sprint9v3", require('./routes/sprint9v3.js'));
 router.use("/sprint9v4", require('./routes/sprint9v4.js'));
 router.use("/sprint9v5", require('./routes/sprint9v5.js'));
 router.use("/sprint10", require('./routes/sprint10.js'));
+router.use("/sprint10v2", require('./routes/sprint10v2.js'));
 router.use("/mvpdob", require('./routes/mvpdob.js'));
 router.use("/mvp", require('./routes/mvp.js'));
 
