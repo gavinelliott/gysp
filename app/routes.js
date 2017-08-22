@@ -34,6 +34,7 @@ router.use("/sprint10", require('./routes/sprint10.js'));
 router.use("/sprint10v2", require('./routes/sprint10v2.js'));
 router.use("/mvpdob", require('./routes/mvpdob.js'));
 router.use("/mvp", require('./routes/mvp.js'));
+router.use("/northernireland", require('./routes/northernireland.js'));
 
 
 module.exports = router;
