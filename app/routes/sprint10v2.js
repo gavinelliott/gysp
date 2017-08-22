@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var get_countries = require('../views/sprint10/scripts/countries.js');
+var get_countries = require('../views/sprint10v2/scripts/countries.js');
 
 var forceFail = false;
 
 // Secure page with invite code
 router.get('/secure', function(req, res) {
-  res.render('sprint10/secure');
+  res.render('sprint10v2/secure');
 });
 
 router.post('/secure', function(req, res) {
@@ -17,9 +17,9 @@ router.post('/secure', function(req, res) {
   }
 
   if (req.body.reference.toLowerCase() === 'EDMO435HN3'.toLowerCase()) {
-    res.redirect('/sprint10/pension-age');
+    res.redirect('/sprint10v2/pension-age');
   } else {
-    res.redirect('/sprint10/pension-age');
+    res.redirect('/sprint10v2/pension-age');
   }
 });
 
@@ -39,7 +39,7 @@ router.post('/secure', function(req, res) {
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
     } else {
-      res.render('sprint10/secure');
+      res.render('sprint10v2/secure');
     }
   }
 });
@@ -55,7 +55,7 @@ router.post('/dob-check', function(req, res) {
 
 // Have you ever lived outside the UK?
 router.get('/have-you-lived-abroad', function(req, res) {
-  res.render('sprint10/have-you-lived-abroad');
+  res.render('sprint10v2/have-you-lived-abroad');
 });
 
 router.post('/have-you-lived-abroad', function(req, res) {
@@ -68,7 +68,7 @@ router.post('/have-you-lived-abroad', function(req, res) {
 
 // Which countries have you lived in?
 router.get('/what-countries-have-you-lived-in', function(req, res) {
-  res.render('sprint10/what-countries-have-you-lived-in');
+  res.render('sprint10v2/what-countries-have-you-lived-in');
 });
 
 router.post('/what-countries-have-you-lived-in', function(req, res) {
@@ -107,7 +107,7 @@ router.get('/tell-us-about-lived', function(req, res) {
     var countryType = get_countries.type(country);
 
     if ( countryType.resident || countryType.insurance ) {
-      res.render('sprint10/tell-us-about-lived', {country: country, countryType: countryType, step: step});
+      res.render('sprint10v2/tell-us-about-lived', {country: country, countryType: countryType, step: step});
     } else {
       res.cookie('c-lived-count', countries.length);
       res.cookie('c-lived-list', countries);
@@ -157,7 +157,7 @@ router.get('/have-you-worked-abroad', function(req, res) {
   } else {
     title = 'Have you worked outside of the UK?';
   }
-  res.render('sprint10/have-you-worked-abroad', {title: title});
+  res.render('sprint10v2/have-you-worked-abroad', {title: title});
 });
 
 router.post('/have-you-worked-abroad', function(req, res) {
@@ -170,7 +170,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
 
 // Which countries have you worked in?
 router.get('/what-countries-have-you-worked-in', function(req, res) {
-  res.render('sprint10/what-countries-have-you-worked-in');
+  res.render('sprint10v2/what-countries-have-you-worked-in');
 });
 
 router.post('/what-countries-have-you-worked-in', function(req, res) {
@@ -212,7 +212,7 @@ router.get('/tell-us-about-worked', function(req, res) {
     var countryType = get_countries.type(country);
 
     if ( countryType.insurance ) {
-      res.render('sprint10/tell-us-about-worked', {country: country, step: step});
+      res.render('sprint10v2/tell-us-about-worked', {country: country, step: step});
     } else {
       res.cookie('c-worked-count', countries.length);
       res.cookie('c-worked-list', countries);
@@ -248,7 +248,7 @@ router.post('/tell-us-about-worked', function(req, res) {
 
 // Relationship Status
 router.get('/relationship-status', function(req, res) {
-    res.render('sprint10/relationship-status');
+    res.render('sprint10v2/relationship-status');
 })
 router.post('/relationship-status', function(req, res) {
   if (req.body.relationship === "Never been married") {
@@ -269,7 +269,7 @@ router.post('/relationship-status', function(req, res) {
 // Relationship date
 router.all('/relationship-status-date/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint10/relationship-status-more/"+req.params.type);
+    res.redirect("/sprint10v2/relationship-status-more/"+req.params.type);
   }else{
     var isMarried = false,
         isEnded = false;
@@ -301,7 +301,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
         eventText = "What date were you widowed?";
         break;
     }
-    res.render('sprint10/relationship-status-date', {
+    res.render('sprint10v2/relationship-status-date', {
       eventText: eventText,
       type: req.params.type,
       isEnded: isEnded,
@@ -313,7 +313,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint10/contact");
+    res.redirect("/sprint10v2/contact");
   }else{
     var isMarried = false,
         isEnded = false,
@@ -351,13 +351,13 @@ router.all('/relationship-status-more/:type', function(req, res) {
         break;
     }
 
-    res.render('sprint10/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
+    res.render('sprint10v2/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
   }
 });
 
 // Contact page
 router.get('/contact', function(req, res) {
-  res.render('sprint10/contact');
+  res.render('sprint10v2/contact');
 });
 
 router.post('/contact', function(req, res) {
@@ -366,7 +366,7 @@ router.post('/contact', function(req, res) {
 
 // Bank details
 router.get('/bank-details', function(req, res) {
-  res.render('sprint10/bank-details');
+  res.render('sprint10v2/bank-details');
 });
 
 router.post('/bank-details', function(req, res) {
@@ -377,13 +377,13 @@ router.post('/bank-details', function(req, res) {
 
 router.get('/unhappy-ending', function(req, res) {
   req.session.view = null;
-  res.render('sprint10/unhappy-ending');
+  res.render('sprint10v2/unhappy-ending');
 });
 
 router.get('/end', function(req, res) {
   var completeDate = get_todays_date();
 
-  res.render('sprint10/end', {completeDate: completeDate});
+  res.render('sprint10v2/end', {completeDate: completeDate});
 });
 
 router.get('/download', function(req,res){
@@ -400,7 +400,7 @@ router.get('/reset', function(req, res) {
 });
 
 router.get('/settings', function(req, res) {
-  res.render('sprint10/settings');
+  res.render('sprint10v2/settings');
 });
 
 router.post('/settings', function(req, res) {
