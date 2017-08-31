@@ -17,40 +17,51 @@ State Pension Activation
 			<br/>
 			<h1 class="heading-xlarge">Get your State Pension</h1>
 
-			<div class="grid-row">
-				
-				<p>
-					Some content will go here to inform users that they will need to verify
-				</br> who they are to be able to use the service.
-				</p>
+			<p>
+				Some content will go here to inform users that they will need to verify
+			</br> who they are to be able to use the service.
+		</p>
 
-  <div class="column-one-half">
-		<div class="notice">
-			<i class="icon icon--top icon-step-1">
-			</i>
-			<strong class="heading-medium">
-				Invitation code
-			</strong>
-		</div>
+					<legend>
+						<h1 class="heading-medium">You need to confirm your identity </br>
+							You can do this in two different ways:</h1>
+					</legend>
 
-		<div class="form-group" class="get-started" id="get-started" style="margin-bottom: 70px;">
-			<a href="letter" class="button button-get-started" role="button">Start now</a>
-		</div>
+					<div>
+						<form action="identity-confirmation" method="post">
+							<div class="form-group">
+								<fieldset>
+					</br>
 
-  </div>
+					<div>
+						<div class="multiple-choice">
+							<input id="invite-code" type="radio" name="radio-group" value="invitation code">
+							<label for="invite-code" class="heading-small">Use a unique invitation code</label>
+							<p><li>if you have received a letter inviting you to get your State Pension</li>
+								<li>blah blah blah</li></p>
+								<p class="heading-small">Or</p>
+							</div>
 
 
-  <div class="column-one-half">
-		<div class="notice">
-			<i class="icon icon--top icon-step-2">
-			</i>
-			<strong class="heading-medium">
-				Verify
-			</strong>
-		</div>
-  </div>
 
-</div>
+							<div class="multiple-choice">
+								<input id="verify" type="radio" name="radio-group" value="verify">
+								<label for="verify" class="heading-small">Sign in using GOV.UK Verify</label>
+								<p><li>if you have not received a letter inviting you to get your State Pension</li>
+									<li>to sign up, you will need to answer identity questions online	</li></p>
+								</div>
+							</div>
+
+						</fieldset>
+					</div>
+
+					<input type="submit" class="button" value="Start now">
+				</form>
+			</div>
+
+
+
+
 
 		</div>
 

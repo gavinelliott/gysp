@@ -4,6 +4,9 @@ var get_countries = require('../views/sprint10v2/scripts/countries.js');
 
 var forceFail = false;
 
+// verify or invitation code
+
+
 // Secure page with invite code
 router.get('/secure', function(req, res) {
   res.render('sprint10v2/secure');
