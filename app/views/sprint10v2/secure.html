@@ -12,20 +12,13 @@
 
 			<form method="post" action="secure">
 				<div class="grid-row">
-				<div class="column-full">
-
-						<h1 class="heading-xlarge">Get your State Pension</h1>
-
-				</div>
-
 					<div class="column-two-thirds">
-			    <p>Content</p>
-			  	</div>
 
-				<div class="column-one-half left">
+						<h1 class="heading-xlarge">Your details</h1>
+
 						<div class="form-group">
 							<fieldset>
-								<label class="heading-medium" for="ni_number">
+								<label class="form-label-bold" for="ni_number">
 									Invitation code
 									<p class="form-hint">Can be found on your Get your State Pension letter.</p>
 								</label>
@@ -42,14 +35,14 @@
 
 						<fieldset class="inline">
 				      <div class="form-group">
-								<div class="multiple-choice">
+				        <div class="multiple-choice">
 									<input id="address-yes" type="radio" name="address-select" value="Yes">
 									<label for="address-yes">Yes</label>
 								</div>
 
 								<div class="multiple-choice">
 									<input id="address-no" type="radio" name="address-select" value="No">
-									<label for="address-no">No</label>
+				          <label for="address-no">No</label>
 								</div>
 				      </div>
 				    </fieldset>
@@ -57,37 +50,11 @@
 						<div class="form-group">
 							<button class="button" value="Continue">Continue</button> <br>
 						</div>
-
-				</div>
-
-
-
-
-					<div class="column-one-half">
-					<div class="form-group">
-						<fieldset>
-							<label class="heading-medium" for="ni_number">
-								Verify
-								<p class="form-hint">
-									You can also sign in using GOV.UK Verify.
-									If you have not used GOV.UK Verify before,
-									it will take you about 15 minutes to get set up.
-									You can access other government services
-									securely wherever you see the GOV.UK Verify logo.</p>
-							</label>
-						</fieldset>
 					</div>
 
-					<p class="text form-label-bold" for="address-select">
-						content
-					</p>
-
-
-					<div class="form-group">
-						<button class="button" value="Continue">Continue</button> <br>
-					</div>
-				</div>
-
+					<div class="column-one-third">
+	          {% include 'includes/parts/help.html' %}
+	        </div>
 				</div>
 			</form>
 		</main>
@@ -96,5 +63,5 @@
 	{% block pageScripts %}
 		{% include 'includes/scripts/ninoFocus.html' %}
 		{% include 'includes/scripts/dobFocus.html' %}
-		{% include 'sprint9/scripts/clear_fields.html' %}
+		{% include 'mvp/scripts/clear_fields.html' %}
 	{% endblock %}
