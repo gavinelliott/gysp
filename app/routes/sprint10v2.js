@@ -5,6 +5,13 @@ var get_countries = require('../views/sprint10v2/scripts/countries.js');
 var forceFail = false;
 
 // verify or invitation code
+router.post('/letter', function(req, res) {
+  if ( req.body['letter-verify'] === 'invitation code' ) {
+    res.redirect('secure');
+  } else {
+    res.redirect('verify');
+  }
+});
 
 
 // Secure page with invite code

@@ -409,6 +409,12 @@ router.get('/end', function(req, res) {
   res.render('northernireland/end', {completeDate: completeDate});
 });
 
+router.get('/end-nonverified', function(req, res) {
+  var completeDate = get_todays_date();
+
+  res.render('northernireland/end-nonverified', {completeDate: completeDate});
+});
+
 router.get('/download', function(req,res){
   res.download('./public/images/download.pdf', 'download.pdf');
 });
