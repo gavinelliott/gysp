@@ -150,6 +150,19 @@ span.span_nino2 {
 }
 
 .notice p, .notice details {
-    display: block;
-    padding-left: 65px;
-    margin-left: -15px; }
+  display: block;
+  padding-left: 65px;
+  margin-left: -15px;
+}
+
+.verify-block {
+  text-transform: uppercase;
+  font-size: 26px;
+  line-height: 26px;
+
+  .verify-logo {
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+  }
+}
