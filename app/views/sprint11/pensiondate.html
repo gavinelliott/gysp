@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+State Pension Activation
+{% endblock %}
+
+{% block content %}
+
+<!-- #page-container -->
+<main id="content" role="main">
+	{% include 'includes/parts/phase-banner.html' %}
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<br/>
+			<h1 class="heading-xlarge">When do you want to get your State Pension?</h1>
+
+
+		<p>Something about how you can defer up to 9 weeks, however you do not increase your SP</p>
+
+
+
+		<form method="post">
+				<div class="form-group">
+				<div class="multiple-choice">
+					<input id="before" type="radio" name="pension-date" value="before">
+					<label for="before" class="heading-small">From my State Pension date or up to 9 weeks after</label>
+
+						<p>
+							Contenty content
+						</p>
+
+				</div>
+
+					<div class="multiple-choice">
+						<input id="after" type="radio" name="pension-date" value="after">
+						<label for="after" class="heading-small">9 or more weeks after my State Pension date</label>
+
+							<p>
+								Contenty content
+							</p>
+						</div>
+
+
+				</div>
+				<button type="submit" class="button">Continue</button>
+			</form>
+	</div>
+</div>
+
+</main>
+{% endblock %}
+
+{% block pageScripts %}
+{% include 'includes/scripts/ninoFocus.html' %}
+{% include 'includes/scripts/dobFocus.html' %}
+{% include 'sprint9/scripts/clear_fields.html' %}
+{% endblock %}
