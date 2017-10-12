@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var get_countries = require('../views/sprint11/scripts/countries.js');
+var {differenceInWeeks} = require('date-fns');
 
 var forceFail = false;
 
@@ -60,6 +61,37 @@ router.post('/secure', function(req, res) {
     } else {
       res.render('sprint11/secure');
     }
+  }
+});
+
+// State pension age, this date or another date?
+router.post('/pension-age', function(req, res) {
+  if ( req.body['date-select'] === 'date-yes' ) {
+    res.redirect('have-you-lived-abroad');
+  } else {
+    res.redirect('deferral');
+  }
+});
+
+router.post('/deferral', function(req, res) {
+  // create variables from date entered in form
+  const day = req.body['deferral-day'];
+  const month = req.body['deferral-month'] - 1; // take 1 off the month because arrays start from 0
+  const year = req.body['deferral-year'];
+
+  // create date objects for deferral date and state pension age (new Date() takes values backwards, yyyy, mm, dd)
+  const deferralDate = new Date(year, month, day); // create a date from day, month, year
+  const statePensionDate = new Date(2018, 03, 09); // create a date for 09, 04, 2018 (take 1 off because arrays start from 0, so 1 is 0)
+
+  // get the difference in weeks between deferral date and state pension date, returns a number eg 9
+  const diffInWeeks = differenceInWeeks(deferralDate, statePensionDate)
+
+  // if more than 9 weeks from state pension age
+  if (diffInWeeks > 9) {
+    res.redirect('cant-deferr');
+  } else {
+    // if 9 weeks or less
+    res.redirect('can-deferr');
   }
 });
 
