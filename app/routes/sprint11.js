@@ -90,7 +90,7 @@ router.post('/deferral', function(req, res) {
   if (diffInWeeks > 9) {
     res.redirect('cant-deferr');
   } else {
-    // if 9 weeks or less
+    // if 9 weeks or less add commit push
     res.redirect('can-deferr');
   }
 });
