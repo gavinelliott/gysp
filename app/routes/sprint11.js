@@ -88,10 +88,10 @@ router.post('/deferral', function(req, res) {
 
   // if more than 9 weeks from state pension age
   if (diffInWeeks > 9) {
-    res.redirect('cant-deferr');
+    res.redirect('laterdate');
   } else {
     // if 9 weeks or less add commit push
-    res.redirect('can-deferr');
+    res.redirect('have-you-lived-abroad');
   }
 });
 
