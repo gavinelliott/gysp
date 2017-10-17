@@ -10,7 +10,7 @@ router.post('/pensiondate', function(req, res) {
   if ( req.body['pension-date'] === 'before' ) {
     res.redirect('letter');
   } else {
-    res.redirect('deferral');
+    res.redirect('laterdate');
   }
 });
 
