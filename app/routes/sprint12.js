@@ -1,13 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var get_countries = require('../views/sprint12/scripts/countries.js');
+var {differenceInWeeks} = require('date-fns');
 
 var forceFail = false;
+
+// date of payment up to or over 9 weeks
+router.post('/pensiondate', function(req, res) {
+  if ( req.body['pension-date'] === 'before' ) {
+    res.redirect('letter');
+  } else {
+    res.redirect('laterdate2');
+  }
+});
 
 // verify or invitation code
 router.post('/letter', function(req, res) {
   if ( req.body['letter-verify'] === 'invitation code' ) {
-    res.redirect('pensiondate');
+    res.redirect('secure');
   } else {
     res.redirect('verify');
   }
@@ -51,6 +61,37 @@ router.post('/secure', function(req, res) {
     } else {
       res.render('sprint12/secure');
     }
+  }
+});
+
+// State pension age, this date or another date?
+router.post('/pension-age', function(req, res) {
+  if ( req.body['date-select'] === 'date-yes' ) {
+    res.redirect('have-you-lived-abroad');
+  } else {
+    res.redirect('deferral');
+  }
+});
+
+router.post('/deferral', function(req, res) {
+  // create variables from date entered in form
+  const day = req.body['deferral-day'];
+  const month = req.body['deferral-month'] - 1; // take 1 off the month because arrays start from 0
+  const year = req.body['deferral-year'];
+
+  // create date objects for deferral date and state pension age (new Date() takes values backwards, yyyy, mm, dd)
+  const deferralDate = new Date(year, month, day); // create a date from day, month, year
+  const statePensionDate = new Date(2017, 11, 09); // create a date for 09, 04, 2018 (take 1 off because arrays start from 0, so 1 is 0)
+
+  // get the difference in weeks between deferral date and state pension date, returns a number eg 9
+  const diffInWeeks = differenceInWeeks(deferralDate, statePensionDate)
+
+  // if more than 17 weeks from state pension age
+  if (diffInWeeks > 17) {
+    res.redirect('tooearly');
+  } else {
+    // if 17 weeks or less add commit push
+    res.redirect('have-you-lived-abroad');
   }
 });
 

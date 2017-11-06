@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+	{% block pageTitle %}
+		State Pension Activation
+	{% endblock %}
+
+	{% block content %}
+		<!-- #page-container -->
+		<main id="content" role="main" class="group">
+			{% include 'includes/parts/phase-banner.html' %}
+
+			<div class="grid-row">
+				<div class="column-two-thirds">
+					<h1 class="heading-xlarge">TOO EARLY</h1>
+
+					<p>Hakuna matata</br>
+					</br>
+					It meeeaaaans no worries, for the rest of your days</br>
+
+				</br>
+					It's a problem free...</p>
+
+					<p>
+						philosophy
+					</p>
+
+				<p><a href="pension-age">HAKUNA MATATA?</a> </p>
+
+				</div>
+				<div class="column-one-third">
+          {% include 'includes/parts/help.html' %}
+        </div>
+			</div>
+	</main><!-- / #page-container -->
+	{% endblock %}
