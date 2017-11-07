@@ -1,5 +1,5 @@
 @media (min-width: 641px) {
-  .example {
+  .example2 {
     padding-bottom: 30px;
     padding-left: 30px;
     padding-right: 30px;
@@ -7,7 +7,7 @@
   }
 }
 
-.example {
+.example2 {
   border: 1px solid $border-colour;
   margin-bottom: 15px;
   margin-top: 15px;
@@ -15,10 +15,10 @@
   position: relative;
 }
 
-.example::before {
+.example2::before {
   background: $border-colour;
   color: $page-colour;
-  content: 'PROTOTYPE';
+  content: 'MOST RECENT';
   font-family: "nta", Arial, sans-serif;
   font-weight: 400;
   left: 0;
