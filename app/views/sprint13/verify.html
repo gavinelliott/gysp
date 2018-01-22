@@ -10,8 +10,6 @@
 		<main id="content" role="main">
 			{% include 'includes/parts/phase-banner.html' %}
 
-			<form method="post" action="http://govuk-verify-loa1.herokuapp.com/intro?requestId=get-your-state-pension&userLOA=0">
-
 				<div class="grid-row">
 					<div class="column-two-thirds">
 
@@ -41,12 +39,11 @@
 					</br>
 
 						<div class="form-group">
-							<button class="button" value="Continue" type=“hidden” name=“requestId” value=“get-your-state-pension”>Continue</button> <br>
+							<a href="outdec" class="button button-get-started" role="button">Continue</a> <br>
 						</div>
 			  	</div>
 
 				</div>
-			</form>
 		</main>
 	{% endblock %}
 

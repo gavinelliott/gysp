@@ -21,51 +21,51 @@ Question page
       <div class="panel panel-border-wide">
         <p>
           12 March 1951
+        </div>
+        We'll use this to confirm you're eligible to get you State Pension.</p>
+
+        <h2 class="heading-medium"> Your address</h2>
+        <div class="panel panel-border-wide">
+          <p>
+            Jane Smith</br>
+            1A Argleton</br>
+            Argleton</br>
+            ARG1 4HP</br>
+
+          </p>
+        </div>
+
+        <form action="indec" method="post">
+          <div class="form-group">
+            <fieldset class="inline">
+
+              <legend>
+                <h1 class="heading-medium">
+                  Is this your current address?
+                </h1>
+              </legend>
+
+              <div class="multiple-choice">
+                <input id="address-yes" type="radio" name="in-dec" value="Yes">
+                <label for="address-yes">Yes</label>
+              </div>
+              <div class="multiple-choice">
+                <input id="address-no" type="radio" name="in-dec" value="No">
+                <label for="address-no">No</label>
+              </div>
+
+            </fieldset>
+          </div>
+			<input type="submit" class="button" value="Continue">
+        </form>
+
       </div>
-      We'll use this to confirm you're eligible to get you State Pension.</p>
 
-      <h2 class="heading-medium"> Your address</h2>
-      <div class="panel panel-border-wide">
-        <p>
-          Jane Smith</br>
-          1A Argleton</br>
-          Argleton</br>
-          ARG1 4HP</br>
-
-        </p>
+      <div class="column-one-third">
+        {% include 'includes/parts/help.html' %}
       </div>
-
-<form>
-  <div class="form-group">
-    <fieldset class="inline">
-
-      <legend>
-        <h1 class="heading-medium">
-          Is this your current address?
-        </h1>
-      </legend>
-
-      <div class="multiple-choice">
-        <input id="address-yes" type="radio" name="dec-in" value="Yes">
-        <label for="radio-inline-1">Yes</label>
-      </div>
-      <div class="multiple-choice">
-        <input id="address-no" type="radio" name="dec-in" value="No">
-        <label for="radio-inline-2">No</label>
-      </div>
-
-    </fieldset>
-  </div>
-  <button type="submit" class="button">Continue</button>
-</form>
 
     </div>
+  </main>
 
-    <div class="column-one-third">
-      {% include 'includes/parts/help.html' %}
-    </div>
-
-  </div>
-</main>
-
-{% endblock %}
+  {% endblock %}

@@ -23,12 +23,23 @@ router.post('/letter', function(req, res) {
   }
 });
 
-// Verify in declaration
+// Verify out declaration
+
 router.post('/outdec', function(req, res) {
-  if ( req.body['dec-out'] === 'Yes' ) {
+  if ( req.body['out-dec'] === 'Yes' ) {
     res.redirect('http://govuk-verify-loa1.herokuapp.com/intro?requestId=get-your-state-pension&userLOA=0');
   } else {
-    res.redirect('deferral');
+    res.redirect('error');
+  }
+});
+
+// Verify in declaration
+
+router.post('/indec', function(req, res) {
+  if ( req.body['in-dec'] === 'Yes' ) {
+    res.redirect('pension-age');
+  } else {
+    res.redirect('error');
   }
 });
 

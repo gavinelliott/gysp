@@ -29,35 +29,37 @@ State Pension Activation
 			</ul>
 		</p>
 
-		<form>
+		<form action="outdec" method="post">
 			<div class="form-group">
 				<fieldset class="inline">
 
 					<legend>
-						<h1 class="heading-medium">
+						<h2 class="heading-medium">
 							Can we use this information when you claim your </br>
 							State Pension?
-						</h1>
+						</h2>
 					</legend>
 
 					<div class="multiple-choice">
-						<input id="info-yes" type="radio" name="dec-out" value="Yes">
-						<label for="radio-inline-1">Yes</label>
+						<input id="outdec-yes" type="radio" name="out-dec" value="Yes">
+						<label for="outdec-yes">Yes</label>
 					</div>
 					<div class="multiple-choice">
-						<input id="info-no" type="radio" name="dec-out" value="No">
-						<label for="radio-inline-2">No</label>
+						<input id="outdec-no" type="radio" name="out-dec" value="No">
+						<label for="outdec-no">No</label>
 					</div>
-
 				</fieldset>
 			</div>
-			<button type="submit" class="button">Continue</button>
+
+			<input type="submit" class="button" value="Continue">
 		</form>
 	</div>
+</div>
 
 </div>
 </main>
 {% endblock %}
+
 
 {% block pageScripts %}
 {% include 'includes/scripts/ninoFocus.html' %}
