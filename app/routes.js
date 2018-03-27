@@ -40,7 +40,7 @@ router.use("/sprint12v2", require('./routes/sprint12v2.js'));
 router.use("/mvpdob", require('./routes/mvpdob.js'));
 router.use("/mvp", require('./routes/mvp.js'));
 router.use("/northernireland", require('./routes/northernireland.js'));
-router.use("/internationalMVP", require('./routes/internationalmvp.js'));
+router.use("/internationalmvp", require('./routes/internationalmvp.js'));
 
 
 module.exports = router;
