@@ -11,34 +11,33 @@
       <div class="column-two-thirds">
 
 
-          <h1 class="heading-xlarge">Have you ever worked outside the UK? *change*</h1>
+          <h1 class="heading-xlarge">{{title}}</h1>
 
-          <p>
-            <span class="form-hint">
-              You do not need to provide any details if you spent time overseas with the British Armed Forces. *change*
-            </span>
-          </p>
+
 
           <form action="have-you-worked-abroad" method="post">
             <fieldset class="inline">
               <div class="form-group">
                 <div class="multiple-choice">
-                  <input id="worked-outside-yes" type="radio" name="have-you-worked-abroad" value="Yes">
+                  <input id="worked-outside-yes" type="radio" name="have-you-worked-abroad" value="yes">
                   <label for="worked-outside-yes">Yes</label>
                 </div>
 
                 <div class="multiple-choice">
-                  <input id="worked-outside-no" type="radio" name="have-you-worked-abroad" value="No">
+                  <input id="worked-outside-no" type="radio" name="have-you-worked-abroad" value="no">
                   <label for="worked-outside-no">No</label>
                 </div>
               </div>
             </fieldset>
 
+
             <input type="submit" class="button" value="Continue">
+
+
           </form>
         </div>
         <div class="column-one-third">
-          {% include 'includes/parts/help.html' %}
+          {% include 'includes/parts/helpinternational.html' %}
         </div>
       </div>
     </main>

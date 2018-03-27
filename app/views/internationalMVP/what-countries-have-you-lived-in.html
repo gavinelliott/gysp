@@ -12,7 +12,9 @@
       <div class="column-two-thirds">
 
 
-          <h1 class="heading-xlarge">What countries have you lived in?</h1>
+          <h1 class="heading-xlarge">Where have you lived outside the UK?</h1>
+
+          <p class="form-hint">Include the country you live in now.</br>
 
           <form id="countries" action="what-countries-have-you-lived-in" method="post">
             <fieldset id="country-type-ahead">
@@ -34,7 +36,7 @@
         </div>
 
         <div class="column-one-third">
-          {% include 'includes/parts/help.html' %}
+          {% include 'includes/parts/helpinternational.html' %}
         </div>
       </div>
     </main>
@@ -43,4 +45,3 @@
   {% block pageScripts %}
       {% include 'sprint9/scripts/countries.html' %}
   {% endblock %}
-

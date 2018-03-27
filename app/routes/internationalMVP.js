@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var get_countries = require('../views/internationalMVP/scripts/countries.js');
+var get_countries = require('../views/internationalmvp/scripts/countries.js');
 var {differenceInWeeks} = require('date-fns');
 
 var forceFail = false;
@@ -45,7 +45,7 @@ router.post('/indec', function(req, res) {
 
 // Secure page with invite code
 router.get('/secure', function(req, res) {
-  res.render('internationalMVP/secure');
+  res.render('internationalmvp/secure');
 });
 
 router.post('/secure', function(req, res) {
@@ -56,9 +56,9 @@ router.post('/secure', function(req, res) {
   }
 
   if (req.body.reference.toLowerCase() === 'EDMO435HN3'.toLowerCase()) {
-    res.redirect('/internationalMVP/pension-age');
+    res.redirect('/internationalmvp/pension-age');
   } else {
-    res.redirect('/internationalMVP/pension-age');
+    res.redirect('/internationalmvp/pension-age');
   }
 });
 
@@ -78,7 +78,7 @@ router.post('/secure', function(req, res) {
     if (req.session.view > 2) {
       res.redirect("unhappy-ending");
     } else {
-      res.render('internationalMVP/secure');
+      res.render('internationalmvp/secure');
     }
   }
 });
@@ -125,7 +125,7 @@ router.post('/dob-check', function(req, res) {
 
 // Have you ever lived outside the UK?
 router.get('/have-you-lived-abroad', function(req, res) {
-  res.render('internationalMVP/have-you-lived-abroad');
+  res.render('internationalmvp/have-you-lived-abroad');
 });
 
 router.post('/have-you-lived-abroad', function(req, res) {
@@ -138,7 +138,7 @@ router.post('/have-you-lived-abroad', function(req, res) {
 
 // Which countries have you lived in?
 router.get('/what-countries-have-you-lived-in', function(req, res) {
-  res.render('internationalMVP/what-countries-have-you-lived-in');
+  res.render('internationalmvp/what-countries-have-you-lived-in');
 });
 
 router.post('/what-countries-have-you-lived-in', function(req, res) {
@@ -177,13 +177,13 @@ router.get('/tell-us-about-lived', function(req, res) {
     var countryType = get_countries.type(country);
 
     if ( countryType.resident || countryType.insurance ) {
-      res.render('internationalMVP/tell-us-about-lived', {country: country, countryType: countryType, step: step});
+      res.render('internationalmvp/tell-us-about-lived', {country: country, countryType: countryType, step: step});
     } else {
       res.cookie('c-lived-count', countries.length);
       res.cookie('c-lived-list', countries);
 
       if ( countries.length > 0 ) {
-        res.redirect('tell-us-about-lived');
+        res.redirect('tell-us-about-worked');
       } else {
         res.redirect('have-you-worked-abroad');
       }
@@ -227,11 +227,11 @@ router.get('/have-you-worked-abroad', function(req, res) {
   } else {
     title = 'Have you worked outside of the UK?';
   }
-  res.render('internationalMVP/have-you-worked-abroad', {title: title});
+  res.render('internationalmvp/have-you-worked-abroad', {title: title});
 });
 
 router.post('/have-you-worked-abroad', function(req, res) {
-  if ( req.body['worked-outside-select'] === 'Yes' ) {
+  if ( req.body['have-you-worked-abroad'] === 'yes' ) {
     res.redirect('what-countries-have-you-worked-in');
   } else {
     res.redirect('relationship-status');
@@ -240,7 +240,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
 
 // Which countries have you worked in?
 router.get('/what-countries-have-you-worked-in', function(req, res) {
-  res.render('internationalMVP/what-countries-have-you-worked-in');
+  res.render('internationalmvp/what-countries-have-you-worked-in');
 });
 
 router.post('/what-countries-have-you-worked-in', function(req, res) {
@@ -282,7 +282,7 @@ router.get('/tell-us-about-worked', function(req, res) {
     var countryType = get_countries.type(country);
 
     if ( countryType.insurance ) {
-      res.render('internationalMVP/tell-us-about-worked', {country: country, step: step});
+      res.render('internationalmvp/tell-us-about-worked', {country: country, step: step});
     } else {
       res.cookie('c-worked-count', countries.length);
       res.cookie('c-worked-list', countries);
@@ -318,7 +318,7 @@ router.post('/tell-us-about-worked', function(req, res) {
 
 // Relationship Status
 router.get('/relationship-status', function(req, res) {
-    res.render('internationalMVP/relationship-status');
+    res.render('internationalmvp/relationship-status');
 })
 router.post('/relationship-status', function(req, res) {
   if (req.body.relationship === "Never been married") {
@@ -339,7 +339,7 @@ router.post('/relationship-status', function(req, res) {
 // Relationship date
 router.all('/relationship-status-date/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/internationalMVP/relationship-status-more/"+req.params.type);
+    res.redirect("/internationalmvp/relationship-status-more/"+req.params.type);
   }else{
     var isMarried = false,
         isEnded = false;
@@ -371,7 +371,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
         eventText = "What date were you widowed?";
         break;
     }
-    res.render('internationalMVP/relationship-status-date', {
+    res.render('internationalmvp/relationship-status-date', {
       eventText: eventText,
       type: req.params.type,
       isEnded: isEnded,
@@ -383,7 +383,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/internationalMVP/contact");
+    res.redirect("/internationalmvp/contact");
   }else{
     var isMarried = false,
         isEnded = false,
@@ -421,13 +421,13 @@ router.all('/relationship-status-more/:type', function(req, res) {
         break;
     }
 
-    res.render('internationalMVP/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
+    res.render('internationalmvp/relationship-status-more',{type: req.params.type,pageHeader: pageHeader,isEnded: isEnded, isMarried: isMarried, widowed: widowed });
   }
 });
 
 // Contact page
 router.get('/contact', function(req, res) {
-  res.render('internationalMVP/contact');
+  res.render('internationalmvp/contact');
 });
 
 router.post('/contact', function(req, res) {
@@ -436,7 +436,7 @@ router.post('/contact', function(req, res) {
 
 // Bank details
 router.get('/bank-details', function(req, res) {
-  res.render('internationalMVP/bank-details');
+  res.render('internationalmvp/bank-details');
 });
 
 router.post('/bank-details', function(req, res) {
@@ -447,13 +447,13 @@ router.post('/bank-details', function(req, res) {
 
 router.get('/unhappy-ending', function(req, res) {
   req.session.view = null;
-  res.render('internationalMVP/unhappy-ending');
+  res.render('internationalmvp/unhappy-ending');
 });
 
 router.get('/end', function(req, res) {
   var completeDate = get_todays_date();
 
-  res.render('internationalMVP/end', {completeDate: completeDate});
+  res.render('internationalmvp/end', {completeDate: completeDate});
 });
 
 router.get('/download', function(req,res){
@@ -470,7 +470,7 @@ router.get('/reset', function(req, res) {
 });
 
 router.get('/settings', function(req, res) {
-  res.render('internationalMVP/settings');
+  res.render('internationalmvp/settings');
 });
 
 router.post('/settings', function(req, res) {
