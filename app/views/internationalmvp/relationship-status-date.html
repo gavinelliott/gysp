@@ -19,17 +19,17 @@
 						<fieldset>
 							<div class="form-group form-group-day">
 								<label for="dom-day">Day</label>
-								<input class="form-control" id="dom-day" maxlength="2" name="dom-day" value="{{dom-day}}" type="text" data-required="true"/>
+								<input class="form-control" id="dom-day" maxlength="2" name="dom-day" value="{{dom-day | int}}" type="number" data-required="true"/>
 							</div>
 
 							<div class="form-group form-group-month">
 								<label for="dom-month">Month</label>
-								<input class="form-control" id="dom-month" maxlength="2"  name="dom-month" value="{{dom-month}}" type="text" data-required="true"/>
+								<input class="form-control" id="dom-month" maxlength="2"  name="dom-month" value="{{dom-month}}" type="number" data-required="true"/>
 							</div>
 
 							<div class="form-group form-group-year">
 								<label for="dom-year">Year</label>
-								<input class="form-control" id="dom-year" maxlength="4" name="dom-year" value="{{dom-year}}" type="text" data-required="true"/>
+								<input class="form-control" id="dom-year" maxlength="4" name="dom-year" value="{{dom-year}}" type="number" data-required="true"/>
 							</div>
 						</fieldset>
 					</div>
