@@ -316,6 +316,20 @@ router.post('/tell-us-about-worked', function(req, res) {
   }
 });
 
+
+// Worked anywhere else?
+router.get('/workedextra', function(req, res) {
+  res.render('internationalmvp/workedextra');
+});
+
+router.post('/workedextra', function(req, res) {
+  if ( req.body['worked-anywhere-else'] === 'Yes' ) {
+    res.redirect('what-other-countries-have-you-lived-in');
+  } else {
+    res.redirect('relationship-status');
+  }
+});
+
 // Relationship Status
 router.get('/relationship-status', function(req, res) {
     res.render('internationalmvp/relationship-status');
