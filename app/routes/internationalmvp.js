@@ -23,6 +23,16 @@ router.post('/letter', function(req, res) {
   }
 });
 
+// worked-more
+router.post('/have-you-worked-anywhere-else', function(req, res) {
+  if ( req.body['worked-anywhere-else'] === 'Yes' ) {
+    res.redirect('secure');
+  } else {
+    res.redirect('relationship-status');
+  }
+});
+
+
 // Verify out declaration
 
 router.post('/outdec', function(req, res) {
@@ -238,6 +248,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
   }
 });
 
+
 // Which countries have you worked in?
 router.get('/what-countries-have-you-worked-in', function(req, res) {
   res.render('internationalmvp/what-countries-have-you-worked-in');
@@ -317,18 +328,6 @@ router.post('/tell-us-about-worked', function(req, res) {
 });
 
 
-// Worked anywhere else?
-router.get('/workedextra', function(req, res) {
-  res.render('internationalmvp/workedextra');
-});
-
-router.post('/workedextra', function(req, res) {
-  if ( req.body['worked-anywhere-else'] === 'Yes' ) {
-    res.redirect('what-other-countries-have-you-lived-in');
-  } else {
-    res.redirect('relationship-status');
-  }
-});
 
 // Relationship Status
 router.get('/relationship-status', function(req, res) {
