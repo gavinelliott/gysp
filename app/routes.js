@@ -41,6 +41,7 @@ router.use("/mvpdob", require('./routes/mvpdob.js'));
 router.use("/mvp", require('./routes/mvp.js'));
 router.use("/northernireland", require('./routes/northernireland.js'));
 router.use("/internationalmvp", require('./routes/internationalmvp.js'));
+router.use("/internationalmvp-v2", require('./routes/internationalmvp-v2.js'));
 
 
 module.exports = router;
