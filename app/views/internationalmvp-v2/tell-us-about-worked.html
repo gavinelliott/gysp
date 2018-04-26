@@ -10,11 +10,10 @@
       <div class="grid-row">
         <div class="column-two-thirds">
           <h1 class="heading-xlarge">
-            <span class="heading-secondary">Country {{step.on}} of {{step.of}}</span>
             <span style="text-transform:capitalize;">{{country}}</span>
           </h1>
 
-          <form action="tell-us-about-worked" method="post">
+          <form method="post">
             <h2 class="heading-medium">When did you work here?
 
               <p class="form-hint">If you’ve worked here on more than one occasion,
@@ -55,18 +54,17 @@
                 </div>
               </div>
 
-              <form method="post">
                 <div class="form-group">
                   <fieldset class="inline">
 
                               <h1 class="heading-medium">On another occasion?</h1>
 
                     <div class="multiple-choice">
-                      <input id="lived-more-yes" type="radio" name="lived-more" value="Yes">
+                      <input id="lived-more-yes" type="radio" name="worked-more" value="Yes">
                       <label for="lived-more-yes">Yes</label>
                     </div>
                     <div class="multiple-choice">
-                      <input id="lived-more-no" type="radio" name="lived-more" value="No">
+                      <input id="lived-more-no" type="radio" name="worked-more" value="No">
                       <label for="lived-more-no">No</label>
                     </div>
 

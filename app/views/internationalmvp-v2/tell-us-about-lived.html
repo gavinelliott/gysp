@@ -11,13 +11,13 @@ State Pension Activation
     <div class="column-two-thirds">
 
       <h1 class="heading-xlarge">
-        <span class="heading-secondary">Country {{step.on}} of {{step.of}}</span>
+        <span class="heading-secondary">Country {{stepOn}} of {{data.steps}}</span>
         <span style="text-transform:capitalize;">{{country}}</span>
       </h1>
 
       <h2 class="heading-medium">When did you live here?</h2>
 
-      <form action="tell-us-about-lived" method="post">
+      <form method="post">
         <fieldset>
           <div class="form-group">
             <div class="form-date">
@@ -54,23 +54,22 @@ State Pension Activation
               </div>
             </fieldset>
 
-            <form method="post">
-              <div class="form-group">
-                <fieldset class="inline">
+            <div class="form-group">
+              <fieldset class="inline">
 
-                            <h1 class="heading-medium">On another occasion?</h1>
+                          <h1 class="heading-medium">On another occasion?</h1>
 
-                  <div class="multiple-choice">
-                    <input id="lived-more-yes" type="radio" name="lived-more" value="Yes">
-                    <label for="lived-more-yes">Yes</label>
-                  </div>
-                  <div class="multiple-choice">
-                    <input id="lived-more-no" type="radio" name="lived-more" value="No">
-                    <label for="lived-more-no">No</label>
-                  </div>
+                <div class="multiple-choice">
+                  <input id="lived-more-yes" type="radio" name="lived-more" value="Yes">
+                  <label for="lived-more-yes">Yes</label>
+                </div>
+                <div class="multiple-choice">
+                  <input id="lived-more-no" type="radio" name="lived-more" value="No">
+                  <label for="lived-more-no">No</label>
+                </div>
 
-                </fieldset>
-              </div>
+              </fieldset>
+            </div>
 
             <input type="submit" class="button" value="Continue">
           </form>

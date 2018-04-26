@@ -15,7 +15,7 @@
             <fieldset id="country-type-ahead">
               <div class="form-group">
                 <label class="form-label" for="country-name-1">Country name <span class="remove-link"></span></label>
-                <input class="form-control country-name" id="country-name-1" type="text" name="country-name-1" autocomplete="off">
+                <input class="form-control country-name" id="country-name-1" type="text" name="country-name[]" autocomplete="off">
 
                 <div class="country-list" style="display:none;">
                 </div>
@@ -37,5 +37,5 @@
   {% endblock %}
 
   {% block pageScripts %}
-      {% include 'sprint9/scripts/countries.html' %}
+      {% include 'internationalmvp-v2/scripts/countries.html' %}
   {% endblock %}

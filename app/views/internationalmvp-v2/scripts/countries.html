@@ -446,8 +446,7 @@
 
     function addRemoveLinks() {
       var elementNum = $('.country-name').length + 1;
-
-      $('#country-type-ahead').append('<div class="form-group"><label class="form-label" for="country-name-' + elementNum + '">Country name <span class="remove-link"></span></label><input class="form-control country-name" id="country-name-' + elementNum + '" type="text" name="country-name-' + elementNum + '" autocomplete="off"><div class="country-list" style="display:none;"></div></div>');
+      $('#country-type-ahead').append('<div class="form-group"><label class="form-label" for="country-name-' + elementNum + '">Country name <span class="remove-link"></span></label><input class="form-control country-name" id="country-name-' + elementNum + '" type="text" name="country-name" autocomplete="off"><div class="country-list" style="display:none;"></div></div>');
     }
 
     function sortRemoveLinks() {
@@ -466,7 +465,6 @@
       $('.country-name').each(function () {
         $(this).parent().find('label').attr('for', 'country-name-' + id);
         $(this).attr('id', 'country-name-' + id);
-        $(this).attr('name', 'country-name-' + id);
         id++;
       });
     }

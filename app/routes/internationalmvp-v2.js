@@ -23,15 +23,6 @@ router.post('/letter', function(req, res) {
   }
 });
 
-// worked-more
-router.post('/have-you-worked-anywhere-else', function(req, res) {
-  if ( req.body['worked-anywhere-else'] === 'Yes' ) {
-    res.redirect('secure');
-  } else {
-    res.redirect('relationship-status');
-  }
-});
-
 
 // Secure page with invite code
 router.get('/secure', function(req, res) {
@@ -119,183 +110,99 @@ router.get('/what-countries-have-you-lived-in', function(req, res) {
 });
 
 router.post('/what-countries-have-you-lived-in', function(req, res) {
-  var countries = [];
-
-  for ( var country in req.body ) {
-    countries.push(req.body[country].toLowerCase());
-  }
-  res.cookie('c-lived-count', countries.length);
-  res.cookie('c-lived-list', countries);
-  res.cookie('c-lived-all', countries);
-  res.cookie('c-lived-step', 1);
-
-  res.redirect('tell-us-about-lived');
-});
-
-// Tell us about the country?
-router.get('/tell-us-about-lived', function(req, res) {
-  var countries = req.cookies['c-lived-list'];
-  var all_countries = req.cookies['c-lived-all'];
-  var resident = get_countries.resident();
-  var insurance = get_countries.insurance();
-
-  if ( countries.length === 0 ) {
-    res.redirect('what-countries-have-you-lived-in');
-  } else {
-    for ( var c in all_countries ) {
-      if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
-        delete all_countries[c];
-      }
-    }
-
-    var step = {'on': req.cookies['c-lived-step'], 'of': Object.keys(all_countries).length};
-
-    var country = countries.shift();
-    var countryType = get_countries.type(country);
-
-    if ( countryType.resident || countryType.insurance ) {
-      res.render('internationalmvp-v2/tell-us-about-lived', {country: country, countryType: countryType, step: step});
-    } else {
-      res.cookie('c-lived-count', countries.length);
-      res.cookie('c-lived-list', countries);
-
-      if ( countries.length > 0 ) {
-        res.redirect('tell-us-about-worked');
-      } else {
-        res.redirect('have-you-worked-abroad');
-      }
-    }
-  }
-});
-
-router.post('/tell-us-about-lived', function(req, res) {
-  if ( req.body['worked-outside-select'] == 'Yes' ) {
-    res.cookie('equiv_nino', 'yes');
-  } else {
-    res.cookie('equiv_nino', 'no');
-  }
-
-  var countries = req.cookies['c-lived-list'];
-  var country = '';
-  var step = req.cookies['c-lived-step'];
-  step++;
-
-  if ( countries !== undefined ) {
-    country = countries.shift();
-  }
-  res.cookie('c-lived-count', countries.length);
-  res.cookie('c-lived-list', countries);
-  res.cookie('c-lived-step', step);
-
-  if ( countries.length > 0 ) {
-    res.redirect('tell-us-about-lived');
-  } else {
-    res.redirect('have-you-worked-abroad');
-  }
-});
-
-
-// Have you worked abroad?
-router.get('/have-you-worked-abroad', function(req, res) {
-  var equiv_nino = req.cookies.equiv_nino;
-  var title = '';
-
-  if ( equiv_nino == 'yes' ) {
-    title = 'Have you worked anywhere else outside of the UK?';
-  } else {
-    title = 'Have you worked outside of the UK?';
-  }
-  res.render('internationalmvp-v2/have-you-worked-abroad', {title: title});
-});
-
-router.post('/have-you-worked-abroad', function(req, res) {
-  if ( req.body['have-you-worked-abroad'] === 'yes' ) {
-    res.redirect('what-countries-have-you-worked-in');
-  } else {
-    res.redirect('relationship-status');
-  }
-});
-
-
-// Which countries have you worked in?
-router.get('/what-countries-have-you-worked-in', function(req, res) {
-  res.render('internationalmvp-v2/what-countries-have-you-worked-in');
+  const countries = req.body['country-name'].slice(0);
+  req.session.data.all_countries = countries;
+  req.session.data.steps = req.body['country-name'].length;
+  const country = req.session.data['country-name'].shift();
+  res.redirect(`/internationalmvp-v2/tell-us-about-lived/${country}`);
 });
 
 router.post('/what-countries-have-you-worked-in', function(req, res) {
-  var countries = [];
+  const countries = req.body['country-name'].slice(0);
+  req.session.data.all_countries = countries;
+  req.session.data.steps = req.body['country-name'].length;
+  const country = req.session.data['country-name'].shift();
+  res.redirect(`/internationalmvp-v2/tell-us-about-worked/${country}`);
+});
 
-  for ( var country in req.body ) {
-    countries.push(req.body[country].toLowerCase());
+// Tell us about the country?
+router.get('/tell-us-about-lived/:country', function(req, res) {
+  const countries = req.session.data['country-name'] || {}
+  const country = req.params.country;
+  const stepTotal = req.session.data.steps;
+  const stepRemaining = countries.length;
+  const stepOn = stepTotal - stepRemaining;
+  if (country === 'undefined') {
+    res.redirect('/internationalmvp-v2/tell-us-about-worked');
+  } else {
+    res.render('internationalmvp-v2/tell-us-about-lived', {country, stepOn});
   }
-  res.cookie('c-worked-count', countries.length);
-  res.cookie('c-worked-list', countries);
-  res.cookie('c-worked-all', countries);
-  res.cookie('c-worked-step', 1);
+});
 
-  res.redirect('tell-us-about-worked');
+router.post('/tell-us-about-lived/:country', function(req, res) {
+  const repeat = req.body['lived-more'] === 'Yes';
+  if (repeat)  {
+    res.redirect(`/internationalmvp-v2/tell-us-about-lived/${req.params.country}`);
+  } else {
+    const newCountry = req.session.data['country-name'].shift();
+    res.redirect(`/internationalmvp-v2/tell-us-about-lived/${newCountry}`);
+  }
 });
 
 // Tell us about the country you worked in?
 router.get('/tell-us-about-worked', function(req, res) {
-  var countries = req.cookies['c-worked-list'];
-  var all_countries = req.cookies['c-worked-all'];
-  var resident = get_countries.resident();
-  var insurance = get_countries.insurance();
+  const allCountries = req.session.data.all_countries || [];
+  const insuranceCountries = require('../views/internationalmvp-v2/scripts/working-countries');
+  for (let i = 0; i < allCountries.length; i++) {
+    const country = allCountries.slice(0)[i];
+    if (insuranceCountries.includes(country)) {
+      allCountries.shift();
+      res.redirect(`/internationalmvp-v2/did-you-work-in/${country}`);
+    }
+  }
+  res.redirect(`/internationalmvp-v2/have-you-worked-anywhere-else/`);
+});
 
-  if ( countries.length === 0 ) {
-    res.redirect('what-countries-have-you-worked-in');
+router.get('/did-you-work-in/:country', function(req, res) {
+  const country = req.params.country;
+  res.render('internationalmvp-v2/did-you-work-in', {country});
+});
+
+router.post('/did-you-work-in/:country', function(req, res) {
+  const country = req.params.country;
+  if (req.body['did-you-work-in'] === 'Yes') {
+    res.redirect(`/internationalmvp-v2/tell-us-about-worked/${country}`);
   } else {
-    for ( var c in all_countries ) {
-      if ( resident.indexOf(all_countries[c]) < 0 && insurance.indexOf(all_countries[c]) < 0 ) {
-        delete all_countries[c];
-      }
-    }
-
-    var step = {'on': req.cookies['c-worked-step'], 'of': Object.keys(all_countries).length};
-
-    var country = '';
-    if ( countries !== undefined ) {
-      country = countries.shift();
-    }
-    var countryType = get_countries.type(country);
-
-    if ( countryType.insurance ) {
-      res.render('internationalmvp-v2/tell-us-about-worked', {country: country, step: step});
-    } else {
-      res.cookie('c-worked-count', countries.length);
-      res.cookie('c-worked-list', countries);
-
-      if ( countries.length > 0 ) {
-        res.redirect('tell-us-about-worked');
-      } else {
-        res.redirect('relationship-status');
-      }
-    }
+    res.redirect(`/internationalmvp-v2/have-you-worked-anywhere-else/`);
   }
 });
 
-router.post('/tell-us-about-worked', function(req, res) {
-  var countries = req.cookies['c-worked-list'];
-  var country = '';
-  var step = req.cookies['c-worked-step'];
-  step++;
+router.get('/tell-us-about-worked/:country', function (req, res) {
+  const country = req.params.country;
+  res.render('internationalmvp-v2/tell-us-about-worked', {country});
+});
 
-  if ( countries !== undefined ) {
-    country = countries.shift();
-  }
-
-  res.cookie('c-worked-count', countries.length);
-  res.cookie('c-worked-list', countries);
-  res.cookie('c-worked-step', step);
-  if ( countries.length > 0 ) {
-    res.redirect('tell-us-about-worked');
+router.post('/tell-us-about-worked/:country', function (req, res) {
+  const country = req.params.country;
+  const repeat = req.body['worked-more'] === 'Yes';
+  if (repeat)  {
+    res.redirect(`/internationalmvp-v2/tell-us-about-worked/${country}`);
   } else {
-    res.redirect('relationship-status');
+    res.redirect(`/internationalmvp-v2/tell-us-about-worked`);
   }
 });
 
+router.get('/have-you-worked-anywhere-else', function (req, res) {
+  res.render('internationalmvp-v2/have-you-worked-anywhere-else');
+});
 
+router.post('/have-you-worked-anywhere-else', function (req, res) {
+  if (req.body['worked-anywhere-else'] === 'Yes') {
+    res.redirect('/internationalmvp-v2/what-countries-have-you-worked-in');
+  } else {
+    res.redirect('/internationalmvp-v2/relationship-status');
+  }
+});
 
 // Relationship Status
 router.get('/relationship-status', function(req, res) {
