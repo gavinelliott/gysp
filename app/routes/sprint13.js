@@ -226,7 +226,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
   if ( req.body['worked-outside-select'] === 'Yes' ) {
     res.redirect('what-countries-have-you-worked-in');
   } else {
-    res.redirect('relationship');
+    res.redirect('relationship-status');
   }
 });
 
