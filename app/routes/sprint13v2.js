@@ -197,6 +197,15 @@ router.post('/tell-us-about-lived', function(req, res) {
     res.redirect('have-you-worked-abroad');
   }
 });
+// Are you receiving benefits?
+
+router.post('/benefits', function(req, res) {
+  if ( req.body['benefits-select'] === 'Yes' ) {
+    res.redirect('have-you-worked-abroad');
+  } else {
+    res.redirect('have-you-worked-abroad');
+  }
+});
 
 // Have you worked abroad?
 router.get('/have-you-worked-abroad', function(req, res) {

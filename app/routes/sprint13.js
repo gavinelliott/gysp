@@ -83,14 +83,6 @@ router.post('/secure', function(req, res) {
   }
 });
 
-// State pension age, this date or another date?
-router.post('/pension-age', function(req, res) {
-  if ( req.body['date-select'] === 'date-yes' ) {
-    res.redirect('have-you-lived-abroad');
-  } else {
-    res.redirect('deferral');
-  }
-});
 
 router.post('/deferral', function(req, res) {
   // create variables from date entered in form
@@ -100,7 +92,7 @@ router.post('/deferral', function(req, res) {
 
   // create date objects for deferral date and state pension age (new Date() takes values backwards, yyyy, mm, dd)
   const deferralDate = new Date(year, month, day); // create a date from day, month, year
-  const statePensionDate = new Date(2017, 11, 09); // create a date for 09, 04, 2018 (take 1 off because arrays start from 0, so 1 is 0)
+  const statePensionDate = new Date(2018, 06, 09); // create a date for 09, 04, 2018 (take 1 off because arrays start from 0, so 1 is 0)
 
   // get the difference in weeks between deferral date and state pension date, returns a number eg 9
   const diffInWeeks = differenceInWeeks(deferralDate, statePensionDate)
@@ -110,7 +102,7 @@ router.post('/deferral', function(req, res) {
     res.redirect('tooearly');
   } else {
     // if 17 weeks or less add commit push
-    res.redirect('have-you-lived-abroad');
+    res.redirect('benefits');
   }
 });
 
@@ -234,7 +226,7 @@ router.post('/have-you-worked-abroad', function(req, res) {
   if ( req.body['worked-outside-select'] === 'Yes' ) {
     res.redirect('what-countries-have-you-worked-in');
   } else {
-    res.redirect('relationship-status');
+    res.redirect('benefits');
   }
 });
 
