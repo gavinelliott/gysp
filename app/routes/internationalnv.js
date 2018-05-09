@@ -93,6 +93,25 @@ router.post('/secure', function(req, res) {
   }
 });
 
+// DOB check
+router.post('/dob-check', function(req, res) {
+  if (req.body["dob-year"] === "1952") {
+    return res.redirect("/internationalnv/pension-ageNV")
+  }
+
+  if (req.body["dob-year"] === "1953") {
+    return res.redirect("/internationalnv/dob-early")
+  }
+
+  if (req.body["dob-year"] === "1950") {
+    return res.redirect("/internationalnv/dob-rules")
+  }
+
+  res.redirect("/internationalnv/pension-age")
+
+});
+
+
 // State pension age, this date or another date?
 router.post('/pension-age', function(req, res) {
   if ( req.body['date-select'] === 'date-yes' ) {
