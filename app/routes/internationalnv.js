@@ -473,7 +473,7 @@ router.get('/bank-details', function(req, res) {
 
 router.post('/bank-details', function(req, res) {
 
-    res.redirect('overview');
+    res.redirect('dob-fail');
 
 });
 

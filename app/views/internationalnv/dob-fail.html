@@ -1,61 +1,87 @@
 {% extends 'layout.html' %}
 
-	{% block pageTitle %}
-		State Pension Activation
-	{% endblock %}
+{% block pageTitle %}
+State Pension Activation
+{% endblock %}
 
-	{% block content %}
-		<!-- #page-container -->
-		<main id="content" role="main" class="group">
-			{% include 'includes/parts/phase-banner.html' %}
+{% block content %}
+<!-- #page-container -->
+<main id="content" role="main" class="group">
+	{% include 'includes/parts/phase-banner.html' %}
 
-			<div class="grid-row">
-				<div class="column-two-thirds">
-					<h1 class="heading-xlarge">You need to send proof of your date of birth</h1>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-xlarge">You need to send proof of your date of birth</h1>
 
-					<p class="heading-medium">
-						Send a copy of 1 of the following documents:
-					</p>
+			<p class="heading-medium">
+				Send a certified copy of 1 of the following documents:
+			</p>
 
 
-						<ul class="list-bullet">
-							<li>a birth certificate</li>
-							<li>passport</li>
-							<li>driving license</li>
-							<li>national identity card</li>
-						</ul>
+			<ul class="list-bullet">
+				<li>birth certificate</li>
+				<li>national identity card</li>
+				<li>certificate of registration of birth</li>
+				<li>adoption order</li>
+			</ul>
 
-						<p class="heading-medium">
-							It should be stamped and signed by 1 of the following people:
-						</p>
+		</br>
 
-						<ul class="list-bullet">
-							<li>bank official (authorised to sign documents)</li>
-							<li>doctor or surgeon (registered in the country you are applying from)</li>
-							<li>soicitor or barrister (authorised to practice in the country you are apllying from)</li>
-							<li>civil servant</li>
-							<li>minister of religion</li>
-						</ul>
-
-						<p class="heading-medium">
-							Send the stamped and signed copy of your document to:
-						</p>
-
-					<p>The Pension Service 11<br/>
-						 Mail Handling Site A<br/>
-						 Wolverhampton<br/>
-						 WV98 1LW<br/>
-						 United Kingdom
-				  </p>
-
-					<p>Your document will be returned to you as soon as possible.</p>
-
-					<a class="button" href="declaration" role="button">Continue</a>
-
-				</div>
-				<div class="column-one-third">
-          {% include 'includes/parts/help.html' %}
-        </div>
+		<details>
+			<summary><span class="summary">I do not have any of these</span></summary>
+			<div class="panel panel-border-narrow">
+				<p>
+					You can send a copy of both the following documents:
+					<li>passport</li>
+					<li>driving licence</li>
+				</p>
 			</div>
-	</main><!-- / #page-container -->
-	{% endblock %}
+
+		</details>
+
+		<p class="heading-medium">
+			Your copy must be dated and signed by one of the following
+			people confirming that it is a true copy of the original:
+		</p>
+
+		<ul class="list-bullet">
+			<li>bank official (authorised to sign documents)</li>
+			<li>doctor or surgeon (registered in the country you are applying from)</li>
+			<li>soicitor or barrister (authorised to practice in the country you are apllying from)</li>
+			<li>civil servant</li>
+			<li>minister of religion</li>
+			<li>chartered accountant</li>
+		</ul>
+
+		<p class="heading-medium">
+			Send the certified copy of your document to:
+		</p>
+
+		<p>The Pension Service 11<br/>
+			Mail Handling Site A<br/>
+			Wolverhampton<br/>
+			WV98 1LW<br/>
+			United Kingdom
+		</p>
+
+		<div class="notice">
+			<i class="icon icon-important">
+				<span class="visually-hidden">Warning</span>
+			</i>
+			<strong class="bold-small">
+				You can continue with your application,
+				but it can't be processed until you send proof of your date of birth.
+			</strong>
+		</div>
+
+</br>
+
+		<a class="button" href="declaration" role="button">Continue</a>
+
+	</div>
+	<div class="column-one-third">
+		{% include 'includes/parts/help.html' %}
+	</div>
+</div>
+</main><!-- / #page-container -->
+{% endblock %}
