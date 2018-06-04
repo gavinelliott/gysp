@@ -169,6 +169,7 @@ router.get('/tell-us-about-worked', function(req, res) {
     } else {
       const nextCountry = allCountries[0];
       if (otherWorked) {
+        allCountries.shift();
         res.redirect(`/internationalmvp-v2/tell-us-about-worked/${nextCountry}`);
       } else {
         res.redirect(`tell-us-about-lived/${nextCountry}`);
