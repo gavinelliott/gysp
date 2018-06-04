@@ -122,7 +122,7 @@ router.post('/what-countries-have-you-worked-in', function(req, res) {
   req.session.data.all_countries = countries;
   req.session.data.steps = req.body['country-name'].length;
   const country = req.session.data['country-name'].shift();
-  res.redirect(`/internationalmvp-v2/tell-us-about-worked/${country}`);
+  res.redirect(`/internationalmvp-v2/tell-us-about-worked`);
 });
 
 // Tell us about the country?
@@ -144,23 +144,44 @@ router.post('/tell-us-about-lived/:country', function(req, res) {
   if (repeat)  {
     res.redirect(`/internationalmvp-v2/tell-us-about-lived/${req.params.country}`);
   } else {
-    const newCountry = req.session.data['country-name'].shift();
-    res.redirect(`/internationalmvp-v2/tell-us-about-lived/${newCountry}`);
+    if (req.session.data['country-name'] !== undefined && req.session.data['country-name'].length > 0) {
+      req.session.data['country-name'].shift();
+    }
+    res.redirect('/internationalmvp-v2/tell-us-about-worked');
   }
 });
 
 // Tell us about the country you worked in?
 router.get('/tell-us-about-worked', function(req, res) {
   const allCountries = req.session.data.all_countries || [];
+  const otherWorked = req.session.data['worked-anywhere-else'] === 'Yes' ? true : false;
   const insuranceCountries = require('../views/internationalmvp-v2/scripts/working-countries');
-  for (let i = 0; i < allCountries.length; i++) {
-    const country = allCountries.slice(0)[i];
+
+  if (allCountries.length > 0) {
+    const country = allCountries[0];
+    allCountries.shift();
     if (insuranceCountries.includes(country)) {
-      allCountries.shift();
-      res.redirect(`/internationalmvp-v2/did-you-work-in/${country}`);
+      if (otherWorked) {
+        res.redirect(`/internationalmvp-v2/tell-us-about-worked/${country}`);
+      } else {
+        res.redirect(`/internationalmvp-v2/did-you-work-in/${country}`);
+      }
+    } else {
+      const nextCountry = allCountries[0];
+      if (otherWorked) {
+        allCountries.shift();
+        res.redirect(`/internationalmvp-v2/tell-us-about-worked/${nextCountry}`);
+      } else {
+        res.redirect(`tell-us-about-lived/${nextCountry}`);
+      }
+    }
+  } else {
+    if (otherWorked) {
+      res.redirect('/internationalmvp-v2/relationship-status');
+    } else {
+      res.redirect(`/internationalmvp-v2/have-you-worked-anywhere-else/`);
     }
   }
-  res.redirect(`/internationalmvp-v2/have-you-worked-anywhere-else/`);
 });
 
 router.get('/did-you-work-in/:country', function(req, res) {
@@ -185,10 +206,17 @@ router.get('/tell-us-about-worked/:country', function (req, res) {
 router.post('/tell-us-about-worked/:country', function (req, res) {
   const country = req.params.country;
   const repeat = req.body['worked-more'] === 'Yes';
+  const otherWorked = req.session.data['worked-anywhere-else'] === 'Yes' ? true : false;
   if (repeat)  {
     res.redirect(`/internationalmvp-v2/tell-us-about-worked/${country}`);
   } else {
-    res.redirect(`/internationalmvp-v2/tell-us-about-worked`);
+    if (otherWorked) {
+      res.redirect('/internationalmvp-v2/tell-us-about-worked')
+    } else {
+      const allCountries = req.session.data.all_countries || [];
+      const nextCountry = allCountries[0];
+      res.redirect(`/internationalmvp-v2/tell-us-about-lived/${nextCountry}`);
+    }
   }
 });
 
