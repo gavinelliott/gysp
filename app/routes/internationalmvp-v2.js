@@ -37,9 +37,9 @@ router.post('/secure', function(req, res) {
   }
 
   if (req.body.reference.toLowerCase() === 'EDMO435HN3'.toLowerCase()) {
-    res.redirect('/internationalmvp-v2/pension-age');
+    res.redirect('/internationalmvp-v2/dob-check');
   } else {
-    res.redirect('/internationalmvp-v2/pension-age');
+    res.redirect('/internationalmvp-v2/dob-check');
   }
 });
 
