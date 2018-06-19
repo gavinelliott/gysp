@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Question page
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main" class="group">
+  {% include 'includes/parts/phase-banner.html' %}
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="/url/of/previous/page">Back</a>
+
+      <h1 class="heading-xlarge">
+        Other ways to get your State Pension
+      </h1>
+
+      <p>If you can’t verify your identity using GOV.UK Verify,
+        you can get your State Pension by calling the freephone number. </br>
+        You will need your National Insurance number.</p>
+
+        <h2 class="heading-small">
+          England, Scotland and Wales
+        </h2>
+
+        <p>
+          Telephone: 0800 731 7898 </br>
+          Textphone: 0800 731 7339 </br>
+          Monday to Friday, 8am to 6pm </br>
+          Closed public holidays
+        </p>
+
+        <h3 class="heading-small">
+          Northern Ireland
+        </h3>
+
+        <p>
+          Telephone: 0808 100 2658 </br>
+          Textphone: 0808 100 2198 </br>
+          Monday to Friday, 9am to 5pm </br>
+          Closed public holidays
+        </p>
+
+      </div>
+
+
+    </div>
+  </main>
+
+  {% endblock %}

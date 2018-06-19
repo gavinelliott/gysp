@@ -12,16 +12,13 @@
       <div class="column-two-thirds">
 
 
-          <h1 class="heading-xlarge">Where have you lived outside the UK?</h1>
-
-          <p class="form-hint">Include all countries you have lived in and the country you live in now.
-          </br>
+          <h1 class="heading-xlarge">What countries have you lived in?</h1>
 
           <form id="countries" action="what-countries-have-you-lived-in" method="post">
             <fieldset id="country-type-ahead">
               <div class="form-group">
                 <label class="form-label" for="country-name-1">Country name <span class="remove-link"></span></label>
-                <input class="form-control country-name" id="country-name-1" type="text" name="country-name[]" autocomplete="off">
+                <input class="form-control country-name" id="country-name-1" type="text" name="country-name-1" autocomplete="off">
 
                 <div class="country-list" style="display:none;">
                 </div>
@@ -37,12 +34,13 @@
         </div>
 
         <div class="column-one-third">
-          {% include 'includes/parts/helpinternational.html' %}
+          {% include 'includes/parts/help.html' %}
         </div>
       </div>
     </main>
   {% endblock %}
 
   {% block pageScripts %}
-      {% include 'internationalmvp-v2/scripts/countries.html' %}
+      {% include 'sprint9/scripts/countries.html' %}
   {% endblock %}
+
