@@ -45,5 +45,6 @@ router.use("/internationalmvp-v2", require('./routes/internationalmvp-v2.js'));
 router.use("/internationalnv", require('./routes/internationalnv.js'));
 router.use("/internationalmvp-v3", require('./routes/internationalmvp-v3.js'));
 router.use("/sprint14", require('./routes/sprint14.js'));
+router.use("/internationalnvv2", require('./routes/internationalnvv2.js'));
 
 module.exports = router;
