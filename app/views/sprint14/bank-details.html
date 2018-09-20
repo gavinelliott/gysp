@@ -19,19 +19,32 @@
 						</div>
 					{% endif %}
 
-					<h1 class="heading-xlarge">Your account details</h1>
-					<p class="text">You can only have your pension paid into your personal or joint bank or building society account.</p>
+					<h1 class="heading-xlarge">How would you like to be paid?</h1>
+					<p class="text">You can only have your pension paid into your own bank or building society account.</p>
 
 					<br />
 
 					<form action="bank-details" method="POST">
+						<fieldset>
 
-						<div class="form-group" id="bank-details">
+							<div class="form-group">
+								<div class="multiple-choice" data-target="bank-details">
+									<input id="building_1" type="radio" name="building" value="bank">
+									<label for="building_1">Bank account</label>
+								</div>
+
+								<div class="multiple-choice" data-target="building-soc-details">
+									<input id="building_2" type="radio" name="building" value="building">
+									<label for="building_2">Building society account</label>
+								</div>
+							</div>
+						</fieldset>
+
+						<div class="js-hidden" id="bank-details">
 							<div class="form-group">
 								<fieldset>
-									<label class="form-label-bold label-no-hint" for="ba-account-holder">Account name</label>
+									<label class="form-label-bold label-no-hint" for="ba-account-holder">Account holder name</label>
 									<input type="text" class="form-control" id="ba-account-holder" name="ba-account-holder" value="{{data.ba-account-holder}}">
-
 								</fieldset>
 							</div>
 
@@ -73,7 +86,7 @@
 						<div class="js-hidden" id="building-soc-details">
 							<div class="form-group">
 								<fieldset>
-									<label class="form-label-bold label-no-hint" for="bs-account-holder">Account name</label>
+									<label class="form-label-bold label-no-hint" for="bs-account-holder">Account holder name</label>
 									<input type="text" class="form-control" id="bs-account-holder" name="bs-account-holder" value="{{data.bs-account-holder}}">
 								</fieldset>
 							</div>
@@ -110,14 +123,14 @@
 								<fieldset>
 									<label class="form-label-bold" for="bs-society-roll">
 										Building society roll or reference number
-										<span class="form-hint">If your building society uses a roll or reference number, you will</br> find it on your passbook</span>
+										<span class="form-hint">If your building society uses a roll or reference number, you will find it on your passbook</span>
 									</label>
 									<input type="text" class="form-control" id="bs-society-roll" name="bs-society-roll" value="{{data.bs-society-roll}}">
 								</fieldset>
 							</div>
 
 							<div class="form-group">
-								<button type="overview.html" class="button">Continue</button>
+								<button type="overview.html" class="button">Confirm details</button>
 							</div>
 
 						</div>
