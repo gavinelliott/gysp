@@ -241,6 +241,7 @@ router.post('/what-countries-have-you-worked-in', function(req, res) {
   for ( var country in req.body ) {
     countries.push(req.body[country].toLowerCase());
   }
+
   res.cookie('c-worked-count', countries.length);
   res.cookie('c-worked-list', countries);
   res.cookie('c-worked-all', countries);
@@ -252,6 +253,7 @@ router.post('/what-countries-have-you-worked-in', function(req, res) {
 // Tell us about the country you worked in?
 router.get('/tell-us-about-worked', function(req, res) {
   var countries = req.cookies['c-worked-list'];
+
   var all_countries = req.cookies['c-worked-all'];
   var resident = get_countries.resident();
   var insurance = get_countries.insurance();
