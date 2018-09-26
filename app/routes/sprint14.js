@@ -102,7 +102,7 @@ router.post('/deferral', function(req, res) {
     res.redirect('tooearly');
   } else {
     // if 17 weeks or less add commit push
-    res.redirect('benefits');
+    res.redirect('have-you-lived-abroad');
   }
 });
 
@@ -316,7 +316,7 @@ router.get('/relationship-status', function(req, res) {
 })
 router.post('/relationship-status', function(req, res) {
   if (req.body.relationship === "Never been married") {
-    res.redirect("contact");
+    res.redirect("benefits");
   } else if ( req.body.relationship === "Married" ||
               req.body.relationship === "Divorced" ||
               req.body.relationship === "Civil" ||
@@ -326,7 +326,7 @@ router.post('/relationship-status', function(req, res) {
   } else if ( req.body.relationship === "Widowed" ) {
     res.redirect("relationship-status-more/" + req.body.relationship);
   } else {
-    res.redirect('contact');
+    res.redirect('benefits');
   }
 });
 
@@ -377,7 +377,7 @@ router.all('/relationship-status-date/:type', function(req, res) {
 // Relationship status more
 router.all('/relationship-status-more/:type', function(req, res) {
   if (req.body.submit === "Continue") {
-    res.redirect("/sprint14/contact");
+    res.redirect("/sprint14/benefits");
   }else{
     var isMarried = false,
         isEnded = false,
