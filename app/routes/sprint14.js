@@ -24,6 +24,17 @@ router.post('/letter', function(req, res) {
 });
 
 // Verify out declaration
+router.use((req, res, next) => {
+  if (req.method === 'POST') {
+    console.log(JSON.stringify(req.session.data, null, 2))
+  }
+  next()
+})
+
+router.post('/bpv-iteration/currentaddress', (req, res) => {
+  res.redirect('/bpv-iteration/currentaddress2')
+})
+;
 
 router.post('/outdec', function(req, res) {
   if ( req.body['out-dec'] === 'Yes' ) {
@@ -44,44 +55,18 @@ router.post('/indec', function(req, res) {
 });
 
 // Secure page with invite code
-router.get('/secure', function(req, res) {
-  res.render('sprint14/secure');
-});
+
 
 router.post('/secure', function(req, res) {
-  res.locals.error = true;
-
-  if ( req.cookies.sp3_fail_attempts ) {
-    res.cookie('sp3_fail_attempts', 0);
-  }
-
-  if (req.body.reference.toLowerCase() === 'EDMO435HN3'.toLowerCase()) {
+  if ( req.body['address-select'] === 'Yes' ) {
     res.redirect('/sprint14/pension-age');
   } else {
-    res.redirect('/sprint14/pension-age');
+    res.redirect('/sprint14/currentaddress');
   }
 });
 
-router.post('/secure', function(req, res) {
-  res.locals.error = true;
+// Current address is not the same
 
-  if ( req.cookies.sp3_fail_attempts ) {
-    res.cookie('sp3_fail_attempts', 0);
-  }
-
-  if ((req.body.reference.replace(/\s/g, "") === "EDMO435HN3" || req.body.reference.replace(/\s/g, "").toLowerCase() === "qyx5ychpnrjv")) {
-    req.session.view = null;
-    res.redirect("unhappy-ending");
-  } else {
-    req.session.view++;
-
-    if (req.session.view > 2) {
-      res.redirect("unhappy-ending");
-    } else {
-      res.render('sprint14/secure');
-    }
-  }
-});
 
 
 router.post('/deferral', function(req, res) {
