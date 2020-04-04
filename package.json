@@ -33,7 +33,7 @@
     "gulp-sourcemaps": "^1.12.1",
     "gulp-util": "^3.0.7",
     "marked": "^0.3.19",
-    "minimist": "0.0.8",
+    "minimist": "1.2.3",
     "nunjucks": "^2.5.2",
     "portscanner": "^1.0.0",
     "prompt": "^0.2.14",
