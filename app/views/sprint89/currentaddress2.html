@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+State Pension Activation
+{% endblock %}
+
+{% block content %}
+
+<!-- #page-container -->
+<main id="content" role="main">
+	{% include 'includes/parts/phase-banner.html' %}
+
+	<form method="post" action="secure">
+		<div class="grid-row">
+			<div class="column-two-thirds">
+
+				<h1 class="heading-xlarge">What is your current address?</h1>
+
+<h4 class="heading-small">Postcode </br>
+AP1 234  <a href="currentaddress">Change</a></h4>
+
+				<div class="form-group">
+					<label class="form-label" for="select-box">Select new address</label>
+					<select class="form-control" id="select-box" name="select-box">
+						<option>3 addresses found</option>
+						<option>12 Apple Terrace, Pearton, Tangerine Upon Tyne, AP1 234</option>
+						<option>13 Apple Terrace, Pearton, Tangerine Upon Tyne, AP1 234</option>
+						<option>14 Apple Terrace, Pearton, Tangerine Upon Tyne, AP1 234</option>
+					</select>
+				</div>
+
+				<p>
+					<a href="contact-us">I cannot find my address in the list</a>
+				</p>
+
+				<a href="pension-age" class="button" value="Submit">Save and continue</a>
+			</div>
+
+			<div class="column-one-third">
+				{% include 'includes/parts/helpstart.html' %}
+			</div>
+		</div>
+	</form>
+</main>
+{% endblock %}
+
+{% block pageScripts %}
+{% include 'includes/scripts/ninoFocus.html' %}
+{% include 'includes/scripts/dobFocus.html' %}
+{% include 'mvp/scripts/clear_fields.html' %}
+{% endblock %}

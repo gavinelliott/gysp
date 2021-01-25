@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+State Pension Activation
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+  {% include 'includes/parts/phase-banner.html' %}
+  <div class="grid-row">
+
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge">Are you receiving any benefits?</h1>
+
+      <form action="benefits" method="post">
+        <fieldset class="inline">
+          <div class="form-group">
+
+            <div class="multiple-choice">
+              <input id="benefits-yes" type="radio" name="benefits-select" value="Yes">
+              <label for="benefits-yes">Yes</label>
+            </div>
+
+            <div class="multiple-choice">
+              <input id="benefits-no" type="radio" name="benefits-select" value="No">
+              <label for="benefits-no">No</label>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+      				<a href="contact" class="button" value="Submit">Continue</a>
+    </div>
+
+    <div class="column-one-third">
+      {% include 'includes/parts/help.html' %}
+    </div>
+  </div>
+</main>
+{% endblock %}
