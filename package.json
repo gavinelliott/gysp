@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.3",
     "cross-spawn": "^5.0.0",
     "date-fns": "^1.30.1",
-    "express": "4.13.3",
+    "express": "4.17.3",
     "express-session": "^1.15.6",
     "express-writer": "0.0.4",
     "govuk-elements-sass": "3.0.1",
